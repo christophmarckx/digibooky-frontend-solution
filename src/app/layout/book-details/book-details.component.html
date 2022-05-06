@@ -1,3 +1,12 @@
-<h1>Title: {{book.title}}</h1>
-<p>Author: {{book.author}}</p>
-<p>isbn: {{book.isbn}}</p>
+<div>
+  <h1>Title: {{book.title}}</h1>
+  <p>Written by: {{book.author}}</p>
+  <p>isbn: {{book.isbn}}</p>
+</div>
+<div *ngIf="role == 'member' || role == 'librarian'">
+  <p>Added on: {{book.arrival}}</p>
+  <p>Copies left: {{book.copies}}</p>
+  <p>price: {{book.price}}euro</p>
+
+  <a routerLink="/books/{{id}}/{{book.isbn}}/lent" (click)="lendBook()">Lent Book</a>
+</div>

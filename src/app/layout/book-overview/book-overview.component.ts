@@ -8,12 +8,10 @@ import {Book} from "../../model/Book";
   styleUrls: ['./book-overview.component.css']
 })
 export class BookOverviewComponent implements OnInit {
-  private bookService: BookService;
-  private _books: Array<Book>;
 
-  constructor(bookService: BookService) {
-    this.bookService = bookService;
-    this._books = [];
+  private _books: Array<Book> = [];
+
+  constructor(private bookService: BookService) {
   }
 
   ngOnInit(): void {

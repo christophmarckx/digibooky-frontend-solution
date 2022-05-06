@@ -1,1 +1,61 @@
-<p>register-member works!</p>
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+  <h5>the fields with an * must be filled in.</h5>
+  <div>
+    <label for="inss">
+      INSS *
+    </label>
+    <input id="inss" type="text" formControlName="inss">
+  </div>
+  <div>
+    <label for="firstName">
+      First name
+    </label>
+    <input id="firstName" type="text" formControlName="firstName">
+  </div>
+  <div>
+    <label for="lastName">
+      Last name *
+    </label>
+    <input id="lastName" type="text" formControlName="lastName">
+  </div>
+  <div>
+    <label for="email">
+      E-mail *
+    </label>
+    <input id="email" type="text" formControlName="email">
+  </div>
+  <div>
+    <label for="password">
+      Password *
+    </label>
+    <input id="password" type="password" formControlName="password">
+  </div>
+  <div>
+    <label for="streetname">
+      streetname
+    </label>
+    <input id="streetname" type="text" formControlName="streetname">
+  </div>
+  <div>
+    <label for="streetnumber">
+      streetnumber
+    </label>
+    <input id="streetnumber" type="text" formControlName="streetnumber">
+  </div>
+  <div>
+    <label for="postalcode">
+      postalcode
+    </label>
+    <input id="postalcode" type="text" formControlName="postalcode">
+  </div>
+  <div>
+    <label for="city">
+      city *
+    </label>
+    <input id="city" type="text" formControlName="city">
+  </div>
+
+
+  <button class="button" type="submit">Register</button>
+
+</form>

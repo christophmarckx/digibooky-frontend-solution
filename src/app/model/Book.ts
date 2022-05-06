@@ -7,5 +7,6 @@ export interface Book {
   copies: number,
   price: number,
   arrival: string,
-  image: string
+  image: string,
+  dueDate: string
 }

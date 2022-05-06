@@ -1,0 +1,41 @@
+<h1>How to test Story 11:</h1>
+<ul>
+  <li>
+    <div>Log yourself in with following member -> E-mail: "koen@mail.com" and password: "passkoen"</div>
+    <div>OR</div>
+    <div>register a new member.</div>
+  </li>
+  <li>
+    Click on the following link
+    <button routerLink="/books">Books</button>
+    or on the "BOOKS" link at the top of your screen, this will send you to the Book Overview Page.
+  </li>
+  <li>Here you can choose a book that you would like to borrow from DigiBooky by clicking on the "Detail" button</li>
+  <li>Now you should be on the details page from your chosen book.</li>
+  <li>On this page you should see the "Lent Book" button.</li>
+  <li>when you press this button, you should have borrowed the book.</li>
+  <li>When the Profile story is already implemented, you can see the chosen book on the profile page.</li>
+</ul>
+
+<h2>If something went wrong:</h2>
+<ul>
+  <li>
+    <p>The "Lent Book" button isn't available on the book details page</p>
+    <ul>
+      <li>
+        <p>Make sure you followed the above steps and you are really logged in.</p>
+        <p>If you are sure you are logged in, check if your role is "member" and not something else</p>
+        <p>to check this:</p>
+        <ul>
+          <li>Press the right mouse button and select "inspect" (normally the last option you can choose)</li>
+          <li>Now you should see that there is a box popping up in your browser, at the top of this box there are multiple options, one of them should be "Application" </li>
+          <li>When you press on "Application", you see a "Storage" section</li>
+          <li>In this section is the option "Session Storage", click on its the drop down button</li>
+          <li>In this dropdown, should be the "http://localhost:4200" option, click on this</li>
+          <li>When you clicked on this, you should see "Key" and "Value"</li>
+          <li>Look under "Key" for the name "role" and check if that corresponding "Value" is "member"</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

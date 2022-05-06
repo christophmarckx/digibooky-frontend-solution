@@ -1,0 +1,15 @@
+<h1>Profile</h1>
+<p>INSS: {{member.inss}}</p>
+<p>Name: {{member.firstName}} {{member.lastName}}</p>
+<p>E-mail: {{member.email}}</p>
+<p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
+<p>Fines: {{member.fine}}</p>
+<div *ngIf="member.lendings.length > 0">
+  <h1>Current Books</h1>
+  <div *ngFor="let book of member.lendings ">
+    <p>Title: {{book.title}}</p>
+    <p>Author: {{book.authorFirstName}} {{book.authorLastName}}</p>
+    <p>Duedate: {{book.dueDate}}</p>
+    <button>Return</button>
+  </div>
+</div>

@@ -1,4 +1,27 @@
-<ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="/books">books</a></li>
+<ul *ngIf="role !== 'member' && role !== 'librarian' && role !== 'admin'">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/books">Books</a></li>
+  <li><a routerLink="/login">Login</a></li>
+  <li><a routerLink="/members">register</a></li>
 </ul>
+
+<ul *ngIf="role === 'member'">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/books">Books</a></li>
+  <li><a routerLink="/members/{{id}}">Profile</a></li>
+  <li><a routerLink="/logout">Logout</a></li>
+</ul>
+
+<ul *ngIf="role === 'librarian'">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/books">Books</a></li>
+  <li><a routerLink="/logout">Logout</a></li>
+</ul>
+
+<ul *ngIf="role === 'admin'">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/books">Books</a></li>
+  <li><a routerLink="/logout">Logout</a></li>
+</ul>
+
+
