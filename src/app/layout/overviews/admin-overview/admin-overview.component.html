@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Admins</h1>
+  <a class="btn btn-outline-secondary" href="admins/add">Add Admin</a>
+  <div class="row">
+    <div class="card col-md-4 text-center mb-3" *ngFor="let admin of admins">
+      <p>ID: {{admin.id}}</p>
+      <p>E-mail: {{admin.email}}</p>
+      <p>Name: {{admin.firstname}} {{admin.lastname}}</p>
+    </div>
+  </div>
+</div>

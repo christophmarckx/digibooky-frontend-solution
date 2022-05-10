@@ -1,21 +1,24 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
-  <div>
-    <label for="email">
-      E-mail
-    </label>
-    <input id="email" type="text" placeholder="email" formControlName="email">
+    <div>
+      <label for="email" class="form-label">
+        E-mail
+      </label>
+      <input id="email" type="text" placeholder="email" formControlName="email" class="form-control col-auto"
+             id="exampleInputEmail1" >
+    </div>
+    <div>
+      <label for="password" class="form-label">
+        Password
+      </label>
+      <input id="password" type="password" placeholder="password" formControlName="password" class="form-control col-auto">
+    </div>
+
+    <button class="button" type="submit">Login</button>
+
+  </form>
+  <div *ngIf="message">
+    {{message}}
   </div>
-  <div>
-    <label for="password">
-      Password
-    </label>
-    <input id="password" type="password" placeholder="password" formControlName="password">
-  </div>
-
-  <button class="button" type="submit">Login</button>
-
-</form>
-<div *ngIf="message">
-  {{message}}
 </div>

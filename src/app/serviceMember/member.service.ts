@@ -35,7 +35,7 @@ export class MemberService {
   }
 
   public getMember(email: string|null): Observable<Member> {
-    var member1: any;
+    var member1: any = null;
     return this.getMembers.pipe(
       map((members: any) => {
         members.forEach((member: any) => {
@@ -43,8 +43,9 @@ export class MemberService {
             member1 = member;
           }
         });
-        console.log(member1.email + " " + member1.password)
-        this.credentials = member1.email + ":" + member1.password;
+        if (member1 != null) {
+          this.credentials = member1.email + ":" + member1.password;
+        }
         return member1;
       })
     );
@@ -58,5 +59,10 @@ export class MemberService {
     var authorization = btoa(email + ":" + atob(password))
     console.log(`basic ${authorization}`)
     return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/lent`, null, {headers: {"Authorization": `basic ${authorization}`}} );
+  }
+
+  returnBook(id: number, isbn: string, email: string, password: string): Observable<any> {
+    var authorization = btoa(email + ":" + atob(password))
+    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/return`, null, {headers: {"Authorization": `basic ${authorization}`}})
   }
 }

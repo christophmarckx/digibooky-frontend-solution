@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from "../../serviceBook/book.service";
-import {Book} from "../../model/Book";
+import {BookService} from "../../../serviceBook/book.service";
+import {Book} from "../../../model/Book";
 
 @Component({
   selector: 'app-book-overview',
@@ -8,10 +8,11 @@ import {Book} from "../../model/Book";
   styleUrls: ['./book-overview.component.css']
 })
 export class BookOverviewComponent implements OnInit {
-
   private _books: Array<Book> = [];
+  public role: any;
 
   constructor(private bookService: BookService) {
+    this.role = sessionStorage.getItem("role");
   }
 
   ngOnInit(): void {

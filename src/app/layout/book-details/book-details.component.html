@@ -1,12 +1,24 @@
-<div>
-  <h1>Title: {{book.title}}</h1>
-  <p>Written by: {{book.author}}</p>
-  <p>isbn: {{book.isbn}}</p>
-</div>
-<div *ngIf="role == 'member' || role == 'librarian'">
-  <p>Added on: {{book.arrival}}</p>
-  <p>Copies left: {{book.copies}}</p>
-  <p>price: {{book.price}}euro</p>
+<div class="container">
+  <div class="row-cols-md-3 row-cols-sm-1 row g-0">
+    <div class="col-4">
+      <div>
+        <img src="" alt="Text about the Image">
+      </div>
+      <p class="small">isbn: {{book.isbn}}</p>
+    </div>
+    <div class="col-8">
+      <div>
+        <h1>Title: {{book.title}}</h1>
+        <p>Written by: {{book.author}}</p>
+      </div>
+      <div *ngIf="role == 'member' || role == 'librarian' || role == 'admin'">
+        <p>Added on: {{book.arrival}}</p>
+        <p>Copies left: {{book.copies}}</p>
+        <p>price: {{book.price}}euro</p>
 
-  <a routerLink="/books/{{id}}/{{book.isbn}}/lent" (click)="lendBook()">Lent Book</a>
+        <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent" (click)="lendBook()">Lent Book</a>
+        <p *ngIf="book.copies == 0">No copies left, wait until someone returns this book.</p>
+      </div>
+    </div>
+  </div>
 </div>

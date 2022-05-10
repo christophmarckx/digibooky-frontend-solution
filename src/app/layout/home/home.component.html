@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 *ngIf="member != null">Welcome {{member.firstName}} {{member.lastName}} to the DigiBooky home page.</h1>
+  <h1 *ngIf="member == null">This is the DigiBooky Home page.</h1>
+  <p>This UI is made to help you with your own Digibooky back end, with the help of this page you can check that your
+    story does/doesn't work.</p>
+  <h2>Stories</h2>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story1: Get all books</h3>
+      <p>Gives the possibility to get an overview of all the available books.</p>
+      <button style="width: 15em" routerLink="story1">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story2: Show detail of book</h3>
+      <p>Gives the possibility to get one specific book and get more information about this book.</p>
+      <button style="width: 15em" routerLink="story2">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story6A: Register as member</h3>
+      <p>Gives the possibility to create a new member.</p>
+      <button style="width: 15em" routerLink="story6A">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story8: Register Admin</h3>
+      <p>Gives the possibility to create new Admins.</p>
+      <button style="width: 15em" routerLink="story8">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story9: Register Librarian</h3>
+      <p>Gives the possibility to create new Librarians.</p>
+      <button style="width: 15em" routerLink="story9">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story11: Lending a book</h3>
+      <p>Gives the possibility to a member to borrow a book for a specific duration (3 weeks).</p>
+      <button style="width: 15em" routerLink="story11">How to check?</button>
+    </div>
+    <div class="col-sm-12 col-md-6 card" style="margin-bottom: 2em">
+      <h3 class="card-title">Story12: Return a book</h3>
+      <p>Gives the possibility to return a members borrowed book.</p>
+      <button style="width: 15em" routerLink="story12">How to check?</button>
+    </div>
+  </div>
+</div>

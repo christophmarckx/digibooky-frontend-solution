@@ -1,4 +1,4 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
   <h5>the fields with an * must be filled in.</h5>
   <div>
     <label for="inss">

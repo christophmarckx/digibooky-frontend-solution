@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Member} from "../../model/member";
-import {MemberService} from "../../memberService/member.service";
+import {MemberService} from "../../serviceMember/member.service";
 import {PRIMARY_OUTLET, Router} from "@angular/router";
 
 @Component({

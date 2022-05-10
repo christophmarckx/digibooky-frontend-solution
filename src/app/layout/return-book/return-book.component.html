@@ -1,0 +1,27 @@
+<h1>Return Book</h1>
+<div>
+  <img src="" alt="hier komt een afbeelding">
+  <a href="/members/{{member.id}}">Back</a>
+</div>
+<div *ngFor="let bo of member.lendings">
+  <div *ngIf="bo.isbn == isbn">
+    <p>Title: {{bo.title}}</p>
+    <p *ngIf="bo.author != null">Author: {{bo.author}}</p>
+    <p *ngIf="bo.author == null">Author: {{bo.authorFirstName}} {{bo.authorLastName}}</p>
+    <p>DueDate: {{bo.dueDate}}</p>
+<!--    <form [formGroup]="returnForm">-->
+<!--      <div>-->
+<!--        <label for="damaged">Damaged: </label>-->
+<!--        <input type="checkbox" id="damaged" name="damaged">-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <label for="brokenPart">-->
+<!--          brokenPart-->
+<!--        </label>-->
+<!--        <input id="brokenPart" type="brokenPart" placeholder="brokenPart" formControlName="brokenPart">-->
+<!--      </div>-->
+<!--    </form>-->
+    <a href="/members/{{member.id}}" (click)="returnBook()">Return {{bo.title}}</a>
+  </div>
+</div>
+<div></div>

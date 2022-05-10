@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {MemberService} from "../../../memberService/member.service";
+import {MemberService} from "../../../serviceMember/member.service";
 import {Member} from "../../../model/member";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-member',
@@ -10,11 +11,9 @@ import {Member} from "../../../model/member";
 })
 export class RegisterMemberComponent implements OnInit {
   private _memberForm!: FormGroup;
-  private formBuilder: FormBuilder;
-  private memberService: MemberService;
   private members: Array<Member>;
 
-  constructor(formBuilder: FormBuilder, memberService: MemberService) {
+  constructor(private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
     this.formBuilder = formBuilder;
     this.memberService = memberService;
     this.members = [];
@@ -36,13 +35,17 @@ export class RegisterMemberComponent implements OnInit {
     )
   }
 
-  onSubmit(): void {
+  onSubmit(membervalues: any): void {
     // Process checkout data here
     this.memberService
-      .addMember(this._memberForm.value)
-      .subscribe(member => this.updateSessionAndAddMember(member));
+      .addMember(membervalues)
+      .subscribe(member => {
+        console.log("AUTO LOGIN after Registration");
+        this.updateSessionAndAddMember(member);
+      });
     console.warn('Member was added.', this._memberForm.value);
-    this._memberForm.reset();
+    this.route.navigate(["/"]).then(() => window.location.reload())
+
   }
 
   updateSessionAndAddMember(member: Member) {
@@ -53,10 +56,6 @@ export class RegisterMemberComponent implements OnInit {
 
   get memberForm() {
     return this._memberForm;
-  }
-
-  setCookie(sessionName: string, value: string) {
-    sessionStorage.setItem(sessionName, value);
   }
 
   compare(email: string): boolean {

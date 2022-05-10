@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Librarians</h1>
+  <a class="btn btn-outline-secondary" href="librarians/add">Add Librarian</a>
+  <div class="row">
+    <div class="card col-md-4 text-center mb-3" *ngFor="let librarian of librarians">
+      <p>ID: {{librarian.id}}</p>
+      <p>E-mail: {{librarian.email}}</p>
+      <p>Name: {{librarian.firstname}} {{librarian.lastname}}</p>
+    </div>
+  </div>
+</div>

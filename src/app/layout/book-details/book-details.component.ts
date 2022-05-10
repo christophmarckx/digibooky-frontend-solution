@@ -3,7 +3,7 @@ import {Router, ActivatedRoute, ParamMap, PRIMARY_OUTLET} from '@angular/router'
 import {BookService} from "../../serviceBook/book.service";
 import {Book} from "../../model/Book";
 import {Member} from "../../model/member";
-import {MemberService} from "../../memberService/member.service";
+import {MemberService} from "../../serviceMember/member.service";
 
 @Component({
   selector: 'app-book-details',
@@ -36,10 +36,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   lendBook() {
+    this.route.navigate(["/books/"+this.id+"/"+this.isbn+"/lent"]).then(() => window.location.reload())
     this.memberService.getMember(sessionStorage.getItem("email"))
       .subscribe(member => {
         this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe()
-
       })
+
   }
 }

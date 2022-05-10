@@ -1,27 +1,32 @@
-<ul *ngIf="role !== 'member' && role !== 'librarian' && role !== 'admin'">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/books">Books</a></li>
-  <li><a routerLink="/login">Login</a></li>
-  <li><a routerLink="/members">register</a></li>
-</ul>
+<div class="sticky-lg-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav container-fluid" *ngIf="role !== 'member' && role !== 'librarian' && role !== 'admin'">
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/">Home</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/books">Books</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/login">Login</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/members/add">register</a></li>
+    </ul>
 
-<ul *ngIf="role === 'member'">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/books">Books</a></li>
-  <li><a routerLink="/members/{{id}}">Profile</a></li>
-  <li><a routerLink="/logout">Logout</a></li>
-</ul>
+    <ul class="navbar-nav container-fluid" *ngIf="role === 'member'">
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/">Home</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/books">Books</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/members/{{id}}">Profile</a></li>
+      <li class="nav-item col-lg-3"><a class="nav-link" routerLink="/logout">Logout</a></li>
+    </ul>
 
-<ul *ngIf="role === 'librarian'">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/books">Books</a></li>
-  <li><a routerLink="/logout">Logout</a></li>
-</ul>
+    <ul class="navbar-nav container-fluid" *ngIf="role === 'librarian'">
+      <li><a class="nav-link col-lg-4" routerLink="/">Home</a></li>
+      <li><a class="nav-link col-lg-4" routerLink="/books">Books</a></li>
+      <li><a class="nav-link col-lg-4" routerLink="/logout">Logout</a></li>
+    </ul>
 
-<ul *ngIf="role === 'admin'">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="/books">Books</a></li>
-  <li><a routerLink="/logout">Logout</a></li>
-</ul>
-
-
+    <ul class="navbar-nav container-fluid" *ngIf="role === 'admin'">
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/">Home</a></li>
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/books">Books</a></li>
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/members">Members</a></li>
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/librarians">Librarians</a></li>
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/admins">Admins</a></li>
+      <li class="nav-item col-lg-2"><a class="nav-link" routerLink="/logout">Logout</a></li>
+    </ul>
+  </nav>
+</div>
