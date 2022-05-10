@@ -4,6 +4,7 @@ import {Story2Component} from "./layout/stories/story2/story2.component";
 import {Story6aComponent} from "./layout/stories/story6a/story6a.component";
 import {Story8Component} from "./layout/stories/story8/story8.component";
 import {Story9Component} from "./layout/stories/story9/story9.component";
+import {Story10aComponent} from "./layout/stories/story10a/story10a.component";
 import {Story11Component} from "./layout/stories/story11/story11.component";
 import {Story12Component} from "./layout/stories/story12/story12.component";
 
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'story6A', component: Story6aComponent},
   {path: 'story8', component: Story8Component},
   {path: 'story9', component: Story9Component},
+  {path: 'story10A', component: Story10aComponent},
   {path: 'story11', component: Story11Component},
   {path: 'story12', component: Story12Component},
   // All other paths:

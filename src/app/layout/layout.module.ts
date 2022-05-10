@@ -27,6 +27,7 @@ import { MemberOverviewComponent } from './overviews/member-overview/member-over
 import { Story12Component } from './stories/story12/story12.component';
 import { Story9Component } from './stories/story9/story9.component';
 import { Story8Component } from './stories/story8/story8.component';
+import { Story10aComponent } from './stories/story10a/story10a.component';
 
 
 
@@ -56,6 +57,7 @@ import { Story8Component } from './stories/story8/story8.component';
     Story12Component,
     Story9Component,
     Story8Component,
+    Story10aComponent,
   ],
   exports: [
     HomeComponent,

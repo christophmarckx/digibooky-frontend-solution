@@ -14,8 +14,6 @@ export class RegisterMemberComponent implements OnInit {
   private members: Array<Member>;
 
   constructor(private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
-    this.formBuilder = formBuilder;
-    this.memberService = memberService;
     this.members = [];
     this.memberService.getMembers.subscribe(members => this.members = members);
   }
