@@ -2,10 +2,19 @@
   <h1>Librarians</h1>
   <a class="btn btn-outline-secondary" href="librarians/add">Add Librarian</a>
   <div class="row">
-    <div class="card col-md-4 text-center mb-3" *ngFor="let librarian of librarians">
-      <p>ID: {{librarian.id}}</p>
-      <p>E-mail: {{librarian.email}}</p>
-      <p>Name: {{librarian.firstname}} {{librarian.lastname}}</p>
+    <div class="card col-md-6 col-lg-4 text-center mb-3" *ngFor="let librarian of librarians">
+      <div class="row row-cols-2">
+        <p style="text-align: left" class="col-4">ID: </p>
+        <p style="text-align: left" class="col-8">{{librarian.id}}</p>
+      </div>
+      <div class="row row-cols-2">
+        <p style="text-align: left" class="col-4">E-mail: </p>
+        <p style="text-align: left" class="col-8">{{librarian.email}}</p>
+      </div>
+      <div class="row row-cols-2">
+        <p style="text-align: left" class="col-4">Name: </p>
+        <p style="text-align: left" class="col-8">{{librarian.firstname}} {{librarian.lastname}}</p>
+      </div>
     </div>
   </div>
 </div>

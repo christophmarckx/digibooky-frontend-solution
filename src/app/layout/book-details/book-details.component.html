@@ -15,8 +15,10 @@
         <p>Added on: {{book.arrival}}</p>
         <p>Copies left: {{book.copies}}</p>
         <p>price: {{book.price}}euro</p>
-
-        <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent" (click)="lendBook()">Lent Book</a>
+      </div>
+      <div *ngIf="role == 'member'">
+        <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent"
+           (click)="lendBook()">Lent Book</a>
         <p *ngIf="book.copies == 0">No copies left, wait until someone returns this book.</p>
       </div>
     </div>

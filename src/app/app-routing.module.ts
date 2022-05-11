@@ -23,9 +23,12 @@ import {RegisterLibrarianComponent} from "./layout/register/register-librarian/r
 import {RegisterAdminComponent} from "./layout/register/register-admin/register-admin.component";
 import {MemberOverviewComponent} from "./layout/overviews/member-overview/member-overview.component";
 import {RegisterBookComponent} from "./layout/register/register-book/register-book.component";
+import {AuthGuardServiceLibrarianService} from "./serviceAuth/auth-guard-service-librarian.service";
+import {AuthGuardServiceMemberService} from "./serviceAuth/auth-guard-service-member.service";
+import {AuthGuardServiceAdminService} from "./serviceAuth/auth-guard-service-admin.service";
 
 
-const routes: Routes = [
+var routes: Routes = [
   // The Story instructions:
   {path: 'story1', component: Story1Component},
   {path: 'story2', component: Story2Component},
@@ -38,19 +41,19 @@ const routes: Routes = [
   // All other paths:
   {path: '', component: HomeComponent},
   {path: 'books', component: BookOverviewComponent},
-  {path: 'books/add', component: RegisterBookComponent},
+  {path: 'books/add', component: RegisterBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:isbn', component: BookDetailsComponent},
-  {path: 'books/:id/:isbn/lent', component: ProfileComponent},
-  {path: 'books/:id/:isbn/return', component: ReturnBookComponent},
-  {path: 'members', component: MemberOverviewComponent},
-  {path: 'members/add', component: RegisterMemberComponent},
-  {path: 'members/:id', component: ProfileComponent},
-  {path: 'librarians', component: LibrarianOverviewComponent},
-  {path: 'librarians/add', component: RegisterLibrarianComponent},
-  {path: 'admins', component: AdminOverviewComponent},
-  {path: 'admins/add', component: RegisterAdminComponent},
+  {path: 'books/:id/:isbn/lent', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'books/:id/:isbn/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'members', component: MemberOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'members/add', component: RegisterMemberComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'members/:id', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'librarians', component: LibrarianOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'librarians/add', component: RegisterLibrarianComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'admins', component: AdminOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'admins/add', component: RegisterAdminComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent},
+  {path: 'logout', component: LogoutComponent, canActivate: [AuthGuardServiceAdminService, AuthGuardServiceLibrarianService, AuthGuardServiceMemberService]},
 
   // Default path:
   {path: '', redirectTo: '', pathMatch:'full'}

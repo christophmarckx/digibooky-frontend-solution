@@ -21,6 +21,10 @@ export class BookService {
     return this.http.get<Book[]>(this.bookUrl)
   }
 
+  public getSearchBooks(isbn: string, title: string, author: string): Observable<any> {
+    return this.http.get<Book[]>(this.bookUrl+"?isbn="+isbn+"&title="+title+"&author="+author);
+  }
+
   public getBook(isbn: string): Observable<any> {
     return this.http.get<Book>(this.bookUrl + "/" + isbn)
   }
