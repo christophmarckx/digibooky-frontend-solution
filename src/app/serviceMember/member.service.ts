@@ -37,6 +37,23 @@ export class MemberService {
     );
   }
 
+  public getMemberById(id: string|null): Observable<Member> {
+    var member1: any = null;
+    return this.getMembers.pipe(
+      map((members: any) => {
+        members.forEach((member: any) => {
+          if (member.id == id) {
+            member1 = member;
+          }
+        });
+        if (member1 != null) {
+          this.credentials = member1.email + ":" + member1.password;
+        }
+        return member1;
+      })
+    );
+  }
+
   public getMember(email: string|null): Observable<Member> {
     var member1: any = null;
     return this.getMembers.pipe(

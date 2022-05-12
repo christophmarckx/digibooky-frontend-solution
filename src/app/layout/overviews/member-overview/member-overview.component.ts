@@ -10,7 +10,8 @@ import {MemberService} from "../../../serviceMember/member.service";
 export class MemberOverviewComponent implements OnInit {
   private _members: Array<Member> = [];
 
-  constructor(private memberService: MemberService) {}
+  constructor(private memberService: MemberService) {
+  }
 
   ngOnInit(): void {
     this.getMembers();
@@ -22,5 +23,12 @@ export class MemberOverviewComponent implements OnInit {
 
   get members(): Array<Member> {
     return this._members;
+  }
+
+  public viewedByLibrarian(): boolean {
+    if (sessionStorage.getItem("role") == "librarian") {
+      return true;
+    }
+    return false;
   }
 }

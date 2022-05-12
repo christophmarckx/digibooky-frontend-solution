@@ -1,15 +1,23 @@
-<h1>Profile</h1>
-<p>INSS: {{member.inss}}</p>
-<p>Name: {{member.firstName}} {{member.lastName}}</p>
-<p>E-mail: {{member.email}}</p>
-<p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
-<p>Fines: {{member.fine}}</p>
-<div *ngIf="member.lendings.length > 0">
-  <h1>Current Books</h1>
-  <div *ngFor="let book of member.lendings ">
-    <p>Title: {{book.title}}</p>
-    <p>Author: {{book.authorFirstName}} {{book.authorLastName}}</p>
-    <p>Duedate: {{book.dueDate}}</p>
-    <a href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
+<div class="row row-cols-auto">
+  <h1>Profile</h1>
+  <h1 *ngIf="role == 'librarian'">{{member.firstName}} {{member.lastName}}</h1>
+</div>
+<div class="row row-cols-2">
+  <div *ngIf="role == 'member'">
+    <h2>Information</h2>
+    <p>INSS: {{member.inss}}</p>
+    <p>Name: {{member.firstName}} {{member.lastName}}</p>
+    <p>E-mail: {{member.email}}</p>
+    <p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
+    <p *ngIf="member.fine != null">Fines: {{member.fine}}</p>
+  </div>
+  <div *ngIf="member.lendings.length > 0">
+    <h2>Current Lent Books</h2>
+    <div *ngFor="let book of member.lendings ">
+      <p>Title: {{book.title}}</p>
+      <p>Author: {{book.authorFirstName}} {{book.authorLastName}}</p>
+      <p>Duedate: {{book.dueDate}}</p>
+      <a href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
+    </div>
   </div>
 </div>

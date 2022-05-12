@@ -12,8 +12,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(private memberService: MemberService) {
       this.role = sessionStorage.getItem("role");
-      memberService.getMember(sessionStorage.getItem("email")).subscribe(member => this.id = member.id);
-
+      if (this.role != null) {
+        memberService.getMember(sessionStorage.getItem("email")).subscribe(member => this.id = member.id);
+      }
   }
 
   ngOnInit(): void {

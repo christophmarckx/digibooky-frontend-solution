@@ -27,7 +27,6 @@ import {AuthGuardServiceLibrarianService} from "./serviceAuth/auth-guard-service
 import {AuthGuardServiceMemberService} from "./serviceAuth/auth-guard-service-member.service";
 import {AuthGuardServiceAdminService} from "./serviceAuth/auth-guard-service-admin.service";
 
-
 var routes: Routes = [
   // The Story instructions:
   {path: 'story1', component: Story1Component},
@@ -38,6 +37,7 @@ var routes: Routes = [
   {path: 'story10A', component: Story10aComponent},
   {path: 'story11', component: Story11Component},
   {path: 'story12', component: Story12Component},
+
   // All other paths:
   {path: '', component: HomeComponent},
   {path: 'books', component: BookOverviewComponent},
@@ -46,17 +46,18 @@ var routes: Routes = [
   {path: 'books/:id/:isbn/lent', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:id/:isbn/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'members', component: MemberOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'memberOverview', component: MemberOverviewComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'members/add', component: RegisterMemberComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'members/:id', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'memberOverview/:id', component: ProfileComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'librarians', component: LibrarianOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'librarians/add', component: RegisterLibrarianComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'admins', component: AdminOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'admins/add', component: RegisterAdminComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent, canActivate: [AuthGuardServiceAdminService, AuthGuardServiceLibrarianService, AuthGuardServiceMemberService]},
+  {path: 'logout', component: LogoutComponent},
 
-  // Default path:
-  {path: '', redirectTo: '', pathMatch:'full'}
+  {path: '', redirectTo: '/', pathMatch: 'full'}
 ];
 
 @NgModule({
