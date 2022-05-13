@@ -33,4 +33,9 @@ export class BookService {
     var authorization = btoa(librarian.email + ":" + atob(librarian.password));
     return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
   }
+
+  public overdueBooks(librarian: Librarian): Observable<any[]> {
+    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    return this.http.get<Book[]>(`${environment.backendUrl}/overdueBooks`, {headers: {"Authorization": `basic ${authorization}`}})
+  }
 }

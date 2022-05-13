@@ -28,6 +28,7 @@ import { Story12Component } from './stories/story12/story12.component';
 import { Story9Component } from './stories/story9/story9.component';
 import { Story8Component } from './stories/story8/story8.component';
 import { Story10aComponent } from './stories/story10a/story10a.component';
+import { OverdueBooksComponent } from './overdue-books/overdue-books.component';
 
 
 
@@ -58,6 +59,7 @@ import { Story10aComponent } from './stories/story10a/story10a.component';
     Story9Component,
     Story8Component,
     Story10aComponent,
+    OverdueBooksComponent,
   ],
   exports: [
     HomeComponent,

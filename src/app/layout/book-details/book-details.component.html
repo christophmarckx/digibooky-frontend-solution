@@ -21,6 +21,12 @@
            (click)="lendBook()">Lent Book</a>
         <p *ngIf="book.copies == 0">No copies left, wait until someone returns this book.</p>
       </div>
+      <div *ngIf="book.lenderNames.length != 0">
+        <h3>Book is borrowed by:</h3>
+        <div *ngFor="let name of book.lenderNames">
+          <p>{{name}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="row row-cols-auto">
+<div class="container row row-cols-auto">
   <h1>Profile</h1>
   <h1 *ngIf="role == 'librarian'">{{member.firstName}} {{member.lastName}}</h1>
 </div>
@@ -16,8 +16,8 @@
     <div *ngFor="let book of member.lendings ">
       <p>Title: {{book.title}}</p>
       <p>Author: {{book.authorFirstName}} {{book.authorLastName}}</p>
-      <p>Duedate: {{book.dueDate}}</p>
-      <a href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
+      <a *ngIf="role == 'member'" href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
     </div>
   </div>
+  <div class="alert-warning" *ngIf="role == 'librarian' && member.lendings.length === 0">This member has no books in his/her possession</div>
 </div>

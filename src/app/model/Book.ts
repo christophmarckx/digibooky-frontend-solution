@@ -9,4 +9,5 @@ export interface Book {
   arrival: string,
   image: string,
   dueDate: string
+  lenderNames: Array<string>
 }

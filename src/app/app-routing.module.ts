@@ -26,6 +26,7 @@ import {RegisterBookComponent} from "./layout/register/register-book/register-bo
 import {AuthGuardServiceLibrarianService} from "./serviceAuth/auth-guard-service-librarian.service";
 import {AuthGuardServiceMemberService} from "./serviceAuth/auth-guard-service-member.service";
 import {AuthGuardServiceAdminService} from "./serviceAuth/auth-guard-service-admin.service";
+import {OverdueBooksComponent} from "./layout/overdue-books/overdue-books.component";
 
 var routes: Routes = [
   // The Story instructions:
@@ -42,6 +43,7 @@ var routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'books', component: BookOverviewComponent},
   {path: 'books/add', component: RegisterBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
+  {path: 'books/overdue', component: OverdueBooksComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:isbn', component: BookDetailsComponent},
   {path: 'books/:id/:isbn/lent', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:id/:isbn/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},

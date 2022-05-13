@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("role", role);
   }
 
-
   get loginForm() {
     return this._loginForm;
   }

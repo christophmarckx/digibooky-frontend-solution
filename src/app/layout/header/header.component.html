@@ -15,10 +15,11 @@
     </ul>
 
     <ul class="navbar-nav container-fluid" *ngIf="role === 'librarian'">
-      <li><a class="nav-link col-lg-4" routerLink="/">Home</a></li>
-      <li><a class="nav-link col-lg-4" routerLink="/books">Books</a></li>
-      <li><a class="nav-link col-lg-4" routerLink="/memberOverview">Members</a></li>
-      <li><a class="nav-link col-lg-4" routerLink="/logout">Logout</a></li>
+      <li><a class="nav-link col-lg-3" routerLink="/">Home</a></li>
+      <li><a class="nav-link col-lg-3" routerLink="/books">Books</a></li>
+      <li><a class="nav-link col-lg-3" routerLink="/books/overdue">Overdues</a></li>
+      <li><a class="nav-link col-lg-3" routerLink="/memberOverview">Members</a></li>
+      <li><a class="nav-link col-lg-3" routerLink="/logout">Logout</a></li>
     </ul>
 
     <ul class="navbar-nav container-fluid" *ngIf="role === 'admin'">
