@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Update {{book.title}}</h1>
+  <h2>by {{book.authorFirstName}} {{book.authorLastName}}</h2>
+  <form class="col-8" [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <div>
+      <label class="col-form-label" for="isbn">
+        ISBN:
+      </label>
+      <input readonly class="form-control" placeholder="ISBN" id="isbn" type="text" value="{{book.isbn}}"  formControlName="isbn">
+    </div>
+    <div>
+      <label class="col-form-label" for="title">
+        Title:
+      </label>
+      <input class="form-control" placeholder="Title" id="title" type="text" value="{{book.title}}"  formControlName="title">
+    </div>
+    <div>
+      <label class="col-form-label" for="authorFirstName">
+        Author First name:
+      </label>
+      <input class="form-control" placeholder="Author First Name" id="authorFirstName" type="text" value="{{book.authorFirstName}}"
+             formControlName="authorFirstName">
+    </div>
+    <div>
+      <label class="col-form-label" for="authorLastName">
+        Author Last name:
+      </label>
+      <input class="form-control" placeholder="Author Last Name" id="authorLastName" type="text" value="{{book.authorLastName}}"  formControlName="authorLastName">
+    </div>
+    <div>
+      <label class="col-form-label" for="price">
+        Price:
+      </label>
+      <input class="form-control" placeholder="Price" id="price" type="text" value="{{book.price}}"  formControlName="price">
+    </div>
+    <div>
+      <label class="col-form-label" for="copies">
+        Copies:
+      </label>
+      <input class="form-control" placeholder="Copies" id="copies" type="text" value="{{book.copies}}"  formControlName="copies">
+    </div>
+    <div>
+      <label class="col-form-label" for="url">
+        Image URL:
+      </label>
+      <input class="form-control" placeholder="URL" id="url" type="text" value="{{book.image}}"  formControlName="url">
+    </div>
+
+    <button style="margin-top: 10px" class="btn btn-secondary" type="submit">Save book</button>
+    <a style="margin-top: 10px" class="btn btn-secondary" href="/books/{{book.isbn}}">Back</a>
+  </form>
+</div>

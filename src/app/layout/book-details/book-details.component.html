@@ -12,16 +12,20 @@
         <p>Written by: {{book.author}}</p>
       </div>
       <div *ngIf="role == 'member' || role == 'librarian' || role == 'admin'">
-        <p>Added on: {{book.arrival}}</p>
         <p>Copies left: {{book.copies}}</p>
-        <p>price: {{book.price}}euro</p>
+        <p>price: {{book.price}} euro</p>
+        <p>Added on: {{book.arrival}}</p>
       </div>
       <div *ngIf="role == 'member'">
         <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent"
            (click)="lendBook()">Lent Book</a>
         <p *ngIf="book.copies == 0">No copies left, wait until someone returns this book.</p>
       </div>
-      <div *ngIf="book.lenderNames.length != 0">
+      <div *ngIf="role == 'librarian'">
+        <a href="books/{{book.isbn}}/update">Update Book</a>
+        <a href="books/{{book.isbn}}/delete">Delete Book</a>
+      </div>
+      <div *ngIf="book.lenderNames.length != 0 && (role == 'member' || role == 'librarian' || role == 'admin')">
         <h3>Book is borrowed by:</h3>
         <div *ngFor="let name of book.lenderNames">
           <p>{{name}}</p>

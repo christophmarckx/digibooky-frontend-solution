@@ -41,6 +41,5 @@ export class BookDetailsComponent implements OnInit {
       .subscribe(member => {
         this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe()
       })
-
   }
 }

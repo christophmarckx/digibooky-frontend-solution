@@ -34,8 +34,19 @@ export class BookService {
     return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
   }
 
+  public updateBook(book: Book, librarian: Librarian) {
+    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    return this.http.put<Book>(this.bookUrl + "/" + book.isbn, book, {headers: {"Authorization": `basic ${authorization}`}})
+  }
+
   public overdueBooks(librarian: Librarian): Observable<any[]> {
     var authorization = btoa(librarian.email + ":" + atob(librarian.password));
     return this.http.get<Book[]>(`${environment.backendUrl}/overdueBooks`, {headers: {"Authorization": `basic ${authorization}`}})
+  }
+
+  public deleteBook(librarian: Librarian, isbn: string) {
+    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    return this.http.delete<Book[]>(this.bookUrl + "/" + isbn, {headers: {"Authorization": `basic ${authorization}`}})
+
   }
 }
