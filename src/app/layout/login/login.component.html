@@ -1,12 +1,14 @@
 <div class="container">
+  <div *ngIf="error != ''">
+    <p class="alert-danger">{{error}}</p>
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
 
     <div>
       <label for="email" class="form-label">
         E-mail
       </label>
-      <input id="email" type="text" placeholder="email" formControlName="email" class="form-control col-auto"
-             id="exampleInputEmail1" >
+      <input id="email" type="text" placeholder="email" formControlName="email" class="form-control col-auto" pattern="[0-9]*">
     </div>
     <div>
       <label for="password" class="form-label">

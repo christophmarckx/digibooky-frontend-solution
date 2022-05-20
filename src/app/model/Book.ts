@@ -1,8 +1,8 @@
 export interface Book {
   isbn: string,
   title: string,
-  authorFirstName: string,
-  authorLastName: string,
+  authorFirstname: string,
+  authorLastname: string,
   author: string,
   copies: number,
   price: number,

@@ -47,6 +47,10 @@ export class BookService {
   public deleteBook(librarian: Librarian, isbn: string) {
     var authorization = btoa(librarian.email + ":" + atob(librarian.password));
     return this.http.delete<Book[]>(this.bookUrl + "/" + isbn, {headers: {"Authorization": `basic ${authorization}`}})
+  }
 
+  public getHistory(librarian: Librarian, isbn: string): Observable<any> {
+    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    return this.http.get<Book[]>(this.bookUrl + "/" + isbn + "/history", {headers: {"Authorization": `basic ${authorization}`}})
   }
 }

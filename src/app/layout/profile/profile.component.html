@@ -1,23 +1,37 @@
-<div class="container row row-cols-auto">
+<div class="container">
   <h1>Profile</h1>
-  <h1 *ngIf="role == 'librarian'">{{member.firstName}} {{member.lastName}}</h1>
-</div>
-<div class="row row-cols-2">
-  <div *ngIf="role == 'member'">
-    <h2>Information</h2>
-    <p>INSS: {{member.inss}}</p>
-    <p>Name: {{member.firstName}} {{member.lastName}}</p>
-    <p>E-mail: {{member.email}}</p>
-    <p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
-    <p *ngIf="member.fine != null">Fines: {{member.fine}}</p>
-  </div>
-  <div *ngIf="member.lendings.length > 0">
-    <h2>Current Lent Books</h2>
-    <div *ngFor="let book of member.lendings ">
-      <p>Title: {{book.title}}</p>
-      <p>Author: {{book.authorFirstName}} {{book.authorLastName}}</p>
-      <a *ngIf="role == 'member'" href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
+  <h1 *ngIf="role == 'librarian'">{{member.firstname}} {{member.lastname}}</h1>
+  <div class="row row-cols-md-2 row-cols-sm-1">
+    <div>
+      <div class="card" *ngIf="role == 'member'">
+        <h2 class="card-title">Information</h2>
+        <div class="card-body">
+          <p>INSS: {{member.inss}}</p>
+          <p>Name: {{member.firstname}} {{member.lastname}}</p>
+          <p>E-mail: {{member.email}}</p>
+          <p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
+          <p *ngIf="member.fines != null">Fines: € {{member.totalPrice}} -> #{{member.fines}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="member.lendings.length > 0">
+      <h2>Current Lent Books</h2>
+      <div *ngFor="let book of member.lendings ">
+        <div style="margin-bottom: 1em" class="card">
+          <p class="card-title card-header">Title: {{book.title}}</p>
+          <div class="card-body">
+            <p>Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
+            <p>ISBN: {{book.isbn}}</p>
+          </div>
+          <p style="margin-bottom: 0; child-align: middle" class="card-footer">
+            <a class="btn btn-secondary" *ngIf="role == 'member'"
+               href="books/{{member.id}}/{{book.isbn}}/return">Return</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="alert-warning" *ngIf="role == 'librarian' && member.lendings.length === 0">
+      This member has no books in his/her possession
     </div>
   </div>
-  <div class="alert-warning" *ngIf="role == 'librarian' && member.lendings.length === 0">This member has no books in his/her possession</div>
 </div>

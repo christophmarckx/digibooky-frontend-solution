@@ -1,52 +1,65 @@
 <div class="container">
   <h1>Update {{book.title}}</h1>
-  <h2>by {{book.authorFirstName}} {{book.authorLastName}}</h2>
-  <form class="col-8" [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+  <h2>by {{book.authorFirstname}} {{book.authorLastname}}</h2>
+  <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
+    <div *ngFor="let error of errors">
+      <p style="margin: 0">{{error}}</p>
+    </div>
+  </div>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
     <div>
       <label class="col-form-label" for="isbn">
         ISBN:
       </label>
-      <input readonly class="form-control" placeholder="ISBN" id="isbn" type="text" value="{{book.isbn}}"  formControlName="isbn">
+      <input readonly class="form-control col-auto" placeholder="ISBN" id="isbn" type="text" value="{{book.isbn}}"
+             formControlName="isbn">
     </div>
     <div>
       <label class="col-form-label" for="title">
         Title:
       </label>
-      <input class="form-control" placeholder="Title" id="title" type="text" value="{{book.title}}"  formControlName="title">
+      <input class="form-control col-auto" placeholder="Title" id="title" type="text" value="{{book.title}}"
+             formControlName="title">
     </div>
     <div>
-      <label class="col-form-label" for="authorFirstName">
+      <label class="col-form-label" for="authorFirstname">
         Author First name:
       </label>
-      <input class="form-control" placeholder="Author First Name" id="authorFirstName" type="text" value="{{book.authorFirstName}}"
-             formControlName="authorFirstName">
+      <input class="form-control col-auto" placeholder="Author First Name" id="authorFirstname" type="text"
+             value="{{book.authorFirstname}}"
+             formControlName="authorFirstname">
     </div>
     <div>
-      <label class="col-form-label" for="authorLastName">
+      <label class="col-form-label" for="authorLastname">
         Author Last name:
       </label>
-      <input class="form-control" placeholder="Author Last Name" id="authorLastName" type="text" value="{{book.authorLastName}}"  formControlName="authorLastName">
+      <input class="form-control col-auto" placeholder="Author Last Name" id="authorLastname" type="text"
+             value="{{book.authorLastname}}" formControlName="authorLastname">
     </div>
     <div>
       <label class="col-form-label" for="price">
         Price:
       </label>
-      <input class="form-control" placeholder="Price" id="price" type="text" value="{{book.price}}"  formControlName="price">
+      <input class="form-control col-auto" placeholder="Price" id="price" type="text" value="{{book.price}}"
+             formControlName="price">
     </div>
     <div>
       <label class="col-form-label" for="copies">
         Copies:
       </label>
-      <input class="form-control" placeholder="Copies" id="copies" type="text" value="{{book.copies}}"  formControlName="copies">
+      <input class="form-control col-auto" placeholder="Copies" id="copies" type="text" value="{{book.copies}}"
+             formControlName="copies">
     </div>
     <div>
       <label class="col-form-label" for="url">
         Image URL:
       </label>
-      <input class="form-control" placeholder="URL" id="url" type="text" value="{{book.image}}"  formControlName="url">
+      <input class="form-control col-auto" placeholder="URL" id="url" type="text" value="{{book.image}}"
+             formControlName="url">
     </div>
-
-    <button style="margin-top: 10px" class="btn btn-secondary" type="submit">Save book</button>
-    <a style="margin-top: 10px" class="btn btn-secondary" href="/books/{{book.isbn}}">Back</a>
+    <div style="padding-bottom: 5px">
+      <button style="margin-top: 10px; margin-right: 1em" class="btn btn-secondary" type="submit">Save book</button>
+      <a style="float: right; margin-top: 10px" class="btn btn-secondary" href="/books/{{book.isbn}}">Back</a>
+    </div>
   </form>
 </div>

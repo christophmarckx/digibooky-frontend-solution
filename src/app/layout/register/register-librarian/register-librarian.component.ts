@@ -13,30 +13,49 @@ import {AdminService} from "../../../serviceAdmin/admin.service";
 export class RegisterLibrarianComponent implements OnInit {
   private _librarianForm!: FormGroup;
   private librarians: Array<Librarian>;
+  public errors: Array<string>;
 
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
     this.librarians = [];
     this.librarianService.getLibrarians.subscribe(librarians => this.librarians = librarians);
+    this.errors = [];
   }
 
   ngOnInit(): void {
     this._librarianForm = this.formBuilder.group({
       email: "",
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       password: ""
     })
   }
 
   onSubmit(librarianvalues: any): void {
     // Process checkout data here
-    this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => {
-      this.librarianService
-        .addLibrarian(librarianvalues, admin).subscribe()
-    })
-    console.warn('Librarian was added.', this._librarianForm.value);
-    this._librarianForm.reset();
-    this.route.navigate(["/librarians"]).then(() => window.location.reload())
+    this.errors = [];
+    this.hasError(this._librarianForm.value);
+    if (this.errors.length == 0) {
+      this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => {
+        this.librarianService
+          .addLibrarian(librarianvalues, admin).subscribe()
+      })
+      this.route.navigate(["/librarians"]).then(() => window.location.reload())
+    }
+  }
+
+  hasError(librarian: Librarian) {
+    if (librarian.email == "") {
+      this.errors.push("E-mail is not filled in");
+    }
+    if (librarian.password == "") {
+      this.errors.push("Password is not filled in");
+    }
+    if (librarian.firstname == "") {
+      this.errors.push("Firstname is not filled in");
+    }
+    if (librarian.lastname == "") {
+      this.errors.push("Lastname is not filled in");
+    }
   }
 
   get librarianForm() {

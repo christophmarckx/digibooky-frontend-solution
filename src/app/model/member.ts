@@ -3,8 +3,8 @@ import {Book} from "./Book";
 export interface Member {
   id: number;
   email: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   inss: string;
   password: string;
   street: string;
@@ -12,5 +12,6 @@ export interface Member {
   postcode: string;
   city: string;
   lendings: Array<Book>;
-  fine: string;
+  fines: number;
+  totalPrice: number;
 }

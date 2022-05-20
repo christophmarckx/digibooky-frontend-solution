@@ -1,0 +1,13 @@
+a {
+  color: #020202;
+  background-color: white;
+  border: 2px solid #97AA5A;
+  border-radius: 25px;
+  width: 100%;
+}
+
+a:hover {
+  color: white;
+  background-color: #97AA5A;
+  width: 100%;
+}

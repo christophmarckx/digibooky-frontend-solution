@@ -85,4 +85,9 @@ export class MemberService {
     var authorization = btoa(email + ":" + atob(password))
     return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/return`, null, {headers: {"Authorization": `basic ${authorization}`}})
   }
+
+  returnBookDamaged(id: number, isbn: string, email: string, password: string): Observable<any> {
+    var authorization = btoa(email + ":" + atob(password))
+    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/return/damaged`, null, {headers: {"Authorization": `basic ${authorization}`}})
+  }
 }

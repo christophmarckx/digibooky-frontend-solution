@@ -5,26 +5,40 @@
         <img src="" alt="Text about the Image">
       </div>
       <p class="small">isbn: {{book.isbn}}</p>
+      <div class="">
+        <div id="buttons" class="w-50" *ngIf="role == 'librarian'">
+          <div>
+            <a class="w-50 btn" href="books/{{book.isbn}}/update">Update</a>
+            <a class="w-50 btn" href="books/{{book.isbn}}/delete">Delete</a>
+          </div>
+          <div>
+            <a class="w-100 btn" href="books/{{book.isbn}}/history">History</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-8">
-      <div>
-        <h1>Title: {{book.title}}</h1>
-        <p>Written by: {{book.author}}</p>
+    <div class="col-4">
+      <h1>Details</h1>
+      <div class="card">
+        <p class="card-header">Title: {{book.title}}</p>
+        <div class="card-body">
+          <p *ngIf="book.author != null">Written by: {{book.author}}</p>
+          <p *ngIf="book.author == null">Written by: {{book.authorFirstname}} {{book.authorLastname}}</p>
+
+          <div *ngIf="role == 'member' || role == 'librarian' || role == 'admin'">
+            <p>Copies left: {{book.copies}}</p>
+            <p>Added on: {{book.arrival}}</p>
+            <p>Warranty: {{book.price}} euro</p>
+          </div>
+        </div>
+        <div class="card-footer" *ngIf="role == 'member'">
+          <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent"
+             (click)="lendBook()">Lent Book</a>
+          <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
+        </div>
       </div>
-      <div *ngIf="role == 'member' || role == 'librarian' || role == 'admin'">
-        <p>Copies left: {{book.copies}}</p>
-        <p>price: {{book.price}} euro</p>
-        <p>Added on: {{book.arrival}}</p>
-      </div>
-      <div *ngIf="role == 'member'">
-        <a class="btn btn-outline-primary" *ngIf="book.copies != 0" routerLink="/books/{{id}}/{{book.isbn}}/lent"
-           (click)="lendBook()">Lent Book</a>
-        <p *ngIf="book.copies == 0">No copies left, wait until someone returns this book.</p>
-      </div>
-      <div *ngIf="role == 'librarian'">
-        <a href="books/{{book.isbn}}/update">Update Book</a>
-        <a href="books/{{book.isbn}}/delete">Delete Book</a>
-      </div>
+    </div>
+    <div class="col-4">
       <div *ngIf="book.lenderNames.length != 0 && (role == 'member' || role == 'librarian' || role == 'admin')">
         <h3>Book is borrowed by:</h3>
         <div *ngFor="let name of book.lenderNames">
@@ -34,3 +48,4 @@
     </div>
   </div>
 </div>
+

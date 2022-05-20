@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MemberService} from "../../../serviceMember/member.service";
 import {Member} from "../../../model/member";
@@ -12,38 +12,59 @@ import {Router} from "@angular/router";
 export class RegisterMemberComponent implements OnInit {
   private _memberForm!: FormGroup;
   private members: Array<Member>;
+  public errors: Array<string>;
 
   constructor(private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
     this.members = [];
     this.memberService.getMembers.subscribe(members => this.members = members);
+    this.errors = [];
   }
 
   ngOnInit(): void {
     this._memberForm = this.formBuilder.group({
         inss: "",
         email: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         password: "",
         streetname: "",
         streetnumber: "",
         postalcode: "",
         city: ""
       }
-    )
+    );
   }
 
   onSubmit(membervalues: any): void {
     // Process checkout data here
-    this.memberService
-      .addMember(membervalues)
-      .subscribe(member => {
-        console.log("AUTO LOGIN after Registration");
-        this.updateSessionAndAddMember(member);
-      });
-    console.warn('Member was added.', this._memberForm.value);
-    this.route.navigate(["/"]).then(() => window.location.reload())
+    this.errors = [];
+    this.hasError(this._memberForm.value);
+    if (this.errors.length == 0) {
+      this.memberService
+        .addMember(membervalues)
+        .subscribe(member => {
+          this.updateSessionAndAddMember(member)
+        });
+      this.route.navigate(["/"]).then(() => window.location.reload())
+    }
+  }
 
+  hasError(member: Member) {
+    if (member.inss == "") {
+      this.errors.push("INSS is not filled in");
+    }
+    if (member.lastname == "") {
+      this.errors.push("Lastname is not filled in");
+    }
+    if (member.email == "") {
+      this.errors.push("E-mail is not filled in");
+    }
+    if (member.password == "") {
+      this.errors.push("Password is not filled in");
+    }
+    if (member.city == "") {
+      this.errors.push("City is not filled in");
+    }
   }
 
   updateSessionAndAddMember(member: Member) {

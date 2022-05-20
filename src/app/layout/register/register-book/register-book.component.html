@@ -1,48 +1,54 @@
 <div class="container">
-  <div class="row">
+  <h1>Register Book</h1>
+  <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
+    <div *ngFor="let error of errors">
+      <p style="margin: 0">{{error}}</p>
+    </div>
+  </div>
+  <div class="row row-cols-md-2 row-cols-sm-1">
     <form class="col-8" [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
       <div>
         <label class="col-form-label" for="isbn">
           ISBN:
         </label>
-        <input class="form-control" placeholder="ISBN" id="isbn" type="text" formControlName="isbn">
+        <input class="form-control" placeholder="ISBN" id="isbn" type="text" formControlName="isbn" class="form-control col-auto">
       </div>
       <div>
         <label class="col-form-label" for="title">
           Title:
         </label>
-        <input class="form-control" placeholder="Title" id="title" type="text" formControlName="title">
+        <input class="form-control" placeholder="Title" id="title" type="text" formControlName="title" class="form-control col-auto">
       </div>
       <div>
-        <label class="col-form-label" for="authorFirstName">
+        <label class="col-form-label" for="authorFirstname">
           Author First name:
         </label>
-        <input class="form-control" placeholder="Author First Name" id="authorFirstName" type="text"
-               formControlName="authorFirstName">
+        <input class="form-control" placeholder="Author First Name" id="authorFirstname" type="text"
+               formControlName="authorFirstname" class="form-control col-auto">
       </div>
       <div>
-        <label class="col-form-label" for="authorLastName">
+        <label class="col-form-label" for="authorLastname">
           Author Last name:
         </label>
-        <input class="form-control" placeholder="Author Last Name" id="authorLastName" type="text" formControlName="authorLastName">
+        <input class="form-control" placeholder="Author Last Name" id="authorLastname" type="text" formControlName="authorLastname" class="form-control col-auto">
       </div>
       <div>
         <label class="col-form-label" for="price">
           Price:
         </label>
-        <input class="form-control" placeholder="Price" id="price" type="text" formControlName="price">
+        <input class="form-control" placeholder="Price" id="price" type="number" formControlName="price" class="form-control col-auto">
       </div>
       <div>
         <label class="col-form-label" for="copies">
           Copies:
         </label>
-        <input class="form-control" placeholder="Copies" id="copies" type="text" formControlName="copies">
+        <input class="form-control" placeholder="Copies" id="copies" type="number" formControlName="copies" class="form-control col-auto">
       </div>
       <div>
         <label class="col-form-label" for="url">
           Image URL:
         </label>
-        <input class="form-control" placeholder="URL" id="url" type="text" formControlName="url">
+        <input class="form-control" placeholder="URL" id="url" type="text" formControlName="url" class="form-control col-auto">
       </div>
 
       <button style="margin-top: 10px" class="btn btn-secondary" type="submit">Register Book</button>

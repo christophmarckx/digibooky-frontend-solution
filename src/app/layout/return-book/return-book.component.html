@@ -1,27 +1,28 @@
-<h1>Return Book</h1>
-<div>
-  <img src="" alt="hier komt een afbeelding">
-  <a href="/members/{{member.id}}">Back</a>
-</div>
-<div *ngFor="let bo of member.lendings">
-  <div *ngIf="bo.isbn == isbn">
-    <p>Title: {{bo.title}}</p>
-    <p *ngIf="bo.author != null">Author: {{bo.author}}</p>
-    <p *ngIf="bo.author == null">Author: {{bo.authorFirstName}} {{bo.authorLastName}}</p>
-    <p>DueDate: {{bo.dueDate}}</p>
-<!--    <form [formGroup]="returnForm">-->
-<!--      <div>-->
-<!--        <label for="damaged">Damaged: </label>-->
-<!--        <input type="checkbox" id="damaged" name="damaged">-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <label for="brokenPart">-->
-<!--          brokenPart-->
-<!--        </label>-->
-<!--        <input id="brokenPart" type="brokenPart" placeholder="brokenPart" formControlName="brokenPart">-->
-<!--      </div>-->
-<!--    </form>-->
-    <a href="/members/{{member.id}}" (click)="returnBook()">Return {{bo.title}}</a>
+<div class="container">
+  <div class="row row-cols-sm-1 row-cols-lg-3">
+    <div class="col-lg-4">
+      <h1>Return Book</h1>
+      <div>
+        <img src="" alt="hier komt een afbeelding">
+        <a href="/members/{{member.id}}">Back</a>
+      </div>
+    </div>
+    <div class="row col-lg-4" *ngFor="let bo of member.lendings">
+      <div *ngIf="bo.isbn == isbn">
+        <p>Title: {{bo.title}}</p>
+        <p *ngIf="bo.author != null">Author: {{bo.author}}</p>
+        <p *ngIf="bo.author == null">Author: {{bo.authorFirstname}} {{bo.authorLastname}}</p>
+        <p>DueDate: {{bo.dueDate}}</p>
+        <form [formGroup]="returnForm">
+          <div>
+            <label for="damaged">Damaged</label>
+            <input type="checkbox" id="damaged" name="damaged" (change)="setDamaged()">
+          </div>
+        </form>
+        <a *ngIf="!damaged" style="margin-top: 5px" class="btn btn-outline-secondary" href="/members/{{member.id}}" (click)="returnBook()">Return {{bo.title}}</a>
+        <a *ngIf="damaged" style="margin-top: 5px" class="btn btn-outline-secondary" href="/members/{{member.id}}" (click)="returnBookBroken()">Return {{bo.title}}, broken</a>
+      </div>
+    </div>
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet blanditiis debitis dicta, distinctio error eum iste quisquam reiciendis totam vel veniam veritatis! Accusamus aspernatur consequatur deserunt eaque eius excepturi explicabo hic id impedit laboriosam natus, nihil, nobis obcaecati porro quidem quisquam, repellendus suscipit temporibus vero voluptatibus. Cumque doloremque et expedita omnis, repellat reprehenderit voluptate! Aut culpa excepturi facere in iste libero maxime modi, molestias natus, quas quibusdam rem repellendus saepe sequi similique veniam voluptatibus. Dolores facere perspiciatis rem. Ad, cum est et, excepturi ipsa laboriosam, molestiae necessitatibus nemo nisi numquam odit optio quidem sunt. At corporis laboriosam quod sapiente.</div>
   </div>
 </div>
-<div></div>

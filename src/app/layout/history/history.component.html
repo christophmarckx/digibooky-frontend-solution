@@ -1,0 +1,18 @@
+<div class="container">
+  <div>
+    <h1>History</h1>
+    <p>{{history.image}}</p>
+    <p>{{history.title}}</p>
+    <p *ngIf="history.author == ''">{{history.authorFirstname}} {{history.authorLastname}}</p>
+    <p *ngIf="history.author != ''">{{history.author}}</p>
+    <p>{{history.isbn}}</p>
+  </div>
+  <div>
+    <div *ngFor="let lending of history.lendinghistory">
+      <p>From: {{lending.start}}</p>
+      <p>Untill: {{lending.end}}</p>
+      <p>By: {{lending.firstname}} {{lending.lastname}}</p>
+    </div>
+  </div>
+</div>
+

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Member} from "../../../model/member";
-import {MemberService} from "../../../serviceMember/member.service";
 import {Router} from "@angular/router";
 import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
 import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
+import {Admin} from "../../../model/Admin";
 
 @Component({
   selector: 'app-register-book',
@@ -15,34 +14,62 @@ import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
 export class RegisterBookComponent implements OnInit {
   private _bookForm!: FormGroup;
   private books: Array<Book>;
+  public errors: Array<string>;
 
-  constructor(private formBuilder: FormBuilder, private librarianService:LibrarianService, private bookService: BookService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
     this.formBuilder = formBuilder;
     this.books = [];
     this.bookService.getBooks.subscribe(books => this.books = books);
+    this.errors = [];
   }
 
   ngOnInit(): void {
     this._bookForm = this.formBuilder.group({
         isbn: "",
         title: "",
-        authorFirstName: "",
-        authorLastName: "",
+        authorFirstname: "",
+        authorLastname: "",
         price: "",
         copies: "",
         imageUrl: ""
       }
-    )
+    );
   }
 
   onSubmit(bookvalues: any): void {
     // Process checkout data here
-    this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-      this.bookService.addBook(bookvalues, librarian).subscribe();
-    })
-    console.warn('Member was added.', this._bookForm.value);
-    this.route.navigate(["/books"]).then(() => window.location.reload())
+    this.errors = [];
+    this.hasError(this._bookForm.value);
+    if (this.errors.length == 0) {
+      this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
+        this.bookService.addBook(bookvalues, librarian).subscribe();
+      })
+      this.route.navigate(["/books"]).then(() => window.location.reload())
+    }
+  }
 
+  hasError(book: Book) {
+    if (book.isbn == "") {
+      this.errors.push("ISBN is not filled in");
+    }
+    if (book.title == "") {
+      this.errors.push("Title is not filled in");
+    }
+    if (book.authorFirstname == "") {
+      this.errors.push("Authors firstname is not filled in");
+    }
+    if (book.authorLastname == "") {
+      this.errors.push("Authors lastname is not filled in");
+    }
+    if (book.price == 0) {
+      this.errors.push("price is not filled in");
+    }
+    if (book.copies == 0) {
+      book.copies = 1;
+    }
+    if (book.image == "") {
+      book.image = "";
+    }
   }
 
   get bookForm() {

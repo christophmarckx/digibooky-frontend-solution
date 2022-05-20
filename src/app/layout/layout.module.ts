@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgbAlertModule} from "@ng-bootstrap/ng-bootstrap";
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -8,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { BookOverviewComponent } from './overviews/book-overview/book-overview.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { RegisterMemberComponent } from './register/register-member/register-member.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LogoutComponent } from './logout/logout.component';
 import { LendBookComponent } from './lend-book/lend-book.component';
 // Stories
@@ -31,6 +32,7 @@ import { Story10aComponent } from './stories/story10a/story10a.component';
 import { OverdueBooksComponent } from './overdue-books/overdue-books.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { HistoryComponent } from './history/history.component';
 
 
 
@@ -64,6 +66,7 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
     OverdueBooksComponent,
     UpdateBookComponent,
     DeleteBookComponent,
+    HistoryComponent,
   ],
   exports: [
     HomeComponent,
@@ -71,9 +74,11 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
     FooterComponent
   ],
     imports: [
-        CommonModule,
-        RouterModule,
-        ReactiveFormsModule
+      NgbAlertModule,
+      CommonModule,
+      RouterModule,
+      ReactiveFormsModule,
+      FormsModule
     ],
   providers: []
 })

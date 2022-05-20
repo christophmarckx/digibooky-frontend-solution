@@ -16,9 +16,11 @@ export class ReturnBookComponent implements OnInit {
   public book!: Book;
   public member!: Member;
   public isbn: string;
+  public damaged: boolean;
 
   constructor(public formBuilder: FormBuilder, private bookService: BookService, private memberService: MemberService, private route: Router) {
     this.isbn = route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[2].path
+    this.damaged = false;
   }
 
   ngOnInit(): void {
@@ -31,8 +33,15 @@ export class ReturnBookComponent implements OnInit {
     })
   }
 
+  setDamaged() {
+    this.damaged = !this.damaged;
+  }
+
   public returnBook() {
     this.memberService.returnBook(this.member.id, this.isbn, this.member.email, this.member.password).subscribe()
+  }
+  public returnBookBroken() {
+    this.memberService.returnBookDamaged(this.member.id, this.isbn, this.member.email, this.member.password).subscribe()
   }
 
 }

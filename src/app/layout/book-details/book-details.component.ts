@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute, ParamMap, PRIMARY_OUTLET} from '@angular/router';
+import {Router, PRIMARY_OUTLET} from '@angular/router';
 import {BookService} from "../../serviceBook/book.service";
-import {Book} from "../../model/Book";
-import {Member} from "../../model/member";
+import {Book} from "../../model/Book"
 import {MemberService} from "../../serviceMember/member.service";
 
 @Component({

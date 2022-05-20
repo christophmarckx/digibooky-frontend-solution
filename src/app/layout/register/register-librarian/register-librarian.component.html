@@ -1,29 +1,37 @@
-<form [formGroup]="librarianForm" (ngSubmit)="onSubmit(librarianForm.value)">
-  <div>
-    <label for="email">
-      E-mail
-    </label>
-    <input id="email" type="text" formControlName="email">
+<div class="container">
+  <h1>Register Librarian</h1>
+  <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
+    <div *ngFor="let error of errors">
+      <p style="margin: 0">{{error}}</p>
+    </div>
   </div>
-  <div>
-    <label for="password">
-      Password
-    </label>
-    <input id="password" type="password" formControlName="password">
-  </div>
-  <div>
-    <label for="firstName">
-      First name
-    </label>
-    <input id="firstName" type="text" formControlName="firstName">
-  </div>
-  <div>
-    <label for="lastName">
-      Last name
-    </label>
-    <input id="lastName" type="text" formControlName="lastName">
-  </div>
+  <form [formGroup]="librarianForm" (ngSubmit)="onSubmit(librarianForm.value)">
+    <div>
+      <label for="email" class="fw-bold">
+        E-mail
+      </label>
+      <input id="email" type="text" formControlName="email" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="password" class="fw-bold">
+        Password
+      </label>
+      <input id="password" type="password" formControlName="password" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="firstname" class="fw-bold">
+        First name
+      </label>
+      <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="lastname" class="fw-bold">
+        Last name
+      </label>
+      <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
+    </div>
 
-  <button class="button" type="submit">Register</button>
+    <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
 
-</form>
+  </form>
+</div>

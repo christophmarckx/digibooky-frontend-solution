@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   private _loginForm!: FormGroup;
   private members: Array<Member>;
   public message!: string;
+  public error!: string;
 
 
   constructor(private formBuilder: FormBuilder, private memberService: MemberService, private librarianService: LibrarianService, private adminService: AdminService, private route: Router) {
@@ -31,9 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData: any) {
+    this.error = "";
     this.getaccount(loginData.email, loginData.password);
     // TODO: wanneer login mislukt, foutboodschap meegeven.
-    this.route.navigate(["/"]).then(() => window.location.reload())
     this._loginForm.reset();
   }
 
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
         console.log(member.email + " " + member.password)
         if (member.email == email && member.password == password) {
           this.setSession(member.email, "member");
+          this.route.navigate(["/"]).then(() => window.location.reload())
         }
       });
     });
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         console.log(librarian.email + " " + librarian.password)
         if (librarian.email == email && librarian.password == password) {
           this.setSession(librarian.email, "librarian");
+          this.route.navigate(["/"]).then(() => window.location.reload())
         }
       });
     });
@@ -66,9 +69,13 @@ export class LoginComponent implements OnInit {
         console.log(admin.email + " " + admin.password)
         if (admin.email == email && admin.password == password) {
           this.setSession(admin.email, "admin");
+          this.route.navigate(["/"]).then(() => window.location.reload())
         }
       });
     });
+    if (sessionStorage.getItem("role") == null) {
+      this.error = "email and/or password is incorrect"
+    }
   }
 
   setSession(email: string, role: string) {

@@ -1,61 +1,69 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
-  <h5>the fields with an * must be filled in.</h5>
-  <div>
-    <label for="inss">
-      INSS *
-    </label>
-    <input id="inss" type="text" formControlName="inss">
+<div class="container">
+  <h1>Register Account</h1>
+  <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
+    <div *ngFor="let error of errors">
+      <p style="margin: 0">{{error}}</p>
+    </div>
   </div>
-  <div>
-    <label for="firstName">
-      First name
-    </label>
-    <input id="firstName" type="text" formControlName="firstName">
-  </div>
-  <div>
-    <label for="lastName">
-      Last name *
-    </label>
-    <input id="lastName" type="text" formControlName="lastName">
-  </div>
-  <div>
-    <label for="email">
-      E-mail *
-    </label>
-    <input id="email" type="text" formControlName="email">
-  </div>
-  <div>
-    <label for="password">
-      Password *
-    </label>
-    <input id="password" type="password" formControlName="password">
-  </div>
-  <div>
-    <label for="streetname">
-      streetname
-    </label>
-    <input id="streetname" type="text" formControlName="streetname">
-  </div>
-  <div>
-    <label for="streetnumber">
-      streetnumber
-    </label>
-    <input id="streetnumber" type="text" formControlName="streetnumber">
-  </div>
-  <div>
-    <label for="postalcode">
-      postalcode
-    </label>
-    <input id="postalcode" type="text" formControlName="postalcode">
-  </div>
-  <div>
-    <label for="city">
-      city *
-    </label>
-    <input id="city" type="text" formControlName="city">
-  </div>
+  <form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
+    <h5>the fields with an * must be filled in.</h5>
+    <div>
+      <label for="inss" class="fw-bold">
+        INSS *
+      </label>
+      <input id="inss" type="number" formControlName="inss" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="firstname" class="fw-bold">
+        First name
+      </label>
+      <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="lastname" class="fw-bold">
+        Last name *
+      </label>
+      <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="email" class="fw-bold">
+        E-mail *
+      </label>
+      <input id="email" type="text" formControlName="email" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="password" class="fw-bold">
+        Password *
+      </label>
+      <input id="password" type="password" formControlName="password" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="streetname" class="fw-bold">
+        streetname
+      </label>
+      <input id="streetname" type="text" formControlName="streetname" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="streetnumber" class="fw-bold">
+        streetnumber
+      </label>
+      <input id="streetnumber" type="text" formControlName="streetnumber" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="postalcode" class="fw-bold">
+        postalcode
+      </label>
+      <input id="postalcode" type="text" formControlName="postalcode" class="form-control col-auto">
+    </div>
+    <div>
+      <label for="city" class="fw-bold">
+        city *
+      </label>
+      <input id="city" type="text" formControlName="city" class="form-control col-auto">
+    </div>
 
 
-  <button class="button" type="submit">Register</button>
+    <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
 
-</form>
+  </form>
+</div>
