@@ -24,16 +24,18 @@
     <button class="align-self-end" type="submit">Search</button>
   </form>
   <div class="row">
-    <div class="card col-lg-4 col-md-6 text-center mb-3" *ngFor="let book of books">
-      <div class="row">
-        <div class="col-md-4">
-          <img src="" alt="Image van het boek">
-          <p class="card-body">{{book.isbn}}</p>
-        </div>
-        <div class="col-md-8 card-body">
-          <h3>{{book.title}}</h3>
-          <p>{{book.authorFirstname}} {{book.authorLastname}}</p>
-          <a class="btn btn-outline-secondary" href="/books/{{book.isbn}}">Details</a>
+    <div class="col-lg-4 col-md-6 text-center mb-3" *ngFor="let book of books">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="" alt="Book image">
+            <p class="card-body">{{book.isbn}}</p>
+          </div>
+          <div class="col-md-8 card-body">
+            <h3>{{book.title}}</h3>
+            <p>{{book.authorFirstname}} {{book.authorLastname}}</p>
+            <a class="btn btn-outline-secondary" href="/books/{{book.isbn}}">Details</a>
+          </div>
         </div>
       </div>
     </div>

@@ -1,26 +1,15 @@
 <div class="container">
+  <h1>Details</h1>
   <div class="row-cols-md-3 row-cols-sm-1 row g-0">
     <div class="col-4">
       <div>
         <img src="" alt="Text about the Image">
       </div>
-      <p class="small">isbn: {{book.isbn}}</p>
-      <div class="">
-        <div id="buttons" class="w-50" *ngIf="role == 'librarian'">
-          <div>
-            <a class="w-50 btn" href="books/{{book.isbn}}/update">Update</a>
-            <a class="w-50 btn" href="books/{{book.isbn}}/delete">Delete</a>
-          </div>
-          <div>
-            <a class="w-100 btn" href="books/{{book.isbn}}/history">History</a>
-          </div>
-        </div>
-      </div>
+      <p class="small">{{book.isbn}}</p>
     </div>
     <div class="col-4">
-      <h1>Details</h1>
       <div class="card">
-        <p class="card-header">Title: {{book.title}}</p>
+        <h2 class="card-header">{{book.title}}</h2>
         <div class="card-body">
           <p *ngIf="book.author != null">Written by: {{book.author}}</p>
           <p *ngIf="book.author == null">Written by: {{book.authorFirstname}} {{book.authorLastname}}</p>
@@ -37,12 +26,24 @@
           <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
         </div>
       </div>
+      <div class="w-100" *ngIf="role == 'librarian'">
+        <div style="margin-top: 10px">
+          <a class="w-50 btn" href="books/{{book.isbn}}/update">Update</a>
+          <a class="w-50 btn" href="books/{{book.isbn}}/delete">Delete</a>
+        </div>
+        <div style="margin-top: 5px">
+          <a class="w-100 btn" href="books/{{book.isbn}}/history">History</a>
+        </div>
+      </div>
     </div>
     <div class="col-4">
-      <div *ngIf="book.lenderNames.length != 0 && (role == 'member' || role == 'librarian' || role == 'admin')">
-        <h3>Book is borrowed by:</h3>
-        <div *ngFor="let name of book.lenderNames">
-          <p>{{name}}</p>
+      <div style="padding-left: 2em"
+           *ngIf="book.lenderNames.length != 0 && (role == 'member' || role == 'librarian' || role == 'admin')">
+        <div class="card">
+          <h3 class="card-header card-title">Book is borrowed by:</h3>
+          <div class="card-body" *ngFor="let name of book.lenderNames">
+            <p>{{name}}</p>
+          </div>
         </div>
       </div>
     </div>

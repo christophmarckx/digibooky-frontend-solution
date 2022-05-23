@@ -53,7 +53,7 @@ var routes: Routes = [
   {path: 'books/:id/:isbn/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'members', component: MemberOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'memberOverview', component: MemberOverviewComponent, canActivate: [AuthGuardServiceLibrarianService]},
-  {path: 'members/add', component: RegisterMemberComponent, canActivate: [AuthGuardServiceAdminService]},
+  {path: 'members/add', component: RegisterMemberComponent},
   {path: 'members/:id', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'memberOverview/:id', component: ProfileComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'librarians', component: LibrarianOverviewComponent, canActivate: [AuthGuardServiceAdminService]},

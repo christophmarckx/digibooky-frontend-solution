@@ -27,7 +27,11 @@
           </div>
         </div>
       </div>
-      <a *ngIf="viewedByLibrarian()" href="/memberOverview/{{member.id}}">View Profile</a>
+      <div style="margin-bottom: 10px">
+        <a class="btn btn-secondary" *ngIf="viewedByLibrarian()" href="/memberOverview/{{member.id}}">
+          View Profile
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -1,19 +1,25 @@
 <div class="container">
-  <h1>Librarians</h1>
-  <a class="btn btn-outline-secondary" href="librarians/add">Add Librarian</a>
+  <h1>Admins</h1>
+  <a class="btn btn-outline-secondary" href="librarians/add">Add Admin</a>
   <div class="row">
-    <div class="card col-md-6 col-lg-4 text-center mb-3" *ngFor="let librarian of librarians">
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">ID: </p>
-        <p style="text-align: left" class="col-8">{{librarian.id}}</p>
-      </div>
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">E-mail: </p>
-        <p style="text-align: left" class="col-8">{{librarian.email}}</p>
-      </div>
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">Name: </p>
-        <p style="text-align: left" class="col-8">{{librarian.firstname}} {{librarian.lastname}}</p>
+    <div class="col-md-6 col-lg-4 text-center mb-3" *ngFor="let librarian of librarians">
+      <div class="card">
+        <div class="card-title card-header">
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">Name: </p>
+            <p style="text-align: left" class="col-8">{{librarian.firstname}} {{librarian.lastname}}</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">ID: </p>
+            <p style="text-align: left" class="col-8">{{librarian.id}}</p>
+          </div>
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">E-mail: </p>
+            <p style="text-align: left" class="col-8">{{librarian.email}}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -2,18 +2,24 @@
   <h1>Admins</h1>
   <a class="btn btn-outline-secondary" href="admins/add">Add Admin</a>
   <div class="row">
-    <div class="card col-md-6 col-lg-4 text-center mb-3" *ngFor="let admin of admins">
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">ID: </p>
-        <p style="text-align: left" class="col-8">{{admin.id}}</p>
-      </div>
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">E-mail: </p>
-        <p style="text-align: left" class="col-8">{{admin.email}}</p>
-      </div>
-      <div class="row row-cols-2">
-        <p style="text-align: left" class="col-4">Name: </p>
-        <p style="text-align: left" class="col-8">{{admin.firstname}} {{admin.lastname}}</p>
+    <div class="col-md-6 col-lg-4 text-center mb-3" *ngFor="let admin of admins">
+      <div class="card">
+        <div class="card-title card-header">
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">Name: </p>
+            <p style="text-align: left" class="col-8">{{admin.firstname}} {{admin.lastname}}</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">ID: </p>
+            <p style="text-align: left" class="col-8">{{admin.id}}</p>
+          </div>
+          <div class="row row-cols-2">
+            <p style="text-align: left" class="col-4">E-mail: </p>
+            <p style="text-align: left" class="col-8">{{admin.email}}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -39,6 +39,6 @@ export class DeleteBookComponent implements OnInit {
   }
 
   return() {
-
+    this.route.navigate(["/books/" + this.isbn]).then(() => window.location.reload());
   }
 }
