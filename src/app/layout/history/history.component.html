@@ -1,17 +1,29 @@
 <div class="container">
-  <div>
-    <h1>History</h1>
-    <p>{{history.image}}</p>
-    <p>{{history.title}}</p>
-    <p *ngIf="history.author == ''">{{history.authorFirstname}} {{history.authorLastname}}</p>
-    <p *ngIf="history.author != ''">{{history.author}}</p>
-    <p>{{history.isbn}}</p>
+  <h1>History</h1>
+  <div class="row row-cols-2">
+    <div>
+      <div class="card">
+        <h3 class="card-header">{{history.title}}</h3>
+        <div class="card-body">
+          <p *ngIf="history.author == ''">{{history.authorFirstname}} {{history.authorLastname}}</p>
+          <p *ngIf="history.author != ''">{{history.author}}</p>
+          <p>{{history.isbn}}</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <div *ngFor="let lending of history.lendinghistory">
-      <p>From: {{lending.start}}</p>
-      <p>Untill: {{lending.end}}</p>
-      <p>By: {{lending.firstname}} {{lending.lastname}}</p>
+  <div *ngIf="history.lendinghistory.length > 0">
+    <h2>List of lenders</h2>
+    <div class="row row-cols-3">
+      <div *ngFor="let lending of history.lendinghistory">
+        <div class="card">
+          <p class="card-header">By: {{lending.firstname}} {{lending.lastname}}</p>
+          <div class="card-body">
+            <p>From: {{lending.start}}</p>
+            <p>Untill: {{lending.end}}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -5,27 +5,28 @@
       <p style="margin: 0">{{error}}</p>
     </div>
   </div>
+  <div class="row row-cols-lg-2">
   <form [formGroup]="librarianForm" (ngSubmit)="onSubmit(librarianForm.value)">
     <div>
-      <label for="email" class="fw-bold">
+      <label for="email">
         E-mail
       </label>
       <input id="email" type="text" formControlName="email" class="form-control col-auto">
     </div>
     <div>
-      <label for="password" class="fw-bold">
+      <label for="password">
         Password
       </label>
       <input id="password" type="password" formControlName="password" class="form-control col-auto">
     </div>
     <div>
-      <label for="firstname" class="fw-bold">
+      <label for="firstname">
         First name
       </label>
       <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
     </div>
     <div>
-      <label for="lastname" class="fw-bold">
+      <label for="lastname">
         Last name
       </label>
       <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
@@ -34,4 +35,5 @@
     <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
 
   </form>
+</div>
 </div>

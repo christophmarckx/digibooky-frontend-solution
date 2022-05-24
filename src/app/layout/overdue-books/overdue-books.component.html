@@ -1,21 +1,29 @@
 <div class="container">
   <h1>Overdue books</h1>
-  <div *ngIf="books.length >= 1" class="row">
-    <div class="col-lg-4 col-md-6 text-center mb-3" *ngFor="let member of books">
-      <div class="card" *ngFor="let book of member.lendings">
-        <div class="card-header">
-          <p>Title: {{book.title}}</p>
-        </div>
-        <div class="card-body">
-          <p>ISBN: {{book.isbn}}</p>
-          <p>Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
-          <p>Duedate: {{book.dueDate}}</p>
-        </div>
-        <div class="card-footer">
-          <p style="margin-bottom: 0" >By: {{member.firstname}} {{member.lastname}}</p>
+  <div *ngIf="books.length >= 1">
+    <div>
+      <div class="row row-cols-md-2 row-cols-lg-3" *ngFor="let member of books">
+        <div *ngFor="let book of member.lendings">
+          <div class="card">
+            <div class="card-header">
+              <p class="nopadding fw-bold">Title: {{book.title}}</p>
+            </div>
+            <div class="card-body">
+              <p>ISBN: {{book.isbn}}</p>
+              <p>Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
+              <p class="nopadding">Duedate: {{book.dueDate}}</p>
+            </div>
+            <div class="card-footer">
+              <p class="nopadding">By: {{member.firstname}} {{member.lastname}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="text-center alert-warning " *ngIf="books.length == 0">No books found.</div>
+    <div *ngIf="books.length == 0">
+      <p class="text-center alert-warning ">
+        There are no overdue books found.
+      </p>
+    </div>
   </div>
 </div>

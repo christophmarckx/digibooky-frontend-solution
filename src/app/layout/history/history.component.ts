@@ -20,7 +20,8 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-      this.bookService.getHistory(librarian, this.isbn).subscribe(history => this.history = history);
+      this.bookService.getHistory(librarian, this.isbn).subscribe(history => {this.history = history
+      console.log(history)});
     })
   }
 }

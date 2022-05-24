@@ -2,35 +2,35 @@
   <div>
     <nav class="navbar navbar-expand-md">
       <ul class="navbar-nav container-fluid" *ngIf="role !== 'member' && role !== 'librarian' && role !== 'admin'">
-        <li><a style="height: 52px" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
-<!--        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/">home</a></li>-->
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/login">Login</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/members/add">register</a></li>
+        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
+<!--        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/">home</a></li>-->
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/login">Login</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members/add">register</a></li>
       </ul>
 
       <ul class="navbar-nav container-fluid" *ngIf="role === 'member'">
-        <li><a style="height: 52px" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/members/{{id}}">Profile</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/logout">{{member.firstname}} {{member.lastname}} Logout</a></li>
+        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members/{{id}}">Profile</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/logout">{{member.firstname}} {{member.lastname}} Logout</a></li>
       </ul>
 
       <ul class="navbar-nav container-fluid" *ngIf="role === 'librarian'">
-        <li><a style="height: 52px" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/logout">{{librarian.firstname}} {{librarian.lastname}} Logout</a></li>
+        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/logout">{{librarian.firstname}} {{librarian.lastname}} Logout</a></li>
       </ul>
 
       <ul class="navbar-nav container-fluid" *ngIf="role === 'admin'">
-        <li><a style="height: 52px" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/members">Members</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/librarians">Librarians</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/admins">Admins</a></li>
-        <li><a style="height: 52px" class="fs-4 nav-link" routerLink="/logout">{{admin.firstname}} {{admin.lastname}} Logout</a></li>
+        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em" src="../../../assets/switchfully-logo-text.png" alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members">Members</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/librarians">Librarians</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/admins">Admins</a></li>
+        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/logout">{{admin.firstname}} {{admin.lastname}} Logout</a></li>
       </ul>
     </nav>
   </div>

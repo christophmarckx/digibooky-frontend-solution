@@ -1,6 +1,8 @@
 <div class="container">
-  <h1 *ngIf="member != null">Welcome {{member.firstname}} {{member.lastname}} to the DigiBooky home page.</h1>
-  <h1 *ngIf="member == null">This is the DigiBooky Home page.</h1>
+  <h1 *ngIf="member != null">Welcome {{member.firstname}} {{member.lastname}} to DigiBooky</h1>
+  <h1 *ngIf="librarian != null">Welcome {{librarian.firstname}} {{librarian.lastname}} to DigiBooky</h1>
+  <h1 *ngIf="admin != null">Welcome {{admin.firstname}} {{admin.lastname}} to DigiBooky</h1>
+  <h1 *ngIf="member == null && librarian == null && admin == null">This is DigiBooky</h1>
   <p>This UI is made to help you with your own Digibooky back end, with the help of this page you can check that your
     story does/doesn't work.</p>
   <h2>Stories</h2>

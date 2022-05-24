@@ -16,10 +16,20 @@ a {
   background-color: white;
   border: 2px solid #97AA5A;
   border-radius: 25px;
-  width: 10em;
+  width: auto;
 }
 
 a:hover {
   color: white;
   background-color: #97AA5A;
+}
+
+img {
+  max-width: 90%;
+  padding-bottom: 2em;
+}
+
+#ninty {
+  width: 90%;
+  padding-bottom: 2em;
 }

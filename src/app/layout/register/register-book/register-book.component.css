@@ -25,5 +25,10 @@ a:hover {
 }
 
 input {
-  width: 30em;
+  width: 75%;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 5px;
 }

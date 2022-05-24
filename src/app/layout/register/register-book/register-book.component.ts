@@ -41,10 +41,15 @@ export class RegisterBookComponent implements OnInit {
     this.errors = [];
     this.hasError(this._bookForm.value);
     if (this.errors.length == 0) {
-      this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-        this.bookService.addBook(bookvalues, librarian).subscribe();
-      })
-      this.route.navigate(["/books"]).then(() => window.location.reload())
+      this.librarianService.getLibrarian(sessionStorage.getItem("email"))
+        .subscribe(
+          librarian => {
+            this.bookService.addBook(bookvalues, librarian).subscribe(iets =>
+              this.route.navigate(["/books"]).then(() => window.location.reload())
+            )
+
+          },
+          error => console.log("ISBN is not the given Form"))
     }
   }
 

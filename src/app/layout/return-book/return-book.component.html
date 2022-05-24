@@ -1,47 +1,62 @@
 <div class="container">
   <div>
     <h1>Return Book</h1>
-    <div class="row row-cols-sm-1 row-cols-lg-3">
-      <div class="col-lg-3">
-        <div class="row row-cols-1">
-          <img src="" alt="hier komt een afbeelding">
-          <a style="width: auto" class="btn btn-secondary" href="/members/{{member.id}}">Back</a>
-        </div>
-      </div>
-      <div>
-        <div class="col-lg-12" *ngFor="let bo of member.lendings">
-          <div class="card" *ngIf="bo.isbn == isbn">
-            <p class="card-header">Title: {{bo.title}}</p>
-            <div class="card-body">
-              <p *ngIf="bo.author != null">Author: {{bo.author}}</p>
-              <p *ngIf="bo.author == null">Author: {{bo.authorFirstname}} {{bo.authorLastname}}</p>
-              <p>DueDate: {{bo.dueDate}}</p>
-              <form [formGroup]="returnForm">
-                <div>
-                  <label for="damaged">Damaged•</label>
-                  <input type="checkbox" id="damaged" name="damaged" (change)="setDamaged()">
-                </div>
-              </form>
-              <a *ngIf="!damaged" style="margin-top: 5px" class="btn btn-outline-secondary"
-                 href="/members/{{member.id}}"
-                 (click)="returnBook()">Return {{bo.title}}</a>
-              <a *ngIf="damaged" style="margin-top: 5px" class="btn btn-outline-secondary" href="/members/{{member.id}}"
-                 (click)="returnBookBroken()">Return {{bo.title}}, broken</a>
+    <a style="width: auto" class="btn btn-secondary" href="/members/{{member.id}}">Back</a>
+
+    <div *ngFor="let book of member.lendings">
+      <div *ngIf="book.isbn == isbn">
+        <div class="row row-cols-sm-1 row-cols-lg-3">
+          <div style="padding-bottom: 15px" class="col-4 image">
+            <img src="{{book.image}}" alt="hier komt een afbeelding">
+          </div>
+          <div style="padding-bottom: 15px" class="col-lg-4">
+            <div class="card">
+              <p class="card-header">Title: {{book.title}}</p>
+              <div class="card-body">
+                <p *ngIf="book.author != null">Author: {{book.author}}</p>
+                <p *ngIf="book.author == null">Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
+                <p>DueDate: {{book.dueDate}}</p>
+                <form [formGroup]="returnForm">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="damaged" name="damaged" (change)="setDamaged()">
+                    <label class="form-check-label" for="damaged">Damaged</label>
+                  </div>
+                </form>
+                <a *ngIf="!damaged" class="btn btn-outline-secondary"
+                   href="/members/{{member.id}}"
+                   (click)="returnBook()">Return {{book.title}}</a>
+                <a *ngIf="damaged" class="btn btn-outline-secondary"
+                   href="/members/{{member.id}}"
+                   (click)="returnBookBroken()">Return {{book.title}}, broken</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <p class="card-header card-title">Here will be explained how the Fines work.</p>
+              <div class="card-body">
+                <p class="fw-bold">Overdue Fine</p>
+                <p>
+                  This is a Fine you will get when your book is overdue.<br>
+                  The amount you'll have to pay depends on the duration the book is returned after the due date of 3 weeks. <br>
+                  It can be calculated as following: <br>
+                  5 + 2 * [Total weeks overdue] <br>
+                  examples: <br>
+                  -> 3 weeks: No Fine <br>
+                  -> 3 weeks and 3 days: €5 <br>
+                  -> 4 weeks: €7 <br>
+                </p>
+                <p class="fw-bold">Damage Fine</p>
+                <p>
+                  This is a Fine you will get when your book is returned damaged. <br>
+                  The amount you'll have to pay depends on the warranty price and on the books "age". <br>
+                  It can be calculated as following: <br>
+                  [Warranty price] * (1 - ([Book years] * 0.2)
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card col-lg-5">
-        Here will be some Explenation about the Damage Fine that you can get. And also about the Overdue Fine. <br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci amet blanditiis debitis dicta, distinctio
-        error
-        eum iste quisquam reiciendis totam vel veniam veritatis! Accusamus aspernatur consequatur deserunt eaque eius
-        excepturi explicabo hic id impedit laboriosam natus, nihil, nobis obcaecati porro quidem quisquam, repellendus
-        suscipit temporibus vero voluptatibus. Cumque doloremque et expedita omnis, repellat reprehenderit voluptate!
-        Aut
-        culpa excepturi facere in iste libero maxime modi, molestias natus, quas quibusdam rem repellendus saepe sequi
-        similique veniam voluptatibus. Dolores facere perspiciatis rem. Ad, cum est et, excepturi ipsa laboriosam,
-        molestiae necessitatibus nemo nisi numquam odit optio quidem sunt. At corporis laboriosam quod sapiente.
       </div>
     </div>
   </div>

@@ -5,65 +5,65 @@
       <p style="margin: 0">{{error}}</p>
     </div>
   </div>
-  <form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
-    <h5>the fields with an * must be filled in.</h5>
-    <div>
-      <label for="inss">
-        INSS *
-      </label>
-      <input id="inss" type="number" formControlName="inss" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="firstname">
-        First name
-      </label>
-      <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="lastname">
-        Last name *
-      </label>
-      <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="email">
-        E-mail *
-      </label>
-      <input id="email" type="text" formControlName="email" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="password">
-        Password *
-      </label>
-      <input id="password" type="password" formControlName="password" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="streetname">
-        streetname
-      </label>
-      <input id="streetname" type="text" formControlName="streetname" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="streetnumber">
-        streetnumber
-      </label>
-      <input id="streetnumber" type="text" formControlName="streetnumber" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="postalcode">
-        postalcode
-      </label>
-      <input id="postalcode" type="text" formControlName="postalcode" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="city">
-        city *
-      </label>
-      <input id="city" type="text" formControlName="city" class="form-control col-auto">
-    </div>
+  <div class="row row-cols-lg-2">
+    <form [formGroup]="memberForm" (ngSubmit)="onSubmit(memberForm.value)">
+      <h5>the fields with an * must be filled in.</h5>
+      <div>
+        <label for="inss">
+          INSS *
+        </label>
+        <input id="inss" type="number" formControlName="inss" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="firstname">
+          First name
+        </label>
+        <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="lastname">
+          Last name *
+        </label>
+        <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="email">
+          E-mail *
+        </label>
+        <input id="email" type="text" formControlName="email" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="password">
+          Password *
+        </label>
+        <input id="password" type="password" formControlName="password" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="streetname">
+          streetname
+        </label>
+        <input id="streetname" type="text" formControlName="streetname" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="streetnumber">
+          streetnumber
+        </label>
+        <input id="streetnumber" type="text" formControlName="streetnumber" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="postalcode">
+          postalcode
+        </label>
+        <input id="postalcode" type="text" formControlName="postalcode" class="form-control col-auto">
+      </div>
+      <div>
+        <label for="city">
+          city *
+        </label>
+        <input id="city" type="text" formControlName="city" class="form-control col-auto">
+      </div>
 
-
-    <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
-
-  </form>
+      <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
+    </form>
+  </div>
 </div>
