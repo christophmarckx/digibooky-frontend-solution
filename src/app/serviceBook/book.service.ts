@@ -30,8 +30,10 @@ export class BookService {
   }
 
   public addBook(book: Book, librarian: Librarian) {
-    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
-    return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
+    console.log("in de ADDBOOK functie")
+      var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    console.log("authorization is uitgevoerd")
+      return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
   }
 
   public updateBook(book: Book, librarian: Librarian) {

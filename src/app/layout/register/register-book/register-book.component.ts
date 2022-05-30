@@ -44,12 +44,14 @@ export class RegisterBookComponent implements OnInit {
       this.librarianService.getLibrarian(sessionStorage.getItem("email"))
         .subscribe(
           librarian => {
-            this.bookService.addBook(bookvalues, librarian).subscribe(iets =>
-              this.route.navigate(["/books"]).then(() => window.location.reload())
+            this.bookService.addBook(bookvalues, librarian).subscribe(iets => {
+              console.log("hier is text")
+              console.log(iets)
+                this.route.navigate(["/books"]).then(() => window.location.reload())
+              }
             )
-
           },
-          error => console.log("ISBN is not the given Form"))
+          error => console.log(error))
     }
   }
 

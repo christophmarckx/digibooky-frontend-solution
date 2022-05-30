@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   onSubmit(loginData: any) {
     this.error = "";
     this.getaccount(loginData.email, loginData.password);
-    // TODO: wanneer login mislukt, foutboodschap meegeven.
     this._loginForm.reset();
   }
 
