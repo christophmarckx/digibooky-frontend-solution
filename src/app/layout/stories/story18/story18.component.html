@@ -1,1 +1,37 @@
-<p>story18 works!</p>
+<div class="container">
+  <h1>How to test Story 18:</h1>
+  <ul>
+    <li>Add a couple of members to your list of members and give the members some fines.</li>
+    <li *ngIf="role == null">Login with an admin/librarian account or use the special admin/librarian login on the following link:
+      <button routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="role != null && (role != 'admin' && role != 'librarian')">Because you are logged in with an account, but not with an admin, you should click following link:
+      <button routerLink="/logout">Logout</button>
+      <br>Next, you should login with an admin account.
+    </li>
+    <li>
+      Click on the following link
+      <button *ngIf="role == 'admin'" routerLink="/members">members</button>
+      <button *ngIf="role == 'librarian'" routerLink="/memberOverview">members</button>
+      or on the "MEMBERS" link at the top of your screen, this will send you to the Member Overview Page.
+    </li>
+    <li>If everything works, you should see a list of your members and also the given fines.</li>
+  </ul>
+
+  <h2>If something isn't there, possible solutions.</h2>
+  <ul>
+    <li>
+      <p>One of you variables isn't displayed?</p>
+      <p>
+        (This is mostly based on story 7, you can also check
+        <button routerLink="/story7">story 7</button>
+        ...)
+      </p>
+      <p>The used names for the variables aren't:</p>
+      <ul>
+        <li>To display the fines, "fines" should be bigger then 0</li>
+        <li>For Total price: "totalPrice"</li>
+      </ul>
+    </li>
+  </ul>
+</div>

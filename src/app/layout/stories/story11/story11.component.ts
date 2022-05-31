@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story11.component.css']
 })
 export class Story11Component implements OnInit {
+  public role: string|null;
 
-  constructor() { }
+  constructor() {
+    this.role = sessionStorage.getItem("role");
+  }
 
   ngOnInit(): void {
   }

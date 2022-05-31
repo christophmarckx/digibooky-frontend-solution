@@ -17,11 +17,7 @@ export class MemberService {
   }
 
   get getMembers(): Observable<any> {
-    // var email = "ad@min.com"
-    // var password = "admin"
-    // var authorization = btoa(email + ":" + password)
     return this.http.get<Member[]>(this.memberUrl)
-    // return this.http.get<Member[]>(this.memberUrl, {headers: {"Authorization": `basic ${authorization}`}})
   }
 
   public getMemberid(email: string|null): Observable<number> {

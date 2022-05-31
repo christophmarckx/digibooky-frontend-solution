@@ -1,1 +1,33 @@
-<p>story14 works!</p>
+<div class="container">
+  <h1>How to test Story 14:</h1>
+  <ul>
+    <li *ngIf="role == null">Login with an Librarian account or use the special librarian login on the following link:
+      <button routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="role != null && role != 'librarian'">Because you are logged in with an account, but not with an librarian, you should click following link:
+      <button routerLink="/logout">Logout</button>
+      <br>Next, you should login with an librarian account.
+    </li>
+    <li>
+      Click on the following link
+      <button routerLink="/books/overdue">Overdues</button>
+      OR click on the "OVERDUES" button on the top of your screen.
+    </li>
+    <li>If everything works Fine, you should see all the borrowed books that are overdue.</li>
+  </ul>
+
+  <h2>If something isn't there, possible solutions.</h2>
+  <ul>
+    <li>
+      <p>One of you variables isn't displayed?</p>
+      <p>the used names for the variables aren't: </p>
+      <ul>
+        <li>For Title: "title"</li>
+        <li>For ISBN: "isbn"</li>
+        <li>For Author (first- and lastname): "authorFirstname" & "authorLastname"</li>
+        <li>For Duedate: "dueDate"</li>
+        <li>For By User: "firstname" & "lastname"</li>
+      </ul>
+    </li>
+  </ul>
+</div>

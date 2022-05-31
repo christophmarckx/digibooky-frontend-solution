@@ -1,1 +1,20 @@
-<p>story8 works!</p>
+<div class="container">
+  <h1>How to test Story 8:</h1>
+  <ul>
+    <li *ngIf="role == null">Login with an admin account or use the special admin login on the following link:
+      <button routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="role != null && role != 'admin'">Because you are logged in with an account, but not with an admin, you should click following link:
+      <button routerLink="/logout">Logout</button>
+      <br>Next, you should login with an admin account.
+    </li>
+    <li>
+      Click on the following link
+      <button routerLink="/admins/add">Add Admin</button>
+      Here you can add an admin.
+    </li>
+    <li>If everything works Fine, you should see the new registered admin.</li>
+  </ul>
+
+  <h4>At this moment, you can only add an admin if you are really logged in with username and password</h4>
+</div>

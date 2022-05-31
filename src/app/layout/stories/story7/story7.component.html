@@ -1,1 +1,33 @@
-<p>story7 works!</p>
+<div class="container">
+<h1>How to test Story 7:</h1>
+<ul>
+  <li>Add a couple of members to your list of members.</li>
+  <li *ngIf="role == null">Login with an admin account or use the special admin login on the following link:
+    <button routerLink="/login">Login</button>
+  </li>
+  <li *ngIf="role != null && role != 'admin'">Because you are logged in with an account, but not with an admin, you should click following link:
+    <button routerLink="/logout">Logout</button>
+    <br>Next, you should login with an admin account.
+  </li>
+  <li>
+    Click on the following link
+    <button routerLink="/members">members</button>
+    or on the "MEMBERS" link at the top of your screen, this will send you to the Member Overview Page.
+  </li>
+  <li>If everything works Fine, you should see a list of your members.</li>
+</ul>
+
+<h2>If something isn't there, possible solutions.</h2>
+<ul>
+  <li>
+    <p>One of you variables isn't displayed?</p>
+    <p>the used names for the variables aren't: </p>
+    <ul>
+      <li>For Name (first and last): "firstname" & "lastname"</li>
+      <li>For ID: "id"</li>
+      <li>For E-mail: "email"</li>
+      <li>For address: "street", "streetnumber", "postcode" and " city"</li>
+    </ul>
+  </li>
+</ul>
+</div>

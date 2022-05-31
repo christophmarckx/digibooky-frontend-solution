@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public member!: Member;
   public librarian!: Librarian;
   public admin!: Admin;
+  public role!: string|null;
 
   constructor(private memberService: MemberService, private librarianService: LibrarianService, private adminService: AdminService) { }
 
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
     this.memberService.getMember(sessionStorage.getItem("email")).subscribe(member => this.member = member);
     this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => this.librarian = librarian);
     this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => this.admin = admin);
+    this.role = sessionStorage.getItem("role")
   }
 
 }

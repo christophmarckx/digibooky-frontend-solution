@@ -2,7 +2,9 @@
   <h1 *ngIf="member != null">Welcome {{member.firstname}} {{member.lastname}} to DigiBooky</h1>
   <h1 *ngIf="librarian != null">Welcome {{librarian.firstname}} {{librarian.lastname}} to DigiBooky</h1>
   <h1 *ngIf="admin != null">Welcome {{admin.firstname}} {{admin.lastname}} to DigiBooky</h1>
-  <h1 *ngIf="member == null && librarian == null && admin == null">This is DigiBooky</h1>
+  <h1 *ngIf="member == null && librarian == null && admin == null && role == null">This is DigiBooky</h1>
+  <h1 *ngIf="member == null && librarian == null && admin == null && role != null">This is DigiBooky, viewed by the role: {{role}}</h1>
+  <p class="alert-warning" *ngIf="member == null && librarian == null && admin == null && role == 'member'">To access the Profile page, you need to be logged in</p>
   <p>This UI is made to help you with your own Digibooky back end, with the help of this page you can check that your
     story does/doesn't work.</p>
   <h2>Stories</h2>
@@ -143,8 +145,7 @@
     <div style="padding: 0" class="col-sm-12 col-md-6">
       <div class="card" style="padding: 0; margin: 10px">
         <h3 class="card-title card-header">Story13: Lent books</h3>
-        <p style="margin-bottom: 0" class="card-body">Gives the librarian the possibility to get an overview of all the
-          borrowed books.</p>
+        <p style="margin-bottom: 0" class="card-body">Gives the librarian the possibility to get an overview of all the books that a member has borrowed.</p>
         <div style="margin-bottom: 15px" class="align-self-center">
           <button style="width: 15em" routerLink="story13">How to check?</button>
         </div>
@@ -162,7 +163,7 @@
     </div>
     <div style="padding: 0" class="col-sm-12 col-md-6">
       <div class="card" style="padding: 0; margin: 10px">
-        <h3 class="card-title card-header">Story15: Enhance book details with overdue info</h3>
+        <h3 class="card-title card-header">Story15: Enhance book details</h3>
         <p style="margin-bottom: 0" class="card-body">Story2: Show details of book 2.0 with extra info.</p>
         <div style="margin-bottom: 15px" class="align-self-center">
           <button style="width: 15em" routerLink="story15">How to check?</button>

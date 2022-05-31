@@ -9,19 +9,40 @@
       <label for="email" class="form-label">
         E-mail
       </label>
-      <input id="email" type="text" placeholder="email" formControlName="email" class="form-control col-auto" pattern="[0-9]*">
+      <input id="email" type="text" placeholder="email" formControlName="email" class="inputTextfield form-control col-auto"
+             pattern="[0-9]*">
     </div>
     <div>
       <label for="password" class="form-label">
         Password
       </label>
-      <input id="password" type="password" placeholder="password" formControlName="password" class="form-control col-auto">
+      <input id="password" type="password" placeholder="password" formControlName="password"
+             class="inputTextfield form-control col-auto">
     </div>
 
     <button style="margin-top: 10px" class="button" type="submit">Login</button>
 
   </form>
-  <div *ngIf="message">
-    {{message}}
-  </div>
+  <br>
+
+  <h2>If Login isn't implemented yet, default login</h2>
+
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit2(roleForm.value)">
+    <div>
+      <input checked="checked" id="user" class="form-check-input" type="radio" name="role" value="user" (change)="removeRole()">
+      <label for="user" class="form-check-label">User</label> <br>
+    </div>
+    <div>
+      <input id="member" class="form-check-input" type="radio" name="role" value="member" (change)="setRole('member')">
+      <label for="member" class="form-check-label">Member</label> <br>
+    </div>
+    <div>
+      <input id="librarian" class="form-check-input" type="radio" name="role" value="librarian" (change)="setRole('librarian')">
+      <label for="librarian" class="form-label">Librarian</label> <br>
+    </div>
+    <div><input id="admin" class="form-check-input" type="radio" name="role" value="admin" (change)="setRole('admin')">
+      <label for="admin" class="form-label">Admin</label> <br>
+    </div>
+    <button style="margin-top: 10px" class="button" type="submit" [disabled]="!roleForm.valid">Login 2.0</button>
+  </form>
 </div>

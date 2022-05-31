@@ -1,1 +1,18 @@
-<p>story12 works!</p>
+<div class="container">
+  <h1>How to test Story 12:</h1>
+  <ul>
+    <li *ngIf="role == null">Login with a member account on the following link:
+      <button routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="role != null && role != 'member'">Because you are logged in with an account, but not with a member, you should click following link:
+      <button routerLink="/logout">Logout</button>
+      <br>Next, you should login with an member account.
+    </li>
+    <li>press the PROFILE button at the top of your screen.</li>
+    <li>Here you should see all the currently lend books from this member.</li>
+    <li>Press on the "RETURN" button from the book that you want to return.</li>
+    <li>Then press the "RETURN [BOOKNAME]" button and the book is returned.</li>
+  </ul>
+
+  <h4>You can only return a book if you are really logged in with username and password</h4>
+</div>

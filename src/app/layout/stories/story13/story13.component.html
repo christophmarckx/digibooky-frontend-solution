@@ -1,1 +1,34 @@
-<p>story13 works!</p>
+<div class="container">
+  <h1>How to test Story 13:</h1>
+  <ul>
+    <li *ngIf="role == null">Login with an Librarian account or use the special librarian login on the following link:
+      <button routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="role != null && role != 'librarian'">Because you are logged in with an account, but not with an librarian, you should click following link:
+      <button routerLink="/logout">Logout</button>
+      <br>Next, you should login with an librarian account.
+    </li>
+    <li>
+      Click on the following link
+      <button routerLink="/memberOverview">members</button>
+      OR click on the "MEMBERS" button on the top of your screen.
+    </li>
+    <li>Then click on the "VIEW PROFILE" button from your chosen member.</li>
+    <li>If everything works Fine, you should see all the books this member borrowed.</li>
+  </ul>
+
+  <h2>If something isn't there, possible solutions.</h2>
+  <ul>
+    <li>
+      <p>One of you variables isn't displayed?</p>
+      <p>the used names for the variables aren't: </p>
+      <ul>
+        <li>For Title: "title"</li>
+        <li>For Author (first- and lastname): "authorFirstname" & "authorLastname"</li>
+        <li>For ISBN: "isbn"</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>At this moment, you can only add a book if you are really logged in with username and password</h4>
+</div>

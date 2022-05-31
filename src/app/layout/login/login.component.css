@@ -24,11 +24,15 @@ a:hover {
   background-color: #97AA5A;
 }
 
-input {
+.inputTextfield {
   width: 30em;
   margin-bottom: 10px;
 }
 
 label {
   margin-bottom: 5px;
+}
+
+input {
+  margin-right: 10px;
 }
