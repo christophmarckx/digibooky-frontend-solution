@@ -1,1 +1,15 @@
-<p>story21 works!</p>
+<div class="container">
+  <li *ngIf="role == null">Login with a member account on the following link:
+    <button routerLink="/login">Login</button>
+  </li>
+  <li *ngIf="role != null && (role != 'librarian')">Because you are logged in with an account, but not with a librarian, you should click following link:
+    <button routerLink="/logout">Logout</button>
+    <br>Next, you should login with a librarian account.
+  </li>
+  <li>When you are logged in correctly, go to the <button routerLink="/books">Books</button> overview <br> by pressing previous button or the button on the top of your screen.</li>
+  <li>Now choose a random book, click on its details button.</li>
+  <li>On the next screen you will see the button "HISTORY" press this button.</li>
+  <li>If everything works fine AND the book was once borrowed & returned, you should get the wanted result.</li>
+
+  <h2>Only possible when logged in with a real librarian account.</h2>
+</div>
