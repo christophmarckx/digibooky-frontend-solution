@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {map, Observable} from "rxjs";
@@ -22,18 +22,16 @@ export class BookService {
   }
 
   public getSearchBooks(isbn: string, title: string, author: string): Observable<any> {
-    return this.http.get<Book[]>(this.bookUrl+"?isbn="+isbn+"&title="+title+"&author="+author);
+    return this.http.get<Book[]>(this.bookUrl + "?isbn=" + isbn + "&title=" + title + "&author=" + author);
   }
 
   public getBook(isbn: string): Observable<any> {
     return this.http.get<Book>(this.bookUrl + "/" + isbn)
   }
 
-  public addBook(book: Book, librarian: Librarian) {
-    console.log("in de ADDBOOK functie")
-      var authorization = btoa(librarian.email + ":" + atob(librarian.password));
-    console.log("authorization is uitgevoerd")
-      return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
+  public addBook(book: Book, librarian: Librarian): Observable<any> {
+    var authorization = btoa(librarian.email + ":" + atob(librarian.password));
+    return this.http.post<Book>(this.bookUrl, book, {headers: {"Authorization": `basic ${authorization}`}});
   }
 
   public updateBook(book: Book, librarian: Librarian) {

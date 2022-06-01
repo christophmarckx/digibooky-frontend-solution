@@ -45,13 +45,14 @@ export class RegisterBookComponent implements OnInit {
         .subscribe(
           librarian => {
             this.bookService.addBook(bookvalues, librarian).subscribe(iets => {
-              console.log("hier is text")
-              console.log(iets)
                 this.route.navigate(["/books"]).then(() => window.location.reload())
+              },
+              error => {
+                this.errors.push(error.error.message);
               }
             )
-          },
-          error => console.log(error))
+          }
+        )
     }
   }
 
