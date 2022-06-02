@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, PRIMARY_OUTLET} from '@angular/router';
 import {BookService} from "../../serviceBook/book.service";
 import {Book} from "../../model/Book"
@@ -27,7 +27,9 @@ export class BookDetailsComponent implements OnInit {
   }
 
   public getBook(): void {
-    this.bookService.getBook(this.isbn).subscribe(book => this._book = book);
+    this.bookService.getBook(this.isbn).subscribe(book => {
+      this._book = book
+    });
   }
 
   get book(): Book {
@@ -35,10 +37,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   lendBook() {
-    this.route.navigate(["/books/"+this.id+"/"+this.isbn+"/lent"]).then(() => window.location.reload())
+    this.route.navigate(["/books/" + this.id + "/" + this.isbn + "/lent"]).then(() => window.location.reload())
     this.memberService.getMember(sessionStorage.getItem("email"))
       .subscribe(member => {
-        this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe()
-      })
+          this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe()
+        }
+      )
   }
 }

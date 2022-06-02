@@ -40,12 +40,14 @@ export class RegisterMemberComponent implements OnInit {
     this.errors = [];
     this.hasError(this._memberForm.value);
     if (this.errors.length == 0) {
-      this.memberService
-        .addMember(membervalues)
+      this.memberService.addMember(membervalues)
         .subscribe(member => {
-          this.updateSessionAndAddMember(member)
-        });
-      this.route.navigate(["/"]).then(() => window.location.reload())
+            this.updateSessionAndAddMember(member)
+            this.route.navigate(["/"]).then(() => window.location.reload())
+          },
+          error => {
+            this.errors.push(error.error.message)
+          });
     }
   }
 

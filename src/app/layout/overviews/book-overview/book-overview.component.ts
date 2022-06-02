@@ -30,7 +30,6 @@ export class BookOverviewComponent implements OnInit {
 
   public getBooks(): void {
     this.bookService.getBooks.subscribe(books => {
-      console.log(books)
       this._books = books
     })
   }

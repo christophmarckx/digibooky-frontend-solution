@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
 import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
-import {Admin} from "../../../model/Admin";
 
 @Component({
   selector: 'app-register-book',
@@ -44,19 +43,19 @@ export class RegisterBookComponent implements OnInit {
       this.librarianService.getLibrarian(sessionStorage.getItem("email"))
         .subscribe(
           librarian => {
-            this.bookService.addBook(bookvalues, librarian).subscribe(iets => {
+            this.bookService.addBook(bookvalues, librarian).subscribe(
+              x => {
                 this.route.navigate(["/books"]).then(() => window.location.reload())
               },
               error => {
                 this.errors.push(error.error.message);
-              }
-            )
-          }
-        )
+              });
+          });
     }
   }
 
   hasError(book: Book) {
+    // Check for all the required, but empty fields
     if (book.isbn == "") {
       this.errors.push("ISBN is not filled in");
     }
