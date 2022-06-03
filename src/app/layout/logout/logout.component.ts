@@ -15,7 +15,7 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("role");
-    this.route.navigate(["/login"]).then(() => window.location.reload())
+    this.route.navigate(["/"]).then(() => window.location.reload())
 
   }
 
