@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>How to test Story 10b:</h1>
+  <h1>Story 10B:</h1>
+  <p>As a Librarian I want to update an existing book, so I can correct mistakes that occurred during creation.</p>
+  <ul>
+    <li>The ISBN should not be modifiable</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: PUT …/books/[ISBN]</p>
   <ul>
     <li *ngIf="role == null">Login with an Librarian account or use the special librarian login on the following link:
       <button routerLink="/login">Login</button>

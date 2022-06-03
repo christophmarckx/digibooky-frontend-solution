@@ -1,5 +1,14 @@
 <div class="container">
-  <h1>How to test Story 11:</h1>
+  <h1>Story 11:</h1>
+  <p>As a member I want to be able to borrow a book, so that I can allocate a book to myself for a certain duration.</p>
+  <ul>
+    <li>The member's user identification number and the book's ISBN should be provided.</li>
+    <li>A unique lending identification number and a due date should be registered, by default this date is TODAY + 3 WEEKS</li>
+    <li>A book can only be lent once at a time.</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: POST …/books/[ID]/[ISBN]/lent</p>
   <ul>
     <li *ngIf="role == null">Login with an Librarian account or use the special librarian login on the following link:
       <button routerLink="/login">Login</button>

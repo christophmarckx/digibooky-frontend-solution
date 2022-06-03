@@ -1,30 +1,39 @@
 <div class="container">
-  <h1>How to test Story 2:</h1>
-<ul>
-  <li>
-    Go to the Book page. (following link)
-    <button routerLink="/books">Book Page</button>
-  </li>
-  <li>Click on the "Details" button from any book.</li>
-  <li>If everything works Fine, you should see the information from the chosen book.</li>
-</ul>
+  <h1>Story 2: Show details of book</h1>
+  <p>As a user I want to get the details of a single book, so I can inspect a single book more closely..</p>
+  <ul>
+    <li>
+      ISBN, title, author & a small summary make up all the details of a single book
+    </li>
+  </ul>
 
-<h2>If something isn't there, possible solutions.</h2>
-<ul>
-  <li>
-    <p>One of the variables isn't displayed?</p>
-    <p>You didn't implement this yet</p>
-    <p>OR</p>
-    <p>the used names for the variables aren't: </p>
-    <ul>
-      <li>For Title: "title"</li>
-      <li>For author (first and last) name: "author" OR "authorFirstname" & "authorLastname"</li>
-      <li>For ISBN: "isbn"</li>
-      <li>For Added on: "arrival"</li>
-      <li>For copies: "copies"</li>
-      <li>For price: "price"</li>
-      <li>For image: "image"</li>
-    </ul>
-  </li>
-</ul>
+  <h1>How to test?</h1>
+  <h4>Used endpoint: GET …/books/[ISBN]</h4>
+  <ul>
+    <li>
+      Go to the Book page. (following link)
+      <button routerLink="/books">Book Page</button>
+    </li>
+    <li>Click on the "Details" button from any book.</li>
+    <li>If everything works Fine, you should see the information from the chosen book.</li>
+  </ul>
+
+  <h2>If something isn't there, possible solutions.</h2>
+  <ul>
+    <li>
+      <p>One of the variables isn't displayed?</p>
+      <p>You didn't implement this yet</p>
+      <p>OR</p>
+      <p>the used names for the variables aren't: </p>
+      <ul>
+        <li>For Title: "title"</li>
+        <li>For author (first and last) name: "author" OR "authorFirstname" & "authorLastname"</li>
+        <li>For ISBN: "isbn"</li>
+        <li>For Added on: "arrival"</li>
+        <li>For copies: "copies"</li>
+        <li>For price: "price"</li>
+        <li>For image: "image"</li>
+      </ul>
+    </li>
+  </ul>
 </div>

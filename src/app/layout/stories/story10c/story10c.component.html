@@ -1,10 +1,22 @@
 <div class="container">
-  <h1>How to test Story 10c:</h1>
+  <h1>Story 10C:</h1>
+  <p>As a Librarian I want to delete an existing book, so I can restrict members from borrowing books we no longer
+    have.</p>
+  <ul>
+    <li>Books should be soft-deleted. (Not sure what soft-delete means? Google or ask!)</li>
+    <li>These books should no longer show up in any result!</li>
+    <li>These books can no longer be borrowed!</li>
+    <li>These books can be updated, they can be restored (un-deleted).</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: DELETE …/books/[ISBN]</p>
   <ul>
     <li *ngIf="role == null">Login with an Librarian account or use the special librarian login on the following link:
       <button routerLink="/login">Login</button>
     </li>
-    <li *ngIf="role != null && role != 'librarian'">Because you are logged in with an account, but not with an librarian, you should click following link:
+    <li *ngIf="role != null && role != 'librarian'">Because you are logged in with an account, but not with an
+      librarian, you should click following link:
       <button routerLink="/logout">Logout</button>
       <br>Next, you should login with an librarian account.
     </li>
@@ -14,7 +26,7 @@
       OR press the BOOKS button at the top of your screen.
     </li>
     <li>Here you should click on a books details button.</li>
-    <li>Then, you will see the Delete button </li>
+    <li>Then, you will see the Delete button</li>
     <li>If everything works Fine, you should see that the book is deleted.</li>
   </ul>
 

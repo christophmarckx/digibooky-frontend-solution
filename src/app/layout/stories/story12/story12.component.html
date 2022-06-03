@@ -1,5 +1,13 @@
 <div class="container">
-  <h1>How to test Story 12:</h1>
+  <h1>Story 12:</h1>
+  <p>As a member I can return a book. If the book return is late, show a corresponding message.</p>
+  <ul>
+    <li>The unique lending identification number should be provided</li>
+    <li>If the book return is late, show a corresponding message.</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: POST …/books/[ID]/[ISBN]/return</p>
   <ul>
     <li *ngIf="role == null">Login with a member account on the following link:
       <button routerLink="/login">Login</button>

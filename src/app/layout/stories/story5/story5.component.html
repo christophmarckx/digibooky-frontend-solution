@@ -1,23 +1,32 @@
 <div class="container">
-  <h1>How to test Story 5:</h1>
-<ul>
-  <li>Add a couple of books to your list of books.</li>
-  <li>
-    Click on the following link
-    <button routerLink="/books">Books</button>
-    or on the "BOOKS" link at the top of your screen, this will send you to the Book Overview Page.
-  </li>
-  <li>Here you can fill in the part of your authors name that you are looking for. The authors name should only match just a part of the
-    name and not the whole name.
-  </li>
-  <li>If everything works Fine, you should see a list of your books with the asked author.</li>
-</ul>
+  <h1>Story 5: Search a book by author</h1>
+  <p>
+    As a user I want to search for a book by entering a part of the author, so I can efficiently find a specific book. I
+    should be able to enter wildcards if I don't know the complete name of the author. It should be possible to use only
+    the first name, only the last name or both.
+  </p>
 
-<h2>If something went wrong, possible solutions.</h2>
-<ul>
-  <li>
-    <p>Make sure that you check the author correctly.</p>
-    <p>In this UI, we check the authors first- and lastname</p>
-  </li>
-</ul>
+  <h1>How to test?</h1>
+  <h4>Used endpoint: GET …/books? author=…</h4>
+  <ul>
+    <li>Add a couple of books to your list of books.</li>
+    <li>
+      Click on the following link
+      <button routerLink="/books">Books</button>
+      or on the "BOOKS" link at the top of your screen, this will send you to the Book Overview Page.
+    </li>
+    <li>Here you can fill in the part of your authors name that you are looking for. The authors name should only match
+      just a part of the
+      name and not the whole name.
+    </li>
+    <li>If everything works Fine, you should see a list of your books with the asked author.</li>
+  </ul>
+
+  <h2>If something went wrong, possible solutions.</h2>
+  <ul>
+    <li>
+      <p>Make sure that you check the author correctly.</p>
+      <p>In this UI, we check the authors first- and lastname</p>
+    </li>
+  </ul>
 </div>

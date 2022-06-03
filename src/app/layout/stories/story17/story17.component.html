@@ -1,4 +1,24 @@
 <div class="container">
+  <h1>Story 17:</h1>
+  <p>As a Librarian I want to create a fine when a member returns a book that is overdue, so I can penalize this behavior.</p>
+  <ul>
+    <li>The maximum loan period is 3 weeks</li>
+    <li>
+      The formula to calculate the fine is: €5 + €2 * FULL_WEEKS_OVERDUE
+      <ul>
+        <li>
+          E.g.
+          <ul>
+            <li>3 weeks: no fine</li>
+            <li>3 weeks and 3 days: €5</li>
+            <li>4 weeks: €7</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <h1>How to test?</h1>
   <p>Not really much to say over here...</p>
   <p>Try to bring a book back after the 2 weeks have past... then If you get a fine, you know this works.</p>
 </div>

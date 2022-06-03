@@ -1,5 +1,13 @@
 <div class="container">
-  <h1>How to test Story 19:</h1>
+  <h1>Story 19:</h1>
+  <p>As a Librarian I want to create a fine when a member returns a damaged book, so I can penalize this behavior.</p>
+  <ul>
+    <li>The formula to calculate the fine is: (INITIAL_PRICE) * (1 - ((AGE_OF_BOOK_IN_YEARS) * 0.2) with a minimum of €4.</li>
+    <li>Make sure these fines are included in Story 18.</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: POST …/books/[memberId]/[isbn]/return/damaged</p>
   <ul>
     <li>Add a couple of members to your list of members and give the members some fines.</li>
     <li *ngIf="role == null">Login with a member account on the following link:
