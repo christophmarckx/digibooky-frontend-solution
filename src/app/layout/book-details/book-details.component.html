@@ -24,11 +24,11 @@
         </div>
         <div *ngIf="role == 'librarian'">
           <div style="margin-top: 10px">
-            <a class="w-50 btn" href="books/{{book.isbn}}/update">Update</a>
-            <a class="w-50 btn" href="books/{{book.isbn}}/delete">Delete</a>
+            <a class="w-50 btn" routerLink="books/{{book.isbn}}/update">Update</a>
+            <a class="w-50 btn" routerLink="books/{{book.isbn}}/delete">Delete</a>
           </div>
           <div style="margin-top: 5px">
-            <a class="w-100 btn" href="books/{{book.isbn}}/history">History</a>
+            <a class="w-100 btn" routerLink="books/{{book.isbn}}/history">History</a>
           </div>
         </div>
       </div>

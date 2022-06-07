@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <h1>Return Book</h1>
-    <a style="width: auto" class="btn btn-secondary" href="/members/{{member.id}}">Back</a>
+    <a style="width: auto" class="btn btn-secondary" routerLink="/members/{{member.id}}">Back</a>
 
     <div *ngFor="let book of member.lendings">
       <div *ngIf="book.isbn == isbn">
@@ -23,10 +23,10 @@
                   </div>
                 </form>
                 <a *ngIf="!damaged" class="btn btn-outline-secondary"
-                   href="/members/{{member.id}}"
+                   routerLink="/members/{{member.id}}"
                    (click)="returnBook()">Return {{book.title}}</a>
                 <a *ngIf="damaged" class="btn btn-outline-secondary"
-                   href="/members/{{member.id}}"
+                   routerLink="/members/{{member.id}}"
                    (click)="returnBookBroken()">Return {{book.title}}, broken</a>
               </div>
             </div>
