@@ -14,7 +14,7 @@ export class BookDetailsComponent implements OnInit {
   private isbn: string;
   public role: any;
   public id: number = 0;
-
+  public lendernames: number = 0;
 
   constructor(private bookService: BookService, private memberService: MemberService, private route: Router) {
     this.isbn = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
@@ -29,6 +29,7 @@ export class BookDetailsComponent implements OnInit {
   public getBook(): void {
     this.bookService.getBook(this.isbn).subscribe(book => {
       this._book = book
+      this.lendernames = book.lendernames.length;
     });
   }
 
@@ -37,10 +38,11 @@ export class BookDetailsComponent implements OnInit {
   }
 
   lendBook() {
-    this.route.navigate(["/books/" + this.id + "/" + this.isbn + "/lent"]).then(() => window.location.reload())
     this.memberService.getMember(sessionStorage.getItem("email"))
       .subscribe(member => {
-          this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe()
+          this.memberService.lentbook(this.id, this.isbn, member.email, member.password).subscribe(iets => {
+            this.route.navigate(["/books/" + this.id + "/" + this.isbn + "/lent"])
+          });
         }
       )
   }
