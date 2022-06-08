@@ -29,7 +29,8 @@ export class BookDetailsComponent implements OnInit {
   public getBook(): void {
     this.bookService.getBook(this.isbn).subscribe(book => {
       this._book = book
-      this.lendernames = book.lendernames.length;
+      console.log(this.lendernames + " & " + book.lenderNames.length)
+      this.lendernames = book.lenderNames.length;
     });
   }
 
