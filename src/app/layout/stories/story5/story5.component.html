@@ -7,7 +7,7 @@
   </p>
 
   <h1>How to test?</h1>
-  <h4>Used endpoint: GET …/books? author=…</h4>
+  <h4>Used endpoint: GET …/books?author=[author-part]</h4>
   <ul>
     <li>Add a couple of books to your list of books.</li>
     <li>
@@ -15,9 +15,8 @@
       <button routerLink="/books">Books</button>
       or on the "BOOKS" link at the top of your screen, this will send you to the Book Overview Page.
     </li>
-    <li>Here you can fill in the part of your authors name that you are looking for. The authors name should only match
-      just a part of the
-      name and not the whole name.
+    <li>Here you can fill in the part of your authors name that you are looking for. The authors name should also work
+      when you put only match a part of the name and not the whole name.
     </li>
     <li>If everything works Fine, you should see a list of your books with the asked author.</li>
   </ul>
@@ -29,4 +28,5 @@
       <p>In this UI, we check the authors first- and lastname</p>
     </li>
   </ul>
+  <p>BTW: you can filter on all 3 the elements at the same time. (ISBN, title and author... did you do this correct?)</p>
 </div>

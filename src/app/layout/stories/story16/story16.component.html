@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Story 16:</h1>
+  <p>  As a Librarian I want to be able to only provide valid ISBNs when creating (or updating) a book, so I can never create a book with an incorrect ISBN.</p>
+  <ul>
+    <li>Use the ISBN-13 type for validation</li>
+  </ul>
+
+  <h1>How to test?</h1>
+  <p>Used Endpoint: POST …/books</p>
+  <ul>
+    <li>follow the steps in story 10A</li>
+    <li>
+      If you want to register a book, make sure there is an Error thrown when you enter an impossible ISBN-number
+    </li>
+  </ul>
+</div>

@@ -14,7 +14,7 @@
   </ul>
 
   <h1>How to test?</h1>
-  <h4>Used endpoint: GET …/books?isbn=…</h4>
+  <h4>Used endpoint: GET …/books?isbn=[ISBN-part]</h4>
   <ul>
     <li>Add a couple of books to your list of books.</li>
     <li>
@@ -22,11 +22,10 @@
       <button routerLink="/books">Books</button>
       or on the "BOOKS" link at the top of your screen, this will send you to the Book Overview Page.
     </li>
-    <li>Here you can fill in the part of your ISBN that you are looking for. The ISBN should only match just a part of
-      the
-      ISBN and not the whole ISBN.
+    <li>Here you can fill in the part of your ISBN that you are looking for. This ISBN should only match just a part of
+      the ISBN and not the whole ISBN.
     </li>
-    <li>If everything works Fine, you should see a list of your books with the asked ISBN number.</li>
+    <li>If everything works Fine, you should see a list of your books containing the asked ISBN number.</li>
   </ul>
 
   <h2>If something went wrong, possible solutions.</h2>
