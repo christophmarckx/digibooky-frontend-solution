@@ -14,7 +14,7 @@
   </div>
   <div *ngIf="history.lendinghistory.length > 0">
     <h2>List of lenders</h2>
-    <div class="row row-cols-3">
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
       <div *ngFor="let lending of history.lendinghistory">
         <div class="card">
           <p class="card-header">By: {{lending.firstname}} {{lending.lastname}}</p>

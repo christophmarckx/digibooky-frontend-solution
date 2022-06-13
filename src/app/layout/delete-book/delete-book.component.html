@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="card">
-    <div  class="card-header card-title">
-      <h2 style="text-align: center">Are you sure that you want to "delete" {{book.title}}?</h2>
+    <div class="card justify-content-sm-center">
+      <div class="card-header card-title">
+        <h2 style="text-align: center">Are you sure that you want to "delete" {{book.title}}?</h2>
+      </div>
+      <div style="justify-content: center" class="row row-cols-2 card-body">
+        <button class="btn btn-secondary" (click)="deleteBook()">Yes, I want to delete {{book.title}}</button>
+        <button class="btn btn-secondary" (click)="return()">No, I changed my mind</button>
+      </div>
     </div>
-    <div style="justify-content: center" class="row row-cols-2 card-body">
-      <button class="btn btn-secondary" (click)="deleteBook()">Yes, I want to delete {{book.title}}</button>
-      <button class="btn btn-secondary" (click)="return()">No, I changed my mind</button>
-    </div>
-  </div>
 </div>
 

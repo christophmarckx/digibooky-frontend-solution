@@ -44,6 +44,7 @@ import {Story18Component} from "./layout/stories/story18/story18.component";
 import {Story19Component} from "./layout/stories/story19/story19.component";
 import {Story21Component} from "./layout/stories/story21/story21.component";
 import {Story20Component} from "./layout/stories/story20/story20.component";
+import {Story16Component} from "./layout/stories/story16/story16.component";
 
 var routes: Routes = [
   // The Story instructions:
@@ -64,6 +65,7 @@ var routes: Routes = [
   {path: 'story13', component: Story13Component},
   {path: 'story14', component: Story14Component},
   {path: 'story15', component: Story15Component},
+  {path: 'story16', component: Story16Component},
   {path: 'story17', component: Story17Component},
   {path: 'story18', component: Story18Component},
   {path: 'story19', component: Story19Component},
@@ -79,7 +81,7 @@ var routes: Routes = [
   {path: 'books/:isbn/update', component: UpdateBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:isbn/delete', component: DeleteBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:id/:isbn/lent', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
-  {path: 'books/:id/:isbn/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'books/:id/:lendingId/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:isbn/history', component: HistoryComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'members', component: MemberOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'memberOverview', component: MemberOverviewComponent, canActivate: [AuthGuardServiceLibrarianService]},

@@ -18,7 +18,7 @@
           </div>
           <div class="card-footer" *ngIf="role == 'member'">
             <a class="btn btn-outline-primary" *ngIf="book.copies != 0"
-               (click)="lendBook()">Lent Book</a>
+               (click)="lendBook()">Lend Book</a>
             <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
           </div>
         </div>

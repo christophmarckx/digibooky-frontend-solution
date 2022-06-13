@@ -78,13 +78,13 @@ export class MemberService {
     return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/lent`, null, {headers: {"Authorization": `basic ${authorization}`}} );
   }
 
-  returnBook(id: number, isbn: string, email: string, password: string): Observable<any> {
+  returnBook(id: number, lendingId: string, email: string, password: string): Observable<any> {
     var authorization = btoa(email + ":" + atob(password))
-    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/return`, null, {headers: {"Authorization": `basic ${authorization}`}})
+    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return`, null, {headers: {"Authorization": `basic ${authorization}`}})
   }
 
-  returnBookDamaged(id: number, isbn: string, email: string, password: string): Observable<any> {
+  returnBookDamaged(id: number, lendingId: string, email: string, password: string): Observable<any> {
     var authorization = btoa(email + ":" + atob(password))
-    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/return/damaged`, null, {headers: {"Authorization": `basic ${authorization}`}})
+    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return/damaged`, null, {headers: {"Authorization": `basic ${authorization}`}})
   }
 }

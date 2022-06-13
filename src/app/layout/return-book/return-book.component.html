@@ -4,7 +4,7 @@
     <a style="width: auto" class="btn btn-secondary" routerLink="/members/{{member.id}}">Back</a>
 
     <div *ngFor="let book of member.lendings">
-      <div *ngIf="book.isbn == isbn">
+      <div *ngIf="book.lendingId == lendingId">
         <div class="row row-cols-sm-1 row-cols-lg-3">
           <div style="padding-bottom: 15px" class="col-4 image">
             <img src="{{book.image}}" alt="hier komt een afbeelding">
@@ -23,10 +23,10 @@
                   </div>
                 </form>
                 <a *ngIf="!damaged" class="btn btn-outline-secondary"
-                   routerLink="/members/{{member.id}}"
+                   href="/members/{{member.id}}"
                    (click)="returnBook()">Return {{book.title}}</a>
                 <a *ngIf="damaged" class="btn btn-outline-secondary"
-                   routerLink="/members/{{member.id}}"
+                   href="/members/{{member.id}}"
                    (click)="returnBookBroken()">Return {{book.title}}, broken</a>
               </div>
             </div>

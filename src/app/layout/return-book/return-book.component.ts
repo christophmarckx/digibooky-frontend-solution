@@ -15,18 +15,17 @@ export class ReturnBookComponent implements OnInit {
   public returnForm!: FormGroup;
   public book!: Book;
   public member!: Member;
-  public isbn: string;
+  public lendingId: string;
   public damaged: boolean;
 
   constructor(public formBuilder: FormBuilder, private bookService: BookService, private memberService: MemberService, private route: Router) {
-    this.isbn = route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[2].path
+    this.lendingId = route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[2].path
     this.damaged = false;
   }
 
   ngOnInit(): void {
-    console.log("Deze geeft het ID: " + this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path)
     this.memberService
-      .getMember(sessionStorage.getItem("email")).subscribe(member => {this.member = member; console.log(this.member)})
+      .getMember(sessionStorage.getItem("email")).subscribe(member => {this.member = member;})
     this.returnForm = this.formBuilder.group({
       damaged: false,
       brokenPart: ""
@@ -38,10 +37,15 @@ export class ReturnBookComponent implements OnInit {
   }
 
   public returnBook() {
-    this.memberService.returnBook(this.member.id, this.isbn, this.member.email, this.member.password).subscribe()
+    this.memberService.returnBook(this.member.id, this.lendingId, this.member.email, this.member.password).subscribe(iets =>{
+      this.route.navigate(["/members/"+this.member.id]).then(() => window.location.reload())
+    })
   }
   public returnBookBroken() {
-    this.memberService.returnBookDamaged(this.member.id, this.isbn, this.member.email, this.member.password).subscribe()
+    this.memberService.returnBookDamaged(this.member.id, this.lendingId, this.member.email, this.member.password).subscribe(iets =>{
+      this.route.navigate(["/members/"+this.member.id]).then(() => window.location.reload())
+    }
+    )
   }
 
 }

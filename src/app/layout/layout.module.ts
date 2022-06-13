@@ -47,6 +47,7 @@ import { Story18Component } from './stories/story18/story18.component';
 import { Story19Component } from './stories/story19/story19.component';
 import { Story20Component } from './stories/story20/story20.component';
 import { Story21Component } from './stories/story21/story21.component';
+import { Story16Component } from './stories/story16/story16.component';
 
 
 
@@ -95,6 +96,7 @@ import { Story21Component } from './stories/story21/story21.component';
     Story19Component,
     Story20Component,
     Story21Component,
+    Story16Component,
   ],
   exports: [
     HomeComponent,

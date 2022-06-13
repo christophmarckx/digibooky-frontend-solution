@@ -38,7 +38,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit2(loginData: any) {
-    console.log(loginData)
+    if (sessionStorage.getItem("role") == "member") {
+      this.getaccount("koen@mail.com", "passkoen")
+    } else if (sessionStorage.getItem("role") == "librarian") {
+      this.getaccount("bob@library.com", "password")
+    } else if (sessionStorage.getItem("role") == "admin") {
+      this.getaccount("ad@min.com", "admin")
+    }
     this.route.navigate(["/"]).then(() => window.location.reload())
   }
 
