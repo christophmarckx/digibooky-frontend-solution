@@ -24,19 +24,19 @@ export class RegisterBookComponent implements OnInit {
 
   ngOnInit(): void {
     this._bookForm = this.formBuilder.group({
-        isbn: "",
-        title: "",
-        authorFirstname: "",
-        authorLastname: "",
-        price: "",
-        copies: "",
-        imageUrl: ""
-      }
-    );
+      isbn: "",
+      title: "",
+      authorFirstname: "",
+      authorLastname: "",
+      price: "",
+      copies: "",
+      imageUrl: ""
+    });
   }
 
   onSubmit(bookvalues: any): void {
     // Process checkout data here
+    console.log(bookvalues)
     this.errors = [];
     this.hasError(this._bookForm.value);
     if (this.errors.length == 0) {

@@ -1,13 +1,42 @@
+form {
+  margin: 10px;
+}
+
 button {
   color: #020202;
   background-color: white;
   border: 2px solid #97AA5A;
   border-radius: 25px;
-  width: 100%;
+  width: 10em;
+  margin-top: 5px
 }
 
 button:hover {
   color: white;
   background-color: #97AA5A;
-  width: 100%;
+}
+
+a {
+  color: #020202;
+  background-color: white;
+  border: 2px solid #97AA5A;
+  border-radius: 25px;
+  width: 10em;
+  margin-top: 5px
+}
+
+a:hover {
+  color: white;
+  background-color: #97AA5A;
+}
+
+div.card-footer {
+  text-align: center;
+}
+
+.changeTheDate {
+  margin: auto;
+  min-width: 15em;
+  max-width: 25em;
+  width: 50%;
 }
