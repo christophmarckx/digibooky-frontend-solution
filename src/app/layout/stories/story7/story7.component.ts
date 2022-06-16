@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story7.component.css']
 })
 export class Story7Component implements OnInit {
+  public begin: string
+  public end: string
   public role: string|null;
 
   constructor() {
     this.role = sessionStorage.getItem("role");
+    this.begin = "{";
+    this.end = "}";
   }
 
   ngOnInit(): void {

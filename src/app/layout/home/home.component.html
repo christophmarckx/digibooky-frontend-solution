@@ -10,6 +10,8 @@
   <p>This UI is made to help you with your own Digibooky back end, with the help of this page you can check that your
     story does/doesn't work.</p>
   <div class="changeTheDate ">
+    <p class="text-center m-0">This form is made for analysts only.</p>
+    <p class="text-center m-0"> (Only passed days are possible.)</p>
     <form class="card" [formGroup]="dateForm" (ngSubmit)="changeDate(dateForm.value)">
       <div>
         <label class="card-header form-control fw-bold" for="changeDate">

@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story2.component.css']
 })
 export class Story2Component implements OnInit {
+  public begin: string
+  public end: string
 
-  constructor() { }
+  constructor() {
+    this.begin = "{"
+    this.end = "}"
+  }
 
   ngOnInit(): void {
   }
