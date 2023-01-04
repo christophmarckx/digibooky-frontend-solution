@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-story8',
@@ -6,10 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./story8.component.css']
 })
 export class Story8Component implements OnInit {
-  public role: string|null;
 
-  constructor() {
-    this.role = sessionStorage.getItem("role");
+  constructor(public authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {

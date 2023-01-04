@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import {CanActivate} from "@angular/router";
+import {AuthenticationService} from "../serviceLogin/authentication.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardServiceLibrarianService implements CanActivate {
 
-  constructor() { }
+  constructor(private auhtenticationService: AuthenticationService) { }
 
   canActivate(): boolean {
-    if (sessionStorage.getItem("role") == "librarian") {
-      return true;
-    }
-    return false;
+    return this.auhtenticationService.isLibrarian();
   }
 }

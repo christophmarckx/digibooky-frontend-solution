@@ -8,6 +8,7 @@ import {AdminService} from "../../serviceAdmin/admin.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {DateService} from "../../serviceDate/date.service";
+import {AuthenticationService} from "../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -15,30 +16,33 @@ import {DateService} from "../../serviceDate/date.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public role: any;
   public id!: number;
   public member!: Member;
   public librarian!: Librarian;
   public admin!: Admin;
   public date!: string;
 
-  constructor(private formbuilder: FormBuilder, private memberService: MemberService, private librarianService: LibrarianService, private adminService: AdminService, private dateService: DateService, private route: Router) {
-    this.role = sessionStorage.getItem("role");
+  constructor(private formbuilder: FormBuilder,
+              private memberService: MemberService,
+              private librarianService: LibrarianService,
+              private adminService: AdminService,
+              public authenticationService: AuthenticationService,
+              private dateService: DateService) {
     this.formbuilder = formbuilder;
-    if (this.role != null && this.role === "member") {
-      memberService.getMember(sessionStorage.getItem("email")).subscribe(member => {
+    if (this.authenticationService.isMember()) {
+      memberService.getMember(this.authenticationService.username).subscribe(member => {
         this.id = member.id
         this.member = member
       });
     }
-    if (this.role != null && this.role === "librarian") {
-      librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
+    if (this.authenticationService.isLibrarian()) {
+      librarianService.getLibrarian(this.authenticationService.username).subscribe(librarian => {
         this.id = librarian.id
         this.librarian = librarian
       });
     }
-    if (this.role != null && this.role === "admin") {
-      adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => {
+    if (this.authenticationService.isAdmin()) {
+      adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => {
         this.id = admin.id
         this.admin = admin
       });

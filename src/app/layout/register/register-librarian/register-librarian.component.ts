@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
 import {Librarian} from "../../../model/Librarian";
 import {AdminService} from "../../../serviceAdmin/admin.service";
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-register-librarian',
@@ -15,7 +16,7 @@ export class RegisterLibrarianComponent implements OnInit {
   private librarians: Array<Librarian>;
   public errors: Array<string>;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
     this.librarians = [];
     this.librarianService.getLibrarians.subscribe(librarians => this.librarians = librarians);
     this.errors = [];
@@ -35,10 +36,7 @@ export class RegisterLibrarianComponent implements OnInit {
     this.errors = [];
     this.hasError(this._librarianForm.value);
     if (this.errors.length == 0) {
-      this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => {
-        this.librarianService
-          .addLibrarian(librarianvalues, admin).subscribe()
-      })
+      this.librarianService.addLibrarian(librarianvalues).subscribe()
       this.route.navigate(["/librarians"]).then(() => window.location.reload())
     }
   }
@@ -63,8 +61,8 @@ export class RegisterLibrarianComponent implements OnInit {
   }
 
   compare(email: string): boolean {
-    if (sessionStorage.getItem("email") != null) {
-      return email === sessionStorage.getItem("email");
+    if (this.authenticationService.isLoggedIn()) {
+      return email === this.authenticationService.username;
     }
     return false;
   }

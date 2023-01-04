@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
 import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-register-book',
@@ -40,17 +41,14 @@ export class RegisterBookComponent implements OnInit {
     this.errors = [];
     this.hasError(this._bookForm.value);
     if (this.errors.length == 0) {
-      this.librarianService.getLibrarian(sessionStorage.getItem("email"))
-        .subscribe(
-          librarian => {
-            this.bookService.addBook(bookvalues, librarian).subscribe(
-              x => {
-                this.route.navigate(["/books"]).then(() => window.location.reload())
-              },
-              error => {
-                this.errors.push(error.error.message);
-              });
-          });
+      this.bookService.addBook(bookvalues)
+        .pipe(
+          catchError(error => {
+            this.errors.push(error.error.message);
+            return error;
+          })
+        )
+        .subscribe(() => this.route.navigate(["/books"]).then(() => window.location.reload()));
     }
   }
 

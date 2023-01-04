@@ -3,6 +3,7 @@ import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-book-overview',
@@ -12,10 +13,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class BookOverviewComponent implements OnInit {
   private _books: Array<Book> = [];
   private _searchForm!: FormGroup;
-  public role: any;
 
-  constructor(private bookService: BookService, private route: Router, private formBuilder: FormBuilder) {
-    this.role = sessionStorage.getItem("role");
+  constructor(public authenticationService: AuthenticationService, private bookService: BookService, private route: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {

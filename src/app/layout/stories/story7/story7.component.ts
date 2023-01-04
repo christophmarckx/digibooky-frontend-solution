@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-story7',
@@ -8,10 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class Story7Component implements OnInit {
   public begin: string
   public end: string
-  public role: string|null;
 
-  constructor() {
-    this.role = sessionStorage.getItem("role");
+  constructor(public authenticationService: AuthenticationService) {
     this.begin = "{";
     this.end = "}";
   }

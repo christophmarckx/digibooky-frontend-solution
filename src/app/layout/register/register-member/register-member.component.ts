@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {MemberService} from "../../../serviceMember/member.service";
 import {Member} from "../../../model/member";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-register-member',
@@ -14,7 +16,7 @@ export class RegisterMemberComponent implements OnInit {
   private members: Array<Member>;
   public errors: Array<string>;
 
-  constructor(private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
     this.members = [];
     this.memberService.getMembers.subscribe(members => this.members = members);
     this.errors = [];
@@ -40,14 +42,16 @@ export class RegisterMemberComponent implements OnInit {
     this.errors = [];
     this.hasError(this._memberForm.value);
     if (this.errors.length == 0) {
-      this.memberService.addMember(membervalues)
+      this.authenticationService.addMember(membervalues)
+        .pipe(
+          catchError(err => {
+            this.errors.push(err.error.message);
+            return throwError(err);
+          }))
         .subscribe(member => {
-            this.updateSessionAndAddMember(member)
-            this.route.navigate(["/"]).then(() => window.location.reload())
-          },
-          error => {
-            this.errors.push(error.error.message)
-          });
+          this.updateSessionAndAddMember(member)
+          this.route.navigate(["/"]).then(() => window.location.reload())
+        });
     }
   }
 
@@ -71,8 +75,6 @@ export class RegisterMemberComponent implements OnInit {
 
   updateSessionAndAddMember(member: Member) {
     this.members.push(member);
-    sessionStorage.setItem("email", member.email);
-    sessionStorage.setItem("role", "member");
   }
 
   get memberForm() {
@@ -80,8 +82,8 @@ export class RegisterMemberComponent implements OnInit {
   }
 
   compare(email: string): boolean {
-    if (sessionStorage.getItem("email") != null) {
-      return email === sessionStorage.getItem("email");
+    if (this.authenticationService.isLoggedIn()) {
+      return email === this.authenticationService.username;
     }
     return false;
   }

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Book} from "../../model/Book";
 import {BookService} from "../../serviceBook/book.service";
-import {MemberService} from "../../serviceMember/member.service";
 import {PRIMARY_OUTLET, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
@@ -17,7 +16,7 @@ export class UpdateBookComponent implements OnInit {
   public book!: Book;
   public errors: Array<string>
 
-  constructor(private formBuilder: FormBuilder, private librarianService:LibrarianService, private bookService: BookService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
     this.isbn = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
     this.bookService.getBook(this.isbn).subscribe(book => {
       this.book = book
@@ -44,9 +43,7 @@ export class UpdateBookComponent implements OnInit {
     this.errors = [];
     this.hasError(this._bookForm.value);
     if (this.errors.length == 0) {
-      this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-        this.bookService.updateBook(bookvalues, librarian).subscribe();
-      })
+      this.bookService.updateBook(bookvalues).subscribe();
       console.warn('Book was updated.', this._bookForm.value);
       this.route.navigate(["/books/" + this.book.isbn]).then(() => window.location.reload())
     }

@@ -8,7 +8,7 @@
       <div class="card">
         <p class="card-header">Name: {{member.firstname}} {{member.lastname}}</p>
         <div class="card-body">
-          <p *ngIf="role == 'member'">INSS: {{member.inss}}</p>
+          <p *ngIf="authenticationService.isMember()">INSS: {{member.inss}}</p>
           <p>E-mail: {{member.email}}</p>
           <p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
           <p *ngIf="member.fines != null">Fines: € {{member.totalPrice}} -> #{{member.fines}}</p>
@@ -24,14 +24,14 @@
             <p>Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
             <p>ISBN: {{book.isbn}}</p>
           </div>
-          <p *ngIf="role == 'member'" style="margin-bottom: 0; child-align: middle" class="card-footer">
-            <a class="btn btn-secondary" *ngIf="role == 'member'"
+          <p *ngIf="authenticationService.isMember()" style="margin-bottom: 0; child-align: middle" class="card-footer">
+            <a class="btn btn-secondary" *ngIf="authenticationService.isMember()"
                routerLink="/books/{{member.id}}/{{book.lendingId}}/return">Return</a>
           </p>
         </div>
       </div>
     </div>
-    <div class="alert-warning" *ngIf="role == 'librarian' && member.lendings.length === 0">
+    <div class="alert-warning" *ngIf="authenticationService.isLibrarian() && member.lendings.length === 0">
       This member has no books in his/her possession
     </div>
   </div>

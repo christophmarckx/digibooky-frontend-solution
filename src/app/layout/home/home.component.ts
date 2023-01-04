@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Member} from "../../model/member";
 import {MemberService} from "../../serviceMember/member.service";
 import {Librarian} from "../../model/Librarian";
@@ -8,6 +8,7 @@ import {AdminService} from "../../serviceAdmin/admin.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DateService} from "../../serviceDate/date.service";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-layout',
@@ -18,26 +19,32 @@ export class HomeComponent implements OnInit {
   public member!: Member;
   public librarian!: Librarian;
   public admin!: Admin;
-  public role!: string|null;
+  public role!: string | null;
   private _dateForm!: FormGroup;
   public date!: string;
 
-  constructor(private route: Router,private dateService: DateService, private memberService: MemberService, private librarianService: LibrarianService, private adminService: AdminService, private formbuilder: FormBuilder) {
+  constructor(private route: Router,
+              private dateService: DateService,
+              private memberService: MemberService,
+              private librarianService: LibrarianService,
+              private adminService: AdminService,
+              private authenticationService: AuthenticationService,
+              private formbuilder: FormBuilder) {
     this.dateService.getDate().subscribe(date => this.date = date);
   }
 
   ngOnInit(): void {
-    this.memberService.getMember(sessionStorage.getItem("email")).subscribe(member => this.member = member);
-    this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => this.librarian = librarian);
-    this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => this.admin = admin);
-    this.role = sessionStorage.getItem("role")
+    this.memberService.getMember(this.authenticationService.username).subscribe(member => this.member = member);
+    this.librarianService.getLibrarian(this.authenticationService.username).subscribe(librarian => this.librarian = librarian);
+    this.adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => this.admin = admin);
+    this.role = this.authenticationService.role;
     this._dateForm = this.formbuilder.group({
       changeDate: ""
     });
   }
 
   public resetDate() {
-      this.route.navigate(["/"]).then(() => window.location.reload());
+    this.route.navigate(["/"]).then(() => window.location.reload());
     return this.dateService.resetDate().subscribe()
   }
 
@@ -45,7 +52,7 @@ export class HomeComponent implements OnInit {
     this.dateService.setDate(datevalues.changeDate).subscribe(iets => {
       this.dateService.getDate().subscribe(date => this.date = date)
     })
-      this.route.navigate(["/"]).then(() => window.location.reload());
+    this.route.navigate(["/"]).then(() => window.location.reload());
   }
 
   get getDate(): string {

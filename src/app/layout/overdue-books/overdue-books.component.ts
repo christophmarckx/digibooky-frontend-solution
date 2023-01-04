@@ -12,10 +12,8 @@ import {Member} from "../../model/member";
 })
 export class OverdueBooksComponent implements OnInit {
   private _member: Array<Member> = [];
-  public role: any;
 
-  constructor(private bookService: BookService, private librarianService: LibrarianService) {
-    this.role = sessionStorage.getItem("role");
+  constructor(private bookService: BookService) {
   }
 
   ngOnInit(): void {
@@ -23,9 +21,7 @@ export class OverdueBooksComponent implements OnInit {
   }
 
   public getOverdueBooks(): void {
-    this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-      this.bookService.overdueBooks(librarian).subscribe(member => this._member = member)
-    });
+    this.bookService.overdueBooks().subscribe(member => this._member = member);
   }
 
   get books(): Array<Member> {

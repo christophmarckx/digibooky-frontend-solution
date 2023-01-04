@@ -26,7 +26,6 @@ export class MemberService {
         members.forEach((member: any) => {
           if (member.email == email) {
             this.id = member.id;
-            console.log("ID: " + this.id);
           }
         });
         return this.id;
@@ -72,19 +71,15 @@ export class MemberService {
     return this.http.post<Member>(this.memberUrl, member)
   }
 
-  lentbook(id: number, isbn: string, email: string, password: string): Observable<any> {
-    var authorization = btoa(email + ":" + atob(password))
-    console.log(`basic ${authorization}`)
-    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/lent`, null, {headers: {"Authorization": `basic ${authorization}`}} );
+  lentbook(id: string, isbn: string): Observable<any> {
+    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/lent`, null);
   }
 
-  returnBook(id: number, lendingId: string, email: string, password: string): Observable<any> {
-    var authorization = btoa(email + ":" + atob(password))
-    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return`, null, {headers: {"Authorization": `basic ${authorization}`}})
+  returnBook(id: string, lendingId: string): Observable<any> {
+    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return`, null)
   }
 
-  returnBookDamaged(id: number, lendingId: string, email: string, password: string): Observable<any> {
-    var authorization = btoa(email + ":" + atob(password))
-    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return/damaged`, null, {headers: {"Authorization": `basic ${authorization}`}})
+  returnBookDamaged(id: string, lendingId: string): Observable<any> {
+    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return/damaged`, null)
   }
 }

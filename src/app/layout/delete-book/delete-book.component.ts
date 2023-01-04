@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PRIMARY_OUTLET, Router} from "@angular/router";
 import {BookService} from "../../serviceBook/book.service";
 import {MemberService} from "../../serviceMember/member.service";
@@ -33,9 +33,7 @@ export class DeleteBookComponent implements OnInit {
 
   deleteBook() {
     this.route.navigate(["/books"]).then(() => window.location.reload())
-    this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-      this.bookService.deleteBook(librarian, this.isbn).subscribe();
-    });
+    this.bookService.deleteBook(this.isbn).subscribe();
   }
 
   return() {

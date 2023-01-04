@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Member} from "../../../model/member";
 import {MemberService} from "../../../serviceMember/member.service";
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-member-overview',
@@ -10,7 +11,7 @@ import {MemberService} from "../../../serviceMember/member.service";
 export class MemberOverviewComponent implements OnInit {
   private _members: Array<Member> = [];
 
-  constructor(private memberService: MemberService) {
+  constructor(private memberService: MemberService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -26,9 +27,6 @@ export class MemberOverviewComponent implements OnInit {
   }
 
   public viewedByLibrarian(): boolean {
-    if (sessionStorage.getItem("role") == "librarian") {
-      return true;
-    }
-    return false;
+    return this.authenticationService.isLibrarian();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../serviceBook/book.service";
 import {PRIMARY_OUTLET, Router} from "@angular/router";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
@@ -19,9 +19,9 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.librarianService.getLibrarian(sessionStorage.getItem("email")).subscribe(librarian => {
-      this.bookService.getHistory(librarian, this.isbn).subscribe(history => {this.history = history
-      console.log(history)});
-    })
+    this.bookService.getHistory(this.isbn).subscribe(history => {
+      this.history = history
+      console.log(history)
+    });
   }
 }

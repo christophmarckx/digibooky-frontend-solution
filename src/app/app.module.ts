@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 import {LayoutModule} from "./layout/layout.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {AuthenticationInterceptor} from "./authentication.interceptor";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,10 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
+  }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {map, Observable} from "rxjs";
@@ -22,7 +22,7 @@ export class LibrarianService {
     return this.http.get<Librarian[]>(this.librarianUrl)
   }
 
-  public getLibrarianid(email: string|null): Observable<number> {
+  public getLibrarianid(email: string | null): Observable<number> {
     return this.getLibrarians.pipe(
       map((librarians: any) => {
         librarians.forEach((librarian: any) => {
@@ -36,7 +36,7 @@ export class LibrarianService {
     );
   }
 
-  public getLibrarian(email: string|null): Observable<Librarian> {
+  public getLibrarian(email: string | null): Observable<Librarian> {
     var librarian1: any;
     return this.getLibrarians.pipe(
       map((librarians: any) => {
@@ -52,8 +52,7 @@ export class LibrarianService {
     );
   }
 
-  addLibrarian(librarian: Librarian, admin: Admin): Observable<Librarian> {
-    var authorization = btoa(admin.email + ":" + atob(admin.password));
-    return this.http.post<Librarian>(this.librarianUrl, librarian, {headers: {"Authorization": `basic ${authorization}`}});
+  addLibrarian(librarian: Librarian): Observable<Librarian> {
+    return this.http.post<Librarian>(this.librarianUrl, librarian);
   }
 }

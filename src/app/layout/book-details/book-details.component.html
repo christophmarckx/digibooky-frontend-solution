@@ -9,20 +9,20 @@
             <p *ngIf="book.author != null">Written by: {{book.author}}</p>
             <p *ngIf="book.author == null">Written by: {{book.authorFirstname}} {{book.authorLastname}}</p>
 
-            <div *ngIf="role == 'member' || role == 'librarian' || role == 'admin'">
+            <div *ngIf="authenticationService.isLoggedIn()">
               <p>Copies left: {{book.copies}}</p>
               <p>Added on: {{book.arrival}}</p>
               <p>Warranty: {{book.price}} euro</p>
               <p class="small">ISBN: {{book.isbn}}</p>
             </div>
           </div>
-          <div class="card-footer" *ngIf="role == 'member'">
+          <div class="card-footer" *ngIf="authenticationService.isMember()">
             <a class="btn btn-outline-primary" *ngIf="book.copies != 0"
                (click)="lendBook()">Lend Book</a>
             <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
           </div>
         </div>
-        <div *ngIf="role == 'librarian'">
+        <div *ngIf="authenticationService.isLibrarian()">
           <div style="margin-top: 10px">
             <a class="w-50 btn" routerLink="update">Update</a>
             <a class="w-50 btn" routerLink="delete">Delete</a>
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="col-4"
-         *ngIf="lendernames != 0 && (role == 'member' || role == 'librarian' || role == 'admin')">
+         *ngIf="lendernames != 0 && (authenticationService.isLoggedIn())">
       <div style="padding-right: 2em; padding-bottom: 2em;">
         <div class="card">
           <h3 class="card-header card-title">Book is borrowed by:</h3>

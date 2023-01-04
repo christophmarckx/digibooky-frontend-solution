@@ -1,7 +1,7 @@
 <div class="container" style="margin-bottom: 15px">
   <div>
     <nav class="navbar navbar-expand-md">
-      <ul class="navbar-nav container-fluid" *ngIf="role !== 'member' && role !== 'librarian' && role !== 'admin'">
+      <ul class="navbar-nav container-fluid" *ngIf="!authenticationService.isLoggedIn()">
         <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
                                                                          src="../../../assets/switchfully-logo-text.png"
                                                                          alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
@@ -12,7 +12,7 @@
         <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members/add">register</a></li>
       </ul>
 
-      <ul class="navbar-nav container-fluid" *ngIf="role === 'member'">
+      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isMember()">
         <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
                                                                          src="../../../assets/switchfully-logo-text.png"
                                                                          alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
@@ -26,7 +26,7 @@
                                       routerLink="/logout">Logout</a></li>
       </ul>
 
-      <ul class="navbar-nav container-fluid" *ngIf="role === 'librarian'">
+      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isLibrarian()">
         <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
                                                                          src="../../../assets/switchfully-logo-text.png"
                                                                          alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
@@ -41,7 +41,7 @@
                                          routerLink="/logout">Logout</a></li>
       </ul>
 
-      <ul class="navbar-nav container-fluid" *ngIf="role === 'admin'">
+      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isAdmin()">
         <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
                                                                          src="../../../assets/switchfully-logo-text.png"
                                                                          alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>

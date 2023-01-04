@@ -21,10 +21,10 @@
   <h4>Used Endpoint: GET …/members</h4>
   <ul>
     <li>Add a couple of members to your list of members.</li>
-    <li *ngIf="role == null">Login with an admin account or use the special admin login on the following link:
+    <li *ngIf="authenticationService.isLoggedIn()">Login with an admin account or use the special admin login on the following link:
       <button routerLink="/login">Login</button>
     </li>
-    <li *ngIf="role != null && role != 'admin'">Because you are logged in with an account, but not with an admin, you
+    <li *ngIf="authenticationService.isLoggedIn() && !authenticationService.isAdmin()">Because you are logged in with an account, but not with an admin, you
       should click following link:
       <button routerLink="/logout">Logout</button>
       <br>Next, you should login with an admin account.

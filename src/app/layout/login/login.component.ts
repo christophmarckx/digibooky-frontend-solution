@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MemberService} from "../../serviceMember/member.service";
 import {provideRoutes, Router} from "@angular/router";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
 import {AdminService} from "../../serviceAdmin/admin.service";
+import {AuthenticationService} from "../../serviceLogin/authentication.service";
+import {catchError} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,10 @@ export class LoginComponent implements OnInit {
   public error!: string;
 
 
-  constructor(private formBuilder: FormBuilder, private memberService: MemberService, private librarianService: LibrarianService, private adminService: AdminService, private route: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private authenticationService: AuthenticationService,
+              private route: Router,
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,63 +43,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit2(loginData: any) {
-    if (sessionStorage.getItem("role") == "member") {
+    if (this.authenticationService.isMember()) {
       this.getaccount("koen@mail.com", "passkoen")
-    } else if (sessionStorage.getItem("role") == "librarian") {
+    } else if (this.authenticationService.isLibrarian()) {
       this.getaccount("bob@library.com", "password")
-    } else if (sessionStorage.getItem("role") == "admin") {
+    } else if (this.authenticationService.isAdmin()) {
       this.getaccount("ad@min.com", "admin")
     }
     this.route.navigate(["/"]).then(() => window.location.reload())
   }
 
-  setRole(role: string) {
-    sessionStorage.setItem("role", role);
-  }
-
   removeRole() {
-    if (sessionStorage.getItem("role") != null) {
-      sessionStorage.removeItem("role");
-      if (sessionStorage.getItem("email") != null) {
-        sessionStorage.removeItem("email");
-      }
-    }
+    this.authenticationService.logout();
   }
 
   getaccount(email: string, password: string) {
-    password = btoa(password);
-    this.memberService.getMembers.subscribe((members: any) => {
-      members.forEach((member: any) => {
-        if (member.email == email && member.password == password) {
-          this.setSession(member.email, "member");
-          this.route.navigate(["/"]).then(() => window.location.reload())
-        }
-      });
-    });
-    this.librarianService.getLibrarians.subscribe((librarians: any) => {
-      librarians.forEach((librarian: any) => {
-        if (librarian.email == email && librarian.password == password) {
-          this.setSession(librarian.email, "librarian");
-          this.route.navigate(["/"]).then(() => window.location.reload())
-        }
-      });
-    });
-    this.adminService.getAdmins.subscribe((admins: any) => {
-      admins.forEach((admin: any) => {
-        if (admin.email == email && admin.password == password) {
-          this.setSession(admin.email, "admin");
-          this.route.navigate(["/"]).then(() => window.location.reload())
-        }
-      });
-    });
-    if (sessionStorage.getItem("role") == null) {
-      this.error = "email and/or password is incorrect"
-    }
-  }
-
-  setSession(email: string, role: string) {
-    sessionStorage.setItem("email", email)
-    sessionStorage.setItem("role", role);
+    this.authenticationService.login(email, password)
+      .pipe(
+        catchError(err => {
+          this.error = "email and/or password is incorrect";
+          return err;
+        })
+      )
+      .subscribe(() => this.route.navigate(["/"]).then(() => window.location.reload()));
   }
 
   get loginForm() {

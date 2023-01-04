@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Admin} from "../../../model/Admin";
 import {AdminService} from "../../../serviceAdmin/admin.service";
+import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
   selector: 'app-register-admin',
@@ -14,7 +15,7 @@ export class RegisterAdminComponent implements OnInit {
   private admins: Array<Admin>;
   public errors: Array<string>;
 
-  constructor(private formBuilder: FormBuilder, private adminService: AdminService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private adminService: AdminService, private route: Router) {
     this.admins = [];
     adminService.getAdmins.subscribe(admins => this.admins = admins);
     this.errors = [];
@@ -31,11 +32,10 @@ export class RegisterAdminComponent implements OnInit {
   }
 
   onSubmit(adminvalues: any): void {
-    // Process checkout data here
     this.errors = [];
     this.hasError(this._adminForm.value);
     if (this.errors.length == 0) {
-      this.adminService.getAnAdmin(sessionStorage.getItem("email")).subscribe(admin => {
+      this.adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => {
         this.adminService
           .addAdmin(adminvalues, admin).subscribe();
       });
@@ -63,8 +63,8 @@ export class RegisterAdminComponent implements OnInit {
   }
 
   compare(email: string): boolean {
-    if (sessionStorage.getItem("email") != null) {
-      return email === sessionStorage.getItem("email");
+    if (this.authenticationService.isLoggedIn()) {
+      return email === this.authenticationService.username;
     }
     return false;
   }

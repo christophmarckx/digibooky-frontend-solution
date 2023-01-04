@@ -9,10 +9,10 @@
   <h1>How to test?</h1>
   <p>Used Endpoint: POST …/books/[MemberID]/[LendingID]/return</p>
   <ul>
-    <li *ngIf="role == null">Login with a member account on the following link:
+    <li *ngIf="authenticationService.isLoggedIn">Login with a member account on the following link:
       <button routerLink="/login">Login</button>
     </li>
-    <li *ngIf="role != null && role != 'member'">Because you are logged in with an account, but not with a member, you should click following link:
+    <li *ngIf="authenticationService.isMember">Because you are logged in with an account, but not with a member, you should click following link:
       <button routerLink="/logout">Logout</button>
       <br>Next, you should login with an member account.
     </li>
