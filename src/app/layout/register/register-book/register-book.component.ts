@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, NonNullableFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
@@ -12,11 +12,25 @@ import {catchError} from "rxjs";
   styleUrls: ['./register-book.component.css']
 })
 export class RegisterBookComponent implements OnInit {
-  private _bookForm!: FormGroup;
+  private _bookForm = this.formBuilder.group({
+    isbn: '',
+    title: '',
+    authorFirstname: '',
+    authorLastname: '',
+    author: '',
+    copies: 0,
+    price: 0,
+    arrival: '',
+    image: '',
+    dueDate: '',
+    lenderNames: [],
+    lendingId: ''
+  });
+
   private books: Array<Book>;
   public errors: Array<string>;
 
-  constructor(private formBuilder: FormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
+  constructor(private formBuilder: NonNullableFormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
     this.formBuilder = formBuilder;
     this.books = [];
     this.bookService.getBooks.subscribe(books => this.books = books);
@@ -24,22 +38,13 @@ export class RegisterBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._bookForm = this.formBuilder.group({
-      isbn: "",
-      title: "",
-      authorFirstname: "",
-      authorLastname: "",
-      price: "",
-      copies: "",
-      imageUrl: ""
-    });
   }
 
   onSubmit(bookvalues: any): void {
     // Process checkout data here
     console.log(bookvalues)
     this.errors = [];
-    this.hasError(this._bookForm.value);
+    this.hasError(this._bookForm.getRawValue());
     if (this.errors.length == 0) {
       this.bookService.addBook(bookvalues)
         .pipe(
@@ -77,7 +82,7 @@ export class RegisterBookComponent implements OnInit {
     }
   }
 
-  get bookForm() {
+  get bookForm(): FormGroup {
     return this._bookForm;
   }
 }

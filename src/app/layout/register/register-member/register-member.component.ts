@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {MemberService} from "../../../serviceMember/member.service";
 import {Member} from "../../../model/member";
 import {Router} from "@angular/router";
@@ -12,35 +12,38 @@ import {catchError, throwError} from "rxjs";
   styleUrls: ['./register-member.component.css']
 })
 export class RegisterMemberComponent implements OnInit {
-  private _memberForm!: FormGroup;
+  private _memberForm = this.formBuilder.group({
+    id: 0,
+    email: '',
+    firstname: '',
+    lastname: '',
+    inss: '',
+    password: '',
+    street: '',
+    streetnumber: '',
+    postcode: '',
+    city: '',
+    lendings: [],
+    fines: 0,
+    totalPrice: 0,
+    }
+  );
   private members: Array<Member>;
   public errors: Array<string>;
 
-  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private memberService: MemberService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: NonNullableFormBuilder, private memberService: MemberService, private route: Router) {
     this.members = [];
     this.memberService.getMembers.subscribe(members => this.members = members);
     this.errors = [];
   }
 
   ngOnInit(): void {
-    this._memberForm = this.formBuilder.group({
-        inss: "",
-        email: "",
-        firstname: "",
-        lastname: "",
-        password: "",
-        streetname: "",
-        streetnumber: "",
-        postalcode: "",
-        city: ""
-      }
-    );
   }
 
   onSubmit(membervalues: any): void {
     // Process checkout data here
     this.errors = [];
-    this.hasError(this._memberForm.value);
+    this.hasError(this._memberForm.getRawValue());
     if (this.errors.length == 0) {
       this.authenticationService.addMember(membervalues)
         .pipe(

@@ -5,7 +5,7 @@ import {Librarian} from "../../model/Librarian";
 import {Admin} from "../../model/Admin";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
 import {AdminService} from "../../serviceAdmin/admin.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {DateService} from "../../serviceDate/date.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
   public librarian!: Librarian;
   public admin!: Admin;
   public role!: string | null;
-  private _dateForm!: FormGroup;
+  private _dateForm = this.formbuilder.group({
+    changeDate: ""
+  });
   public date!: string;
 
   constructor(private route: Router,
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
               private librarianService: LibrarianService,
               private adminService: AdminService,
               private authenticationService: AuthenticationService,
-              private formbuilder: FormBuilder) {
+              private formbuilder: NonNullableFormBuilder) {
     this.dateService.getDate().subscribe(date => this.date = date);
   }
 
@@ -38,9 +40,6 @@ export class HomeComponent implements OnInit {
     this.librarianService.getLibrarian(this.authenticationService.username).subscribe(librarian => this.librarian = librarian);
     this.adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => this.admin = admin);
     this.role = this.authenticationService.role;
-    this._dateForm = this.formbuilder.group({
-      changeDate: ""
-    });
   }
 
   public resetDate() {
@@ -49,7 +48,7 @@ export class HomeComponent implements OnInit {
   }
 
   public changeDate(datevalues: any): void {
-    this.dateService.setDate(datevalues.changeDate).subscribe(iets => {
+    this.dateService.setDate(datevalues.changeDate).subscribe(() => {
       this.dateService.getDate().subscribe(date => this.date = date)
     })
     this.route.navigate(["/"]).then(() => window.location.reload());
@@ -59,7 +58,7 @@ export class HomeComponent implements OnInit {
     return this.date;
   }
 
-  get dateForm(): FormGroup {
+  get dateForm() {
     return this._dateForm;
   }
 }

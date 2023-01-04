@@ -5,8 +5,6 @@ import {Admin} from "../../model/Admin";
 import {Librarian} from "../../model/Librarian";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
 import {AdminService} from "../../serviceAdmin/admin.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Router} from "@angular/router";
 import {DateService} from "../../serviceDate/date.service";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
 
@@ -22,13 +20,11 @@ export class HeaderComponent implements OnInit {
   public admin!: Admin;
   public date!: string;
 
-  constructor(private formbuilder: FormBuilder,
-              private memberService: MemberService,
+  constructor(private memberService: MemberService,
               private librarianService: LibrarianService,
               private adminService: AdminService,
               public authenticationService: AuthenticationService,
               private dateService: DateService) {
-    this.formbuilder = formbuilder;
     if (this.authenticationService.isMember()) {
       memberService.getMember(this.authenticationService.username).subscribe(member => {
         this.id = member.id

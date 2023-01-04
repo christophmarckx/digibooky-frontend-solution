@@ -3,7 +3,7 @@ import {Book} from "../../model/Book";
 import {PRIMARY_OUTLET, Router} from "@angular/router";
 import {BookService} from "../../serviceBook/book.service";
 import {MemberService} from "../../serviceMember/member.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
 
 @Component({
@@ -12,13 +12,16 @@ import {AuthenticationService} from "../../serviceLogin/authentication.service";
   styleUrls: ['./return-book.component.css']
 })
 export class ReturnBookComponent implements OnInit {
-  public returnForm!: FormGroup;
+  public returnForm = this.formBuilder.group({
+    damaged: false,
+    brokenPart: ""
+  });
   public book!: Book;
   public lendingId: string;
   public damaged: boolean;
   public id: string;
 
-  constructor(public formBuilder: FormBuilder,
+  constructor(public formBuilder: NonNullableFormBuilder,
               private bookService: BookService,
               private memberService: MemberService,
               private authenticationService: AuthenticationService,
@@ -29,10 +32,6 @@ export class ReturnBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.returnForm = this.formBuilder.group({
-      damaged: false,
-      brokenPart: ""
-    })
   }
 
   setDamaged() {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from "../../model/Book";
 import {BookService} from "../../serviceBook/book.service";
 import {PRIMARY_OUTLET, Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
 
 @Component({
@@ -11,37 +11,41 @@ import {LibrarianService} from "../../serviceLibrarian/librarian.service";
   styleUrls: ['./update-book.component.css']
 })
 export class UpdateBookComponent implements OnInit {
-  private _bookForm!: FormGroup;
-  private isbn: string;
+  private _bookForm = this.formBuilder.group({
+    isbn: '',
+    title: '',
+    authorFirstname: '',
+    authorLastname: '',
+    author: '',
+    copies: 0,
+    price: 0,
+    arrival: '',
+    image: '',
+    dueDate: '',
+    lenderNames: [],
+    lendingId: ''
+    }
+  );
+  private isbn!: string;
   public book!: Book;
-  public errors: Array<string>
+  public errors!: Array<string>
 
-  constructor(private formBuilder: FormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
-    this.isbn = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
-    this.bookService.getBook(this.isbn).subscribe(book => {
-      this.book = book
-      this.ngOnInit()
-    });
-    this.errors = [];
+  constructor(private formBuilder: NonNullableFormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
   }
 
   ngOnInit(): void {
-    this._bookForm = this.formBuilder.group({
-        isbn: this.book.isbn,
-        title: this.book.title,
-        authorFirstname: this.book.authorFirstname,
-        authorLastname: this.book.authorLastname,
-        price: this.book.price,
-        copies: this.book.copies,
-        imageUrl: this.book.image
-      }
-    )
+    this.isbn = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
+    this.bookService.getBook(this.isbn).subscribe(book => {
+      this.book = book
+      this._bookForm.patchValue(book)
+    });
+    this.errors = [];
   }
 
   onSubmit(bookvalues: any): void {
     // Process checkout data here
     this.errors = [];
-    this.hasError(this._bookForm.value);
+    this.hasError(this._bookForm.getRawValue());
     if (this.errors.length == 0) {
       this.bookService.updateBook(bookvalues).subscribe();
       console.warn('Book was updated.', this._bookForm.value);

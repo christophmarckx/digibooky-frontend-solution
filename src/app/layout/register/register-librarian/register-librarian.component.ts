@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
 import {Librarian} from "../../../model/Librarian";
@@ -12,29 +12,29 @@ import {AuthenticationService} from "../../../serviceLogin/authentication.servic
   styleUrls: ['./register-librarian.component.css']
 })
 export class RegisterLibrarianComponent implements OnInit {
-  private _librarianForm!: FormGroup;
+  private _librarianForm = this.formBuilder.group({
+    id: 0,
+    email: "",
+    firstname: "",
+    lastname: "",
+    password: ""
+  });
   private librarians: Array<Librarian>;
   public errors: Array<string>;
 
-  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: NonNullableFormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
     this.librarians = [];
     this.librarianService.getLibrarians.subscribe(librarians => this.librarians = librarians);
     this.errors = [];
   }
 
   ngOnInit(): void {
-    this._librarianForm = this.formBuilder.group({
-      email: "",
-      firstname: "",
-      lastname: "",
-      password: ""
-    })
   }
 
   onSubmit(librarianvalues: any): void {
     // Process checkout data here
     this.errors = [];
-    this.hasError(this._librarianForm.value);
+    this.hasError(this._librarianForm.getRawValue());
     if (this.errors.length == 0) {
       this.librarianService.addLibrarian(librarianvalues).subscribe()
       this.route.navigate(["/librarians"]).then(() => window.location.reload())

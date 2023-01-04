@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, NonNullableFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Admin} from "../../../model/Admin";
 import {AdminService} from "../../../serviceAdmin/admin.service";
@@ -11,29 +11,29 @@ import {AuthenticationService} from "../../../serviceLogin/authentication.servic
   styleUrls: ['./register-admin.component.css']
 })
 export class RegisterAdminComponent implements OnInit {
-  private _adminForm!: FormGroup;
+  private _adminForm = this.formBuilder.group({
+      id: 0,
+      email: "",
+      firstname: "",
+      lastname: "",
+      password: ""
+    }
+  );
   private admins: Array<Admin>;
   public errors: Array<string>;
 
-  constructor(private authenticationService: AuthenticationService, private formBuilder: FormBuilder, private adminService: AdminService, private route: Router) {
+  constructor(private authenticationService: AuthenticationService, private formBuilder: NonNullableFormBuilder, private adminService: AdminService, private route: Router) {
     this.admins = [];
     adminService.getAdmins.subscribe(admins => this.admins = admins);
     this.errors = [];
   }
 
   ngOnInit(): void {
-    this._adminForm = this.formBuilder.group({
-        email: "",
-        firstname: "",
-        lastname: "",
-        password: ""
-      }
-    )
   }
 
   onSubmit(adminvalues: any): void {
     this.errors = [];
-    this.hasError(this._adminForm.value);
+    this.hasError(this._adminForm.getRawValue());
     if (this.errors.length == 0) {
       this.adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => {
         this.adminService

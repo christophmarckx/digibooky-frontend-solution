@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../../serviceBook/book.service";
 import {Book} from "../../../model/Book";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {NonNullableFormBuilder} from "@angular/forms";
 import {AuthenticationService} from "../../../serviceLogin/authentication.service";
 
 @Component({
@@ -12,19 +12,18 @@ import {AuthenticationService} from "../../../serviceLogin/authentication.servic
 })
 export class BookOverviewComponent implements OnInit {
   private _books: Array<Book> = [];
-  private _searchForm!: FormGroup;
+  private _searchForm = this.formBuilder.group({
+      isbn: "",
+      title: "",
+      author: ""
+    }
+  );
 
-  constructor(public authenticationService: AuthenticationService, private bookService: BookService, private route: Router, private formBuilder: FormBuilder) {
+  constructor(public authenticationService: AuthenticationService, private bookService: BookService, private route: Router, private formBuilder: NonNullableFormBuilder) {
   }
 
   ngOnInit(): void {
     this.getBooks();
-    this._searchForm = this.formBuilder.group({
-        isbn: "",
-        title: "",
-        author: ""
-      }
-    )
   }
 
   public getBooks(): void {

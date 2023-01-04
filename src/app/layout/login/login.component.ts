@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MemberService} from "../../serviceMember/member.service";
-import {provideRoutes, Router} from "@angular/router";
-import {LibrarianService} from "../../serviceLibrarian/librarian.service";
-import {AdminService} from "../../serviceAdmin/admin.service";
+import {NonNullableFormBuilder} from "@angular/forms";
+import {Router} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
 import {catchError} from "rxjs";
 
@@ -14,26 +11,25 @@ import {catchError} from "rxjs";
 })
 
 export class LoginComponent implements OnInit {
-  private _loginForm!: FormGroup;
-  private _roleForm!: FormGroup;
+  private _loginForm = this.formBuilder.group({
+    email: "",
+    password: ""
+  });
+  private _roleForm = this.formBuilder.group({
+    role: ""
+  });
   public message!: string;
   public error!: string;
 
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: NonNullableFormBuilder,
               private authenticationService: AuthenticationService,
               private route: Router,
   ) {
   }
 
   ngOnInit(): void {
-    this._loginForm = this.formBuilder.group({
-      email: "",
-      password: ""
-    })
-    this._roleForm = this.formBuilder.group({
-      role: ""
-    })
+
   }
 
   onSubmit(loginData: any) {
@@ -73,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  get roleForm(): FormGroup {
+  get roleForm() {
     return this._roleForm;
   }
 }
