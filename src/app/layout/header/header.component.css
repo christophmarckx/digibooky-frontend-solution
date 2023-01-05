@@ -1,36 +1,15 @@
-nav {
-  background-color: #97AA5A;
-  padding: 5px;
-  border-radius: 25px;
+.nav-btn {
+  background-color: #C3DB74;
+  color: #424348;
+  border-color: #30361C;
+  margin-bottom: 10px;
 }
 
-ul {
-  width: 100%;
-  padding: 0;
-}
-
-li {
-  color: #020202;
-  width: 100%;
-  text-align: center;
-  background-color: #97AA5A;
-  border-radius: 25px;
-}
-
-a {
-  color: #020202;
-  background-color: white;
-  border: 2px solid #97AA5A;
-  border-radius: 25px;
-}
-
-li:hover, a:hover {
+.nav-btn:hover {
+  background-color: #30361C;
   color: white;
-  background-color: #97AA5A;
-  width: 100%;
 }
 
-li a {
-  height: auto;
+.header {
+  background: linear-gradient(to left, #97AA5A, #30361C);
 }
-

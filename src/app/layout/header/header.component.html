@@ -1,63 +1,42 @@
-<div class="container" style="margin-bottom: 15px">
-  <div>
-    <nav class="navbar navbar-expand-md">
-      <ul class="navbar-nav container-fluid" *ngIf="!authenticationService.isLoggedIn()">
-        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
-                                                                         src="../../../assets/switchfully-logo-text.png"
-                                                                         alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
-        </li>
-        <!--        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/">home</a></li>-->
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/login">Login</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members/add">register</a></li>
-      </ul>
+<header class="header" style="margin-bottom: 15px">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid justify-content-end">
+      <a class="navbar-brand" routerLink="/"><img style="height: 2em"
+                                                  src="../../../assets/switchfully-logo-text.png"
+                                                  alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li><a class="fs-4 btn nav-btn m-1" routerLink="/books"><i class="bi bi-book m-1"></i>Books</a></li>
+          <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
+          <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
+          <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 nav-link" routerLink="/members">Members</a></li>
+          <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 nav-link" routerLink="/librarians">Librarians</a>
+          </li>
+          <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 nav-link" routerLink="/admins">Admins</a></li>
+        </ul>
 
-      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isMember()">
-        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
-                                                                         src="../../../assets/switchfully-logo-text.png"
-                                                                         alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
-        </li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li *ngIf="member != null"><a style="height: auto" class="fs-4 nav-link"
-                                      routerLink="/members/{{id}}">Profile</a></li>
-        <li *ngIf="member != null"><a style="height: auto" class="fs-4 nav-link"
-                                      routerLink="/logout">{{member.firstname}} {{member.lastname}} Logout</a></li>
-        <li *ngIf="member == null"><a style="height: auto" class="fs-4 nav-link"
-                                      routerLink="/logout">Logout</a></li>
-      </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!authenticationService.isLoggedIn()">
+          <li><a class="fs-4 btn nav-btn m-1" routerLink="/login"><i class="bi bi-person m-1"></i>Login</a></li>
+          <li><a class="fs-4 btn nav-btn m-1" routerLink="/members/add">Register</a></li>
+        </ul>
 
-      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isLibrarian()">
-        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
-                                                                         src="../../../assets/switchfully-logo-text.png"
-                                                                         alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
-        </li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
-        <li *ngIf="librarian != null"><a style="height: auto" class="fs-4 nav-link"
-                                         routerLink="/logout">{{librarian.firstname}} {{librarian.lastname}} Logout</a>
-        </li>
-        <li *ngIf="librarian == null"><a style="height: auto" class="fs-4 nav-link"
-                                         routerLink="/logout">Logout</a></li>
-      </ul>
-
-      <ul class="navbar-nav container-fluid" *ngIf="authenticationService.isAdmin()">
-        <li><a style="height: auto" class="nav-link" routerLink="/"><img style="height: 2em"
-                                                                         src="../../../assets/switchfully-logo-text.png"
-                                                                         alt="Switchfully Logo with the text 'SWITCHFULLY' beside"></a>
-        </li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/books">Books</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/members">Members</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/librarians">Librarians</a></li>
-        <li><a style="height: auto" class="fs-4 nav-link" routerLink="/admins">Admins</a></li>
-        <li *ngIf="admin != null"><a style="height: auto" class="fs-4 nav-link"
-                                     routerLink="/logout">{{admin.firstname}} {{admin.lastname}} Logout</a></li>
-        <li *ngIf="admin == null"><a style="height: auto" class="fs-4 nav-link"
-                                     routerLink="/logout">Logout</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div>
-    <p class="text-center">The "current" date is: {{getDate}}</p>
-  </div>
-</div>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="authenticationService.isLoggedIn()">
+          <li *ngIf="authenticationService.isMember()"><a class="fs-4 btn nav-btn m-1" routerLink="/members/{{id}}"><i class="bi bi-person m-1"></i>{{member.firstname}} {{member.lastname}}</a></li>
+          <li *ngIf="authenticationService.isMember()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">
+            <i class="bi bi-box-arrow-right m-1"></i>Logout</a></li>
+          <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">{{librarian.firstname}} {{librarian.lastname}}
+            Logout</a></li>
+          <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">{{admin.firstname}} {{admin.lastname}}
+            Logout</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-dark fs-6">{{getDate}}</p>
+      </div>
+    </div>
+  </nav>
+</header>
