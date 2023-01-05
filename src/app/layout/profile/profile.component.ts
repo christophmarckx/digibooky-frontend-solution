@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MemberService} from "../../serviceMember/member.service";
 import {Member} from "../../model/member";
-import {PRIMARY_OUTLET, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
+import {map, mergeMap, Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +11,15 @@ import {AuthenticationService} from "../../serviceLogin/authentication.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  public member!: Member;
+  public member$!: Observable<Member>;
 
-  constructor(public authenticationService: AuthenticationService, private memberService: MemberService, private route: Router) {
+  constructor(public authenticationService: AuthenticationService, private memberService: MemberService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    var id = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
-    this.memberService.getMemberById(id).subscribe(member => {
-      this.member = member;
-    });
+    this.member$ = this.route.paramMap.pipe(
+      map(params => params.get('id')),
+      mergeMap(id => this.memberService.getMemberById(id))
+    );
   }
 }

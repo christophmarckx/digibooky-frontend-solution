@@ -1,17 +1,36 @@
-<div class="container">
+<main class="container mb-2">
   <div>
     <h1>Profile</h1>
   </div>
-  <div class="row row-cols-md-2 row-cols-sm-1">
+  <div *ngIf="member$ | async as member; else notLoadedYet" class="row row-cols-md-2 row-cols-sm-1">
     <div>
       <h2>Information</h2>
       <div class="card">
-        <p class="card-header">Name: {{member.firstname}} {{member.lastname}}</p>
+        <h5 class="card-header">{{authenticationService.fullname}}</h5>
         <div class="card-body">
-          <p *ngIf="authenticationService.isMember()">INSS: {{member.inss}}</p>
-          <p>E-mail: {{member.email}}</p>
-          <p>Address: {{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}</p>
-          <p *ngIf="member.fines != null">Fines: € {{member.totalPrice}} -> #{{member.fines}}</p>
+          <div>
+            <label for="inss" class="form-label">INSS</label>
+            <input id="inss" class="form-control disabled" [value]="member.inss" disabled/>
+          </div>
+          <div>
+            <label for="email" class="form-label">E-mail</label>
+            <input id="email" class="form-control disabled" [value]="member.email" disabled/>
+          </div>
+          <div>
+            <label for="address" class="form-label">Address</label>
+            <input id="address" class="form-control disabled" value="{{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}" disabled/>
+          </div>
+          <div class="mt-2" *ngIf="member.fines">
+            <h6>Fines</h6>
+            <div class="offset-1">
+              <label for="totalprice" class="form-label">TotalPrice</label>
+              <input id="totalprice" class="form-control disabled" type="number" value="{{member.totalPrice}}" disabled/>
+            </div>
+            <div class="offset-1">
+              <label for="fines" class="form-label">Fines</label>
+              <input id="fines" class="form-control disabled" type="number" value="{{member.totalPrice}}" disabled/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -35,4 +54,7 @@
       This member has no books in his/her possession
     </div>
   </div>
-</div>
+  <ng-template #notLoadedYet>
+    <p>Still loading the profile</p>
+  </ng-template>
+</main>

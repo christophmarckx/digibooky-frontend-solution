@@ -1,11 +1,11 @@
 div {
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   height: 100%;
   display: block;
   position: relative;
   padding-bottom: 2.5rem;
-  background: linear-gradient(to left,#97AA5A,#68753E)!important;
+  background: linear-gradient(to left, #97AA5A, #68753E) !important;
 }
 
 div::after {
@@ -19,7 +19,6 @@ div::after {
   right: 0;
   position: fixed;
   z-index: -1;
-
 }
 
 app-footer {

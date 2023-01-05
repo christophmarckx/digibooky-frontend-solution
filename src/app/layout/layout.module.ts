@@ -48,6 +48,8 @@ import { Story19Component } from './stories/story19/story19.component';
 import { Story20Component } from './stories/story20/story20.component';
 import { Story21Component } from './stories/story21/story21.component';
 import { Story16Component } from './stories/story16/story16.component';
+import { StoriesOverviewComponent } from './stories-overview/stories-overview.component';
+import {ChangeDateComponent} from "./change-date/change-date.component";
 
 
 
@@ -97,6 +99,8 @@ import { Story16Component } from './stories/story16/story16.component';
     Story20Component,
     Story21Component,
     Story16Component,
+    StoriesOverviewComponent,
+    ChangeDateComponent
   ],
   exports: [
     HomeComponent,

@@ -11,3 +11,15 @@ a:hover {
   background-color: #97AA5A;
   width: 100%;
 }
+
+.card {
+  background-color: #AABF65;
+}
+
+.form-control {
+  border-color: #4F592F;
+}
+
+.form-control:disabled {
+  background-color: #C1D973;
+}

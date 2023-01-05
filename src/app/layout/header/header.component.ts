@@ -14,35 +14,10 @@ import {AuthenticationService} from "../../serviceLogin/authentication.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public id!: number;
-  public member!: Member;
-  public librarian!: Librarian;
-  public admin!: Admin;
   public date!: string;
 
-  constructor(private memberService: MemberService,
-              private librarianService: LibrarianService,
-              private adminService: AdminService,
-              public authenticationService: AuthenticationService,
+  constructor(public authenticationService: AuthenticationService,
               private dateService: DateService) {
-    if (this.authenticationService.isMember()) {
-      memberService.getMember(this.authenticationService.username).subscribe(member => {
-        this.id = member.id
-        this.member = member
-      });
-    }
-    if (this.authenticationService.isLibrarian()) {
-      librarianService.getLibrarian(this.authenticationService.username).subscribe(librarian => {
-        this.id = librarian.id
-        this.librarian = librarian
-      });
-    }
-    if (this.authenticationService.isAdmin()) {
-      adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => {
-        this.id = admin.id
-        this.admin = admin
-      });
-    }
     this.dateService.getDate().subscribe(date => this.date = date)
   }
 

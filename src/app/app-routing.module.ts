@@ -45,6 +45,7 @@ import {Story19Component} from "./layout/stories/story19/story19.component";
 import {Story21Component} from "./layout/stories/story21/story21.component";
 import {Story20Component} from "./layout/stories/story20/story20.component";
 import {Story16Component} from "./layout/stories/story16/story16.component";
+import {StoriesOverviewComponent} from "./layout/stories-overview/stories-overview.component";
 
 var routes: Routes = [
   // The Story instructions:
@@ -73,7 +74,7 @@ var routes: Routes = [
   {path: 'story21', component: Story21Component},
 
   // All other paths:
-  {path: '', component: HomeComponent},
+  {path: 'stories', component: StoriesOverviewComponent},
   {path: 'books', component: BookOverviewComponent},
   {path: 'books/add', component: RegisterBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/overdue', component: OverdueBooksComponent, canActivate: [AuthGuardServiceLibrarianService]},
@@ -94,8 +95,7 @@ var routes: Routes = [
   {path: 'admins/add', component: RegisterAdminComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
-
-  {path: '', redirectTo: '/', pathMatch: 'full'}
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({

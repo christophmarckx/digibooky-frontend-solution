@@ -11,6 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li><a class="fs-4 btn nav-btn m-1" routerLink="/books"><i class="bi bi-book m-1"></i>Books</a></li>
+          <li><a class="fs-4 btn nav-btn m-1" routerLink="/stories"><i class="bi bi-card-image m-1"></i>Stories</a></li>
           <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
           <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
           <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 nav-link" routerLink="/members">Members</a></li>
@@ -25,13 +26,8 @@
         </ul>
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="authenticationService.isLoggedIn()">
-          <li *ngIf="authenticationService.isMember()"><a class="fs-4 btn nav-btn m-1" routerLink="/members/{{id}}"><i class="bi bi-person m-1"></i>{{member.firstname}} {{member.lastname}}</a></li>
-          <li *ngIf="authenticationService.isMember()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">
-            <i class="bi bi-box-arrow-right m-1"></i>Logout</a></li>
-          <li *ngIf="authenticationService.isLibrarian()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">{{librarian.firstname}} {{librarian.lastname}}
-            Logout</a></li>
-          <li *ngIf="authenticationService.isAdmin()"><a class="fs-4 btn nav-btn m-1" routerLink="/logout">{{admin.firstname}} {{admin.lastname}}
-            Logout</a></li>
+          <li *ngIf="authenticationService.isMember()"><a class="fs-4 btn nav-btn m-1" routerLink="/members/{{authenticationService.id}}"><i class="bi bi-person m-1"></i>{{authenticationService.fullname}}</a></li>
+          <li><a class="fs-4 btn nav-btn m-1" routerLink="/logout"><i class="bi bi-box-arrow-right m-1"></i>Logout</a></li>
         </ul>
       </div>
       <div>

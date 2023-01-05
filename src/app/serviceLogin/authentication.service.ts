@@ -18,6 +18,7 @@ export class AuthenticationService {
         tap(login => {
           this.role = login.role;
           this.id = login.id;
+          this.fullname = login.fullname;
           this.username = email;
           this.password = password;
         })
@@ -46,6 +47,14 @@ export class AuthenticationService {
 
   public get username() {
     return sessionStorage.getItem("email")
+  }
+
+  private set fullname(fullname: string | null) {
+    sessionStorage.setItem('fullname', fullname!);
+  }
+
+  public get fullname() {
+    return sessionStorage.getItem('fullname')
   }
 
   public set id(id: string | null) {
