@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NonNullableFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
-import {catchError} from "rxjs";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ""
   });
   private _roleForm = this.formBuilder.group({
-    role: ""
+    role: 'member'
   });
   public message!: string;
   public error!: string;
@@ -38,15 +38,14 @@ export class LoginComponent implements OnInit {
     this._loginForm.reset();
   }
 
-  onSubmit2(loginData: any) {
-    if (this.authenticationService.isMember()) {
-      this.getaccount("koen@mail.com", "passkoen")
-    } else if (this.authenticationService.isLibrarian()) {
-      this.getaccount("bob@library.com", "password")
-    } else if (this.authenticationService.isAdmin()) {
-      this.getaccount("ad@min.com", "admin")
+  onSubmit2({role}: any) {
+    if (role === 'member') {
+      this.loginForm.patchValue({email: 'koen@mail.com', password: 'passkoen'})
+    } else if (role === 'librarian') {
+      this.loginForm.patchValue({email: 'bob@library.com', password: 'password'})
+    } else if (role === 'admin') {
+      this.loginForm.patchValue({email: 'ad@min.com', password: 'admin'})
     }
-    this.route.navigate(["/"]).then(() => window.location.reload())
   }
 
   removeRole() {
@@ -58,10 +57,10 @@ export class LoginComponent implements OnInit {
       .pipe(
         catchError(err => {
           this.error = "email and/or password is incorrect";
-          return err;
+          return throwError(err);
         })
       )
-      .subscribe(() => this.route.navigate(["/"]).then(() => window.location.reload()));
+      .subscribe(result => console.log(result));
   }
 
   get loginForm() {

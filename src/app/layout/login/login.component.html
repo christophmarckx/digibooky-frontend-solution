@@ -1,50 +1,47 @@
-<div class="container">
+<main class="container">
   <h1>Login</h1>
-  <div *ngIf="error != ''">
-    <p class="alert-danger">{{error}}</p>
+  <div class="row mb-2">
+    <form class="col-6" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <div>
+        <label for="email" class="form-label">
+          E-mail
+        </label>
+        <input id="email" type="text" placeholder="email" formControlName="email"
+               class="inputTextfield form-control col-auto"
+               pattern="[0-9]*">
+      </div>
+      <div>
+        <label for="password" class="form-label">
+          Password
+        </label>
+        <input id="password" type="password" placeholder="password" formControlName="password"
+               class="inputTextfield form-control col-auto">
+      </div>
+
+      <button style="margin-top: 10px" class="button" type="submit">Login</button>
+    </form>
+
+    <form class="col-6" [formGroup]="roleForm" (ngSubmit)="onSubmit2(roleForm.value)">
+      <h5>Test profiles</h5>
+      <div class="form-check">
+        <input id="member" class="form-check-input" type="radio" name="role" formControlName="role" value="member">
+        <label for="member" class="form-check-label">Member</label> <br>
+      </div>
+      <div class="form-check">
+        <input id="librarian" class="form-check-input" type="radio" name="role" formControlName="role"
+               value="librarian">
+        <label for="librarian" class="form-check-label">Librarian</label> <br>
+      </div>
+      <div class="form-check">
+        <input id="admin" class="form-check-input" type="radio" name="role" formControlName="role" value="admin">
+        <label for="admin" class="form-check-label">Admin</label> <br>
+      </div>
+      <button class="button" type="submit">Use credentials</button>
+    </form>
   </div>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-
-    <div>
-      <label for="email" class="form-label">
-        E-mail
-      </label>
-      <input id="email" type="text" placeholder="email" formControlName="email"
-             class="inputTextfield form-control col-auto"
-             pattern="[0-9]*">
+  <div *ngIf="error" class="row">
+    <div class="col-6">
+      <p class="alert alert-message ps-1">{{error}}</p>
     </div>
-    <div>
-      <label for="password" class="form-label">
-        Password
-      </label>
-      <input id="password" type="password" placeholder="password" formControlName="password"
-             class="inputTextfield form-control col-auto">
-    </div>
-
-    <button style="margin-top: 10px" class="button" type="submit">Login</button>
-
-  </form>
-  <br>
-
-  <h2>If Login isn't implemented yet, default login</h2>
-
-  <form [formGroup]="roleForm" (ngSubmit)="onSubmit2(roleForm.value)">
-    <div>
-      <input checked="checked" id="user" class="form-check-input" type="radio" name="role" value="user"
-             (change)="removeRole()">
-      <label for="user" class="form-check-label">User</label> <br>
-    </div>
-    <div>
-      <input id="member" class="form-check-input" type="radio" name="role" value="member">
-      <label for="member" class="form-check-label">Member</label> <br>
-    </div>
-    <div>
-      <input id="librarian" class="form-check-input" type="radio" name="role" value="librarian">
-      <label for="librarian" class="form-label">Librarian</label> <br>
-    </div>
-    <div><input id="admin" class="form-check-input" type="radio" name="role" value="admin">
-      <label for="admin" class="form-label">Admin</label> <br>
-    </div>
-    <button style="margin-top: 10px" class="button" type="submit" [disabled]="!roleForm.valid">Login 2.0</button>
-  </form>
-</div>
+  </div>
+</main>
