@@ -9,8 +9,6 @@ import {Member} from "../model/member";
 })
 export class MemberService {
   private memberUrl: string;
-  private id: number = 0;
-  private credentials!: string;
 
   constructor(private http: HttpClient) {
     this.memberUrl = `${environment.backendUrl}/members`;
@@ -20,38 +18,8 @@ export class MemberService {
     return this.http.get<Member[]>(this.memberUrl)
   }
 
-  public getMemberid(email: string|null): Observable<number> {
-    return this.getMembers.pipe(
-      map((members: any) => {
-        members.forEach((member: any) => {
-          if (member.email == email) {
-            this.id = member.id;
-          }
-        });
-        return this.id;
-      })
-    );
-  }
-
   public getMemberById(id: string|null): Observable<Member> {
     return this.http.get<Member>(`${this.memberUrl}/${id}`);
-  }
-
-  public getMember(email: string|null): Observable<Member> {
-    var member1: any = null;
-    return this.getMembers.pipe(
-      map((members: any) => {
-        members.forEach((member: any) => {
-          if (member.email == email) {
-            member1 = member;
-          }
-        });
-        if (member1 != null) {
-          this.credentials = member1.email + ":" + member1.password;
-        }
-        return member1;
-      })
-    );
   }
 
   addMember(member: Member): Observable<Member> {

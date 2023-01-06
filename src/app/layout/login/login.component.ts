@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           return throwError(err);
         })
       )
-      .subscribe(result => console.log(result));
+      .subscribe(result => this.route.navigateByUrl(`/members/${result.id}`));
   }
 
   get loginForm() {

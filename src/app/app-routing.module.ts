@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {Story1Component} from "./layout/stories/story1/story1.component";
 import {Story2Component} from "./layout/stories/story2/story2.component";
 import {Story3Component} from "./layout/stories/story3/story3.component";
@@ -23,7 +23,6 @@ import {BookOverviewComponent} from "./layout/overviews/book-overview/book-overv
 import {BookDetailsComponent} from "./layout/book-details/book-details.component";
 import {RegisterMemberComponent} from "./layout/register/register-member/register-member.component";
 import {LoginComponent} from "./layout/login/login.component";
-import {LogoutComponent} from "./layout/logout/logout.component";
 import {ProfileComponent} from "./layout/profile/profile.component";
 import {ReturnBookComponent} from "./layout/return-book/return-book.component";
 import {LibrarianOverviewComponent} from "./layout/overviews/librarian-overview/librarian-overview.component";
@@ -94,7 +93,6 @@ var routes: Routes = [
   {path: 'admins', component: AdminOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'admins/add', component: RegisterAdminComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent},
   {path: '', component: HomeComponent}
 ];
 

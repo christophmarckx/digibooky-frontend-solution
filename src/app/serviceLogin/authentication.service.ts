@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LoginService} from "./login.service";
-import {Observable, tap} from "rxjs";
-import {Login} from "../model/Login";
+import {Observable, Subject, tap} from "rxjs";
+import {Login, Role} from "../model/Login";
 import {Member} from "../model/member";
 import {MemberService} from "../serviceMember/member.service";
+import {User} from "../model/User";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private loginService: LoginService, private memberService: MemberService) { }
+  public _user$ = new Subject<User>();
+
+  constructor(private loginService: LoginService, private memberService: MemberService) {
+  }
 
   login(email: string, password: string): Observable<Login> {
     return this.loginService.login(email, password)
@@ -21,8 +25,17 @@ export class AuthenticationService {
           this.fullname = login.fullname;
           this.username = email;
           this.password = password;
+          this.setNewUser(login);
         })
       );
+  }
+
+  setNewUser(login: { id: string, fullname: string, role: Role }) {
+    this._user$.next(new User(login.id, login.fullname, login.role));
+  }
+
+  get user$() {
+    return this._user$.asObservable();
   }
 
   addMember(member: Member) {
@@ -65,11 +78,11 @@ export class AuthenticationService {
     return sessionStorage.getItem("id")
   }
 
-  public set role(role: string | null) {
+  private set role(role: string | null) {
     sessionStorage.setItem("role", role!);
   }
 
-  public get role() {
+  private get role(): string | null {
     return sessionStorage.getItem("role");
   }
 
@@ -102,5 +115,9 @@ export class AuthenticationService {
 
   isMember() {
     return sessionStorage.getItem("role") == "member";
+  }
+
+  getUser() {
+    this.setNewUser({id: this.id!, fullname: this.fullname!, role: <Role>this.role!})
   }
 }

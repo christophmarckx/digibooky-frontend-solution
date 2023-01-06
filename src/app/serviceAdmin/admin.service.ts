@@ -9,28 +9,18 @@ import {Librarian} from "../model/Librarian";
   providedIn: 'root'
 })
 export class AdminService {
-  private credentials: string;
   private adminUrl: string;
-  private http: HttpClient;
 
-  constructor(http: HttpClient) {
-    this.credentials = "";
-    this.http = http;
+  constructor(private http: HttpClient) {
     this.adminUrl = `${environment.backendUrl}/admins`;
   }
 
   get getAdmins(): Observable<any> {
-    var email = "ad@min.com"
-    var password = "admin"
-    var authorization = btoa(email + ":" + password)
-    return this.http.get<Admin[]>(this.adminUrl, {headers: {"Authorization": `basic ${authorization}`}})
+    return this.http.get<Admin[]>(this.adminUrl)
   }
 
   public getAdmin(id: number): Observable<any> {
-    var email = "ad@min.com"
-    var password = "admin"
-    var authorization = btoa(email + ":" + atob(password))
-    return this.http.get<Admin>(this.adminUrl + "/" + id, {headers: {"Authorization": `basic ${authorization}`}})
+    return this.http.get<Admin>(this.adminUrl + "/" + id)
   }
 
   public getAnAdmin(email: string|null): Observable<Admin> {
@@ -42,14 +32,12 @@ export class AdminService {
             admin1 = admin;
           }
         });
-        this.credentials = admin1.email + ":" + admin1.password;
         return admin1;
       })
     );
   }
 
-  addAdmin(adminNew: Admin, admin: Admin): Observable<Admin> {
-    var authorization = btoa(admin.email + ":" + atob(admin.password));
-    return this.http.post<Librarian>(this.adminUrl, adminNew, {headers: {"Authorization": `basic ${authorization}`}});
+  addAdmin(adminNew: Admin): Observable<Admin> {
+    return this.http.post<Librarian>(this.adminUrl, adminNew);
   }
 }

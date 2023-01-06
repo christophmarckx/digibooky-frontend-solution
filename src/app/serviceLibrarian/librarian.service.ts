@@ -11,45 +11,13 @@ import {AdminService} from "../serviceAdmin/admin.service";
 })
 export class LibrarianService {
   private librarianUrl: string;
-  private id: number = 0;
-  private credentials!: string;
 
-  constructor(private http: HttpClient, private adminService: AdminService) {
+  constructor(private http: HttpClient) {
     this.librarianUrl = `${environment.backendUrl}/librarians`
   }
 
   get getLibrarians(): Observable<any> {
     return this.http.get<Librarian[]>(this.librarianUrl)
-  }
-
-  public getLibrarianid(email: string | null): Observable<number> {
-    return this.getLibrarians.pipe(
-      map((librarians: any) => {
-        librarians.forEach((librarian: any) => {
-          if (librarian.email == email) {
-            this.id = librarian.id;
-            console.log("ID: " + this.id);
-          }
-        });
-        return this.id;
-      })
-    );
-  }
-
-  public getLibrarian(email: string | null): Observable<Librarian> {
-    var librarian1: any;
-    return this.getLibrarians.pipe(
-      map((librarians: any) => {
-        librarians.forEach((librarian: any) => {
-          if (librarian.email == email) {
-            librarian1 = librarian;
-          }
-        });
-        console.log(librarian1.email + " " + librarian1.password)
-        this.credentials = librarian1.email + ":" + librarian1.password;
-        return librarian1;
-      })
-    );
   }
 
   addLibrarian(librarian: Librarian): Observable<Librarian> {

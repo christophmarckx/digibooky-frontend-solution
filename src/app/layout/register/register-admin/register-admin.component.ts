@@ -35,10 +35,7 @@ export class RegisterAdminComponent implements OnInit {
     this.errors = [];
     this.hasError(this._adminForm.getRawValue());
     if (this.errors.length == 0) {
-      this.adminService.getAnAdmin(this.authenticationService.username).subscribe(admin => {
-        this.adminService
-          .addAdmin(adminvalues, admin).subscribe();
-      });
+      this.adminService.addAdmin(adminvalues).subscribe();
       this.route.navigate(["/admins"]).then(() => window.location.reload())
     }
   }
