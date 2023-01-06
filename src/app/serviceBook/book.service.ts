@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {debounceTime, distinctUntilChanged, mergeMap, Observable, pipe, Subject, switchMap} from "rxjs";
 import {Book} from "../model/Book";
 import {Librarian} from "../model/Librarian";
 
@@ -17,11 +17,18 @@ export class BookService {
     this.bookUrl = `${environment.backendUrl}/books`;
   }
 
-  get getBooks(): Observable<any> {
+  getBooks(selectedValues$: Subject<any>) {
+    return selectedValues$
+      .pipe(
+        switchMap(selectValues => this.getSearchBooks(selectValues))
+      )
+  }
+
+  get books(): Observable<any> {
     return this.http.get<Book[]>(this.bookUrl)
   }
 
-  public getSearchBooks(isbn: string, title: string, author: string): Observable<any> {
+  public getSearchBooks({isbn, title, author}: { isbn: string, title: string, author: string }): Observable<any> {
     return this.http.get<Book[]>(this.bookUrl + "?isbn=" + isbn + "&title=" + title + "&author=" + author);
   }
 

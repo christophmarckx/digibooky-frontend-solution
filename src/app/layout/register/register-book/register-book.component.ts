@@ -33,7 +33,7 @@ export class RegisterBookComponent implements OnInit {
   constructor(private formBuilder: NonNullableFormBuilder, private librarianService: LibrarianService, private bookService: BookService, private route: Router) {
     this.formBuilder = formBuilder;
     this.books = [];
-    this.bookService.getBooks.subscribe(books => this.books = books);
+    this.bookService.books.subscribe(books => this.books = books);
     this.errors = [];
   }
 

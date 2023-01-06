@@ -4,6 +4,7 @@ import {Book} from "../../../model/Book";
 import {Router} from "@angular/router";
 import {NonNullableFormBuilder} from "@angular/forms";
 import {AuthenticationService} from "../../../serviceLogin/authentication.service";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Component({
   selector: 'app-book-overview',
@@ -11,13 +12,14 @@ import {AuthenticationService} from "../../../serviceLogin/authentication.servic
   styleUrls: ['./book-overview.component.css']
 })
 export class BookOverviewComponent implements OnInit {
-  private _books: Array<Book> = [];
+  private _books$!: Observable<Book[]>;
   private _searchForm = this.formBuilder.group({
       isbn: "",
       title: "",
       author: ""
     }
   );
+  public selectedValues$ = new BehaviorSubject<any>(this.searchForm.value)
 
   constructor(public authenticationService: AuthenticationService, private bookService: BookService, private route: Router, private formBuilder: NonNullableFormBuilder) {
   }
@@ -26,21 +28,19 @@ export class BookOverviewComponent implements OnInit {
     this.getBooks();
   }
 
-  public getBooks(): void {
-    this.bookService.getBooks.subscribe(books => {
-      this._books = books
-    })
+  private getBooks(): void {
+    this._books$ = this.bookService.getBooks(this.selectedValues$);
   }
 
-  get books(): Array<Book> {
-    return this._books;
-  }
-
-  onSubmit(selectedvalues: any): void {
-    this.bookService.getSearchBooks(selectedvalues.isbn, selectedvalues.title, selectedvalues.author).subscribe(books => this._books = books);
+  get books$(): Observable<Book[]> {
+    return this._books$;
   }
 
   get searchForm() {
     return this._searchForm;
+  }
+
+  bookId(index: number, book: Book) {
+    return book.isbn;
   }
 }

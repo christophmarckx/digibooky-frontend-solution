@@ -1,8 +1,7 @@
 <div class="container">
   <h1>Books</h1>
   <a class="btn btn-outline-secondary" *ngIf="authenticationService.isLibrarian()" routerLink="add">Add Book</a>
-  <form style="padding-bottom: 15px" class="row row-cols-md-4 row-cols-sm-1" [formGroup]="searchForm"
-        (ngSubmit)="onSubmit(searchForm.value)">
+  <form style="padding-bottom: 15px" class="row row-cols-md-4 row-cols-sm-1" [formGroup]="searchForm" (ngSubmit)="selectedValues$.next(searchForm.value)">
     <div>
       <input class="form-control" placeholder="ISBN number" id="isbn" type="text" formControlName="isbn">
     </div>
@@ -14,18 +13,21 @@
     </div>
     <button class="align-self-end btn btn-primary" type="submit">Search</button>
   </form>
-  <div class="row">
-    <div class="col-lg-3 col-md-6 mb-3" *ngFor="let book of books">
+  <div class="row" *ngIf="books$ | async as books; else loadingBooks">
+    <div class="col-lg-3 col-md-6 mb-3" *ngFor="let book of books; trackBy:bookId">
       <div class="card">
-        <img class="card-img-top" src="{{book.image}}" alt="Book image">
+        <img class="card-img-top mx-auto" src="{{book.image}}" alt="Book image">
         <div class="card-body">
-          <h5 class="card-title">{{book.title}}</h5>
-          <p class="card-text">{{book.authorFirstname}} {{book.authorLastname}}</p>
-          <p class="card-text">{{book.isbn}}</p>
-          <a class="btn btn-outline-secondary" routerLink="/books/{{book.isbn}}">Details</a>
+          <h5 class="card-title text-center">{{book.title}}</h5>
+          <p class="card-text text-center">{{book.authorFirstname}} {{book.authorLastname}}</p>
+          <div class="text-center">
+            <a class="btn btn-outline-secondary" routerLink="/books/{{book.isbn}}">Details</a>
+          </div>
         </div>
       </div>
     </div>
     <div class="text-center alert-warning " *ngIf="books.length == 0">No books found.</div>
   </div>
+  <ng-template #loadingBooks>
+  </ng-template>
 </div>
