@@ -33,3 +33,15 @@ img {
   width: 90%;
   padding-bottom: 2em;
 }
+
+.card {
+  background-color: #AABF65;
+}
+
+.form-control {
+  border-color: #4F592F;
+}
+
+.form-control:disabled {
+  background-color: #C1D973;
+}

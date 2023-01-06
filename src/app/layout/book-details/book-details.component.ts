@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, PRIMARY_OUTLET} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BookService} from "../../serviceBook/book.service";
 import {Book} from "../../model/Book"
 import {MemberService} from "../../serviceMember/member.service";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
+import {map, mergeMap, Observable} from "rxjs";
 
 @Component({
   selector: 'app-book-details',
@@ -11,36 +12,35 @@ import {AuthenticationService} from "../../serviceLogin/authentication.service";
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-  private _book: Book = <Book>{};
-  private isbn: string;
+  private _book$!: Observable<Book>;
   public lendernames: number = 0;
 
   constructor(private bookService: BookService,
               private memberService: MemberService,
               public authenticationService: AuthenticationService,
-              private route: Router) {
-    this.isbn = this.route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[1].path;
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.getBook();
+    this._book$ = this.route.paramMap.
+    pipe(
+      map(params => params.get('isbn')),
+      mergeMap(isbn => this.getBook(isbn!))
+    )
   }
 
-  public getBook(): void {
-    this.bookService.getBook(this.isbn).subscribe(book => {
-      this._book = book
-      console.log(this.lendernames + " & " + book.lenderNames.length)
-      this.lendernames = book.lenderNames.length;
-    });
+  public getBook(isbn: string) {
+    return this.bookService.getBook(isbn);
   }
 
-  get book(): Book {
-    return this._book;
+  get book$() {
+    return this._book$;
   }
 
-  lendBook() {
-    this.memberService.lentbook(this.authenticationService.id!, this.isbn).subscribe(() => {
-        this.route.navigate(["/books/" + this.authenticationService.id! + "/" + this.isbn + "/lent"])
+  lendBook(book: Book) {
+    this.memberService.lentbook(this.authenticationService.id!, book.isbn).subscribe(() => {
+        this.router.navigateByUrl(`/books/${this.authenticationService.id!}/${book.isbn}/lent`);
       }
     );
   }

@@ -1,24 +1,38 @@
 <div class="container">
   <h1>Details</h1>
-  <div class="row row-cols-md-3 row-cols-sm-1 g-0">
+  <div class="row row-cols-md-3 row-cols-sm-1 g-0" *ngIf="book$ | async as book">
     <div class="col-4">
       <div id="ninty">
         <div class="card">
           <h2 class="card-header">{{book.title}}</h2>
           <div class="card-body">
-            <p *ngIf="book.author != null">Written by: {{book.author}}</p>
-            <p *ngIf="book.author == null">Written by: {{book.authorFirstname}} {{book.authorLastname}}</p>
+            <div>
+              <label class="form-label">Written by</label>
+              <input class="form-control" value="{{book.author}}" disabled/>
+            </div>
 
             <div *ngIf="authenticationService.isLoggedIn()">
-              <p>Copies left: {{book.copies}}</p>
-              <p>Added on: {{book.arrival}}</p>
-              <p>Warranty: {{book.price}} euro</p>
-              <p class="small">ISBN: {{book.isbn}}</p>
+              <div>
+                <label for="copies" class="form-label">Copies left</label>
+                <input id="copies" class="form-control" value="{{book.copies}}" type="number" disabled/>
+              </div>
+              <div>
+                <label for="arrival" class="form-label">Added on</label>
+                <input id="arrival" class="form-control" value="{{book.arrival}}" type="date" disabled/>
+              </div>
+              <div>
+                <label for="warranty" class="form-label">Warranty</label>
+                <input id="warranty" class="form-control" value="{{book.price}} euro" type="text" disabled/>
+              </div>
+              <div>
+                <label for="isbn" class="form-label">ISBN</label>
+                <input id="isbn" class="form-control" value="{{book.isbn}}" type="text" disabled/>
+              </div>
             </div>
           </div>
           <div class="card-footer" *ngIf="authenticationService.isMember()">
             <a class="btn btn-outline-primary" *ngIf="book.copies != 0"
-               (click)="lendBook()">Lend Book</a>
+               (click)="lendBook(book)">Lend Book</a>
             <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
           </div>
         </div>
@@ -33,8 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="col-4"
-         *ngIf="lendernames != 0 && (authenticationService.isLoggedIn())">
+    <div class="col-4" *ngIf="lendernames != 0 && (authenticationService.isLoggedIn())">
       <div style="padding-right: 2em; padding-bottom: 2em;">
         <div class="card">
           <h3 class="card-header card-title">Book is borrowed by:</h3>
