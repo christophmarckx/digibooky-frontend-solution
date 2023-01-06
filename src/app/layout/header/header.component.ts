@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MemberService} from "../../serviceMember/member.service";
-import {Member} from "../../model/member";
+import {Member} from "../../model/Member";
 import {Admin} from "../../model/Admin";
 import {Librarian} from "../../model/Librarian";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {LoginService} from "./login.service";
 import {Observable, Subject, tap} from "rxjs";
 import {Login, Role} from "../model/Login";
-import {Member} from "../model/member";
+import {Member} from "../model/Member";
 import {MemberService} from "../serviceMember/member.service";
 import {User} from "../model/User";
 
@@ -39,15 +39,7 @@ export class AuthenticationService {
   }
 
   addMember(member: Member) {
-    return this.memberService.addMember(member)
-      .pipe(
-        tap(member => {
-          this.id = member.id.toString();
-          this.username = member.email;
-          this.role = 'member';
-
-        })
-      )
+    return this.memberService.addMember(member);
   }
 
   isLoggedIn(): boolean {

@@ -21,7 +21,7 @@
             <p style="text-align: left" class="col-8">{{member.street}} {{member.streetnumber}}
               <br> {{member.postcode}} {{member.city}}</p>
           </div>
-          <div *ngIf="member.fines > 0">
+          <div *ngIf="member.fines.length > 0">
             <div class="row row-cols-2">
               <p style="text-align: left" class="col-4">fine amount: </p>
               <p style="text-align: left" class="col-8">€ {{member.totalPrice}}</p>

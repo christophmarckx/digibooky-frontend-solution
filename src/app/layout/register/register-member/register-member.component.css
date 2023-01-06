@@ -32,3 +32,12 @@ input {
 label {
   margin-bottom: 5px;
 }
+
+.card {
+  background-color: #AABF65;
+}
+
+.form-control {
+  border-color: #4F592F;
+  background-color: #C1D973;
+}

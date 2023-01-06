@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {BookService} from "../../serviceBook/book.service";
 import {Router} from "@angular/router";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
-import {Member} from "../../model/member";
+import {Member} from "../../model/Member";
 
 @Component({
   selector: 'app-overdue-books',

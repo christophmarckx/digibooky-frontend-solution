@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MemberService} from "../../serviceMember/member.service";
-import {Member} from "../../model/member";
+import {Member} from "../../model/Member";
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
 import {map, mergeMap, Observable} from "rxjs";

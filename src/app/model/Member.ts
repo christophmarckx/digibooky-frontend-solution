@@ -1,4 +1,5 @@
 import {Book} from "./Book";
+import {Fine} from "./Fine";
 
 export interface Member {
   id: number;
@@ -11,7 +12,7 @@ export interface Member {
   streetnumber: string;
   postcode: string;
   city: string;
-  lendings: Array<Book>;
-  fines: number;
+  lendings: Book[];
+  fines: Fine[];
   totalPrice: number;
 }
