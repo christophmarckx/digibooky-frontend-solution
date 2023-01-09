@@ -10,61 +10,34 @@
       <form class="card" [formGroup]="memberForm" (ngSubmit)="onSubmit()">
         <h5 class="card-header">The fields with an * must be filled in.</h5>
         <div class="card-body">
-          <div>
-            <label class="form-label" for="inss">
-              INSS *
-            </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">INSS*</span>
             <input id="inss" type="number" formControlName="inss" class="form-control col-auto">
           </div>
-          <div>
-            <label class="form-label" for="firstname">
-              First name
-            </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">First name</span>
             <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
-          </div>
-          <div>
-            <label class="form-label" for="lastname">
-              Last name *
-            </label>
+            <span class="input-group-text">Last name*</span>
             <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
           </div>
-          <div>
-            <label class="form-label" for="email">
-              E-mail *
-            </label>
-            <input id="email" type="text" formControlName="email" class="form-control col-auto">
-          </div>
-          <div>
-            <label class="form-label" for="password">
-              Password *
-            </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">E-mail*</span>
+            <input id="email" type="email" formControlName="email" class="form-control col-auto">
+            <span class="input-group-text" >Password*</span>
             <input id="password" type="password" formControlName="password" class="form-control col-auto">
           </div>
-          <div>
-            <label class="form-label" for="streetname">
-              Street name
-            </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Street name</span>
             <input id="streetname" type="text" formControlName="street" class="form-control col-auto">
-          </div>
-          <div>
-            <label class="form-label" for="streetnumber">
-              Street number
-            </label>
+            <span class="input-group-text">Street number</span>
             <input id="streetnumber" type="text" formControlName="streetnumber" class="form-control col-auto">
           </div>
-          <div>
-            <label class="form-label" for="postalcode">
-              Postal code
-            </label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Postal code</span>
             <input id="postalcode" type="text" formControlName="postcode" class="form-control col-auto">
-          </div>
-          <div>
-            <label class="form-label" for="city">
-              City *
-            </label>
+            <span class="input-group-text">City*</span>
             <input id="city" type="text" formControlName="city" class="form-control col-auto">
           </div>
-
           <button style="margin-top: 10px" class="btn btn-outline-secondary" type="submit">Register</button>
         </div>
       </form>
