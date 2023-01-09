@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LoginService} from "./login.service";
-import {Observable, Subject, tap} from "rxjs";
+import {BehaviorSubject, mergeMap, Observable, Subject, tap} from "rxjs";
 import {Login, Role} from "../model/Login";
 import {Member} from "../model/Member";
 import {MemberService} from "../serviceMember/member.service";
@@ -11,7 +11,7 @@ import {User} from "../model/User";
 })
 export class AuthenticationService {
 
-  public _user$ = new Subject<User>();
+  public user$ = new BehaviorSubject<User>(this.user);
 
   constructor(private loginService: LoginService, private memberService: MemberService) {
   }
@@ -25,17 +25,13 @@ export class AuthenticationService {
           this.fullname = login.fullname;
           this.username = email;
           this.password = password;
-          this.setNewUser(login);
+          this.user$.next(this.user);
         })
       );
   }
 
-  setNewUser(login: { id: string, fullname: string, role: Role }) {
-    this._user$.next(new User(login.id, login.fullname, login.role));
-  }
-
-  get user$() {
-    return this._user$.asObservable();
+  get user() {
+    return new User(this.id!, this.fullname!, Role[this.role as keyof typeof Role]);
   }
 
   addMember(member: Member) {
@@ -83,6 +79,7 @@ export class AuthenticationService {
     sessionStorage.removeItem("id");
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("password");
+    this.user$.next(this.user);
   }
 
   private get password() {
@@ -98,18 +95,20 @@ export class AuthenticationService {
   }
 
   isLibrarian() {
-    return sessionStorage.getItem("role") == "librarian";
+    return this.user.isLibrarian();
   }
 
   isAdmin() {
-    return sessionStorage.getItem("role") == "admin";
+    return this.user.isAdmin();
   }
 
   isMember() {
-    return sessionStorage.getItem("role") == "member";
+    return this.user.isMember();
   }
 
-  getUser() {
-    this.setNewUser({id: this.id!, fullname: this.fullname!, role: <Role>this.role!})
+  getUser(userSubject: Subject<any>) {
+    return userSubject.pipe(
+      mergeMap(() => this.user$)
+    )
   }
 }

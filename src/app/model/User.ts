@@ -1,7 +1,7 @@
 import {Role} from "./Login";
 
 export class User {
-  constructor(public id: string, public fullname: string, private role: Role) {
+  constructor(public id: string | null, public fullname: string | null, private role: Role | null) {
   }
 
 

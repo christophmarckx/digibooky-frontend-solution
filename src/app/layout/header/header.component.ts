@@ -1,13 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {MemberService} from "../../serviceMember/member.service";
-import {Member} from "../../model/Member";
-import {Admin} from "../../model/Admin";
-import {Librarian} from "../../model/Librarian";
-import {LibrarianService} from "../../serviceLibrarian/librarian.service";
-import {AdminService} from "../../serviceAdmin/admin.service";
 import {DateService} from "../../serviceDate/date.service";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, ReplaySubject, Subject} from "rxjs";
 import {User} from "../../model/User";
 
 @Component({
@@ -18,6 +12,7 @@ import {User} from "../../model/User";
 export class HeaderComponent implements OnInit {
   public date!: string;
   public user$!: Observable<User>;
+  private userSubject$ = new BehaviorSubject(null);
 
   constructor(public authenticationService: AuthenticationService,
               private dateService: DateService) {
@@ -26,8 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateService.getDate().subscribe(date => this.date = date);
-    this.user$ = this.authenticationService.user$;
-    setTimeout(() => this.authenticationService.getUser(), 1);
+    this.user$ = this.authenticationService.getUser(this.userSubject$);
   }
 
   get getDate(): string {
@@ -36,6 +30,5 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    setTimeout(() => {this.authenticationService.getUser();}, 1);
   }
 }
