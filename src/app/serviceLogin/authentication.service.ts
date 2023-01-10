@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LoginService} from "./login.service";
-import {BehaviorSubject, mergeMap, Observable, Subject, tap} from "rxjs";
+import {BehaviorSubject, map, mergeMap, Observable, Subject, tap} from "rxjs";
 import {Login, Role} from "../model/Login";
 import {Member} from "../model/Member";
 import {MemberService} from "../serviceMember/member.service";
@@ -16,7 +16,7 @@ export class AuthenticationService {
   constructor(private loginService: LoginService, private memberService: MemberService) {
   }
 
-  login(email: string, password: string): Observable<Login> {
+  login(email: string, password: string): Observable<User> {
     return this.loginService.login(email, password)
       .pipe(
         tap(login => {
@@ -26,7 +26,8 @@ export class AuthenticationService {
           this.username = email;
           this.password = password;
           this.user$.next(this.user);
-        })
+        }),
+        map(() => this.user)
       );
   }
 

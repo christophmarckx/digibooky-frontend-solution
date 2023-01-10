@@ -3,6 +3,7 @@ import {NonNullableFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
 import {catchError, mergeMap, throwError} from "rxjs";
+import {Role} from "../../model/Login";
 
 @Component({
   selector: 'app-login',
@@ -59,11 +60,16 @@ export class LoginComponent implements OnInit {
           this.error = "email and/or password is incorrect";
           return throwError(err);
         }),
-        mergeMap(member => {
-          return this.route.navigateByUrl(`/members/${member.id}`)
+        mergeMap(user => {
+          if (user.isMember()) {
+            return this.route.navigateByUrl(`/members/${user.id}`)
+          } else {
+            return this.route.navigateByUrl(`/`)
+          }
         })
       )
-      .subscribe(_ => {});
+      .subscribe(_ => {
+      });
   }
 
   get loginForm() {
