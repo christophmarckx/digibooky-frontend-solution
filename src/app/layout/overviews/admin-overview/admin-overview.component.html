@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Admins</h1>
   <a class="btn btn-outline-secondary" routerLink="add">Add Admin</a>
-  <div class="row">
+  <div class="row" *ngIf="admins$ |async as admins">
     <div class="col-md-6 col-lg-4 mb-3" *ngFor="let admin of admins">
       <div class="card">
         <h5 class="card-header">{{admin.firstname}} {{admin.lastname}}</h5>

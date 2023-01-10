@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Admin} from "../../../model/Admin";
 import {AdminService} from "../../../serviceAdmin/admin.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-admin-overview',
@@ -8,7 +9,7 @@ import {AdminService} from "../../../serviceAdmin/admin.service";
   styleUrls: ['./admin-overview.component.css']
 })
 export class AdminOverviewComponent implements OnInit {
-  private _admins: Array<Admin> = [];
+  private _admins$!: Observable<Admin[]>;
 
   constructor(private adminService: AdminService) {}
 
@@ -17,10 +18,10 @@ export class AdminOverviewComponent implements OnInit {
   }
 
   public getAdmins(): void {
-    this.adminService.getAdmins.subscribe(admins => this._admins = admins)
+    this._admins$ = this.adminService.getAdmins();
   }
 
-  get admins(): Array<Admin> {
-    return this._admins;
+  get admins$() {
+    return this._admins$;
   }
 }
