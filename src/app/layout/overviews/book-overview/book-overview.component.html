@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Books</h1>
-  <a class="btn btn-outline-secondary" *ngIf="authenticationService.isLibrarian()" routerLink="add">Add Book</a>
+  <a class="btn btn-outline-secondary mb-1" *ngIf="authenticationService.isLibrarian()" routerLink="add">Add Book</a>
   <form style="padding-bottom: 15px" class="row row-cols-md-4 row-cols-sm-1" [formGroup]="searchForm" (ngSubmit)="selectedValues$.next(searchForm.value)">
     <div>
       <input class="form-control" placeholder="ISBN number" id="isbn" type="text" formControlName="isbn">
