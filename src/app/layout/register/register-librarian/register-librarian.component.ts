@@ -5,6 +5,7 @@ import {LibrarianService} from "../../../serviceLibrarian/librarian.service";
 import {Librarian} from "../../../model/Librarian";
 import {AdminService} from "../../../serviceAdmin/admin.service";
 import {AuthenticationService} from "../../../serviceLogin/authentication.service";
+import {mergeMap} from "rxjs";
 
 @Component({
   selector: 'app-register-librarian',
@@ -19,13 +20,13 @@ export class RegisterLibrarianComponent implements OnInit {
     lastname: "",
     password: ""
   });
-  private librarians: Array<Librarian>;
-  public errors: Array<string>;
+  public errors: string[] = [];
 
-  constructor(private authenticationService: AuthenticationService, private formBuilder: NonNullableFormBuilder, private adminService: AdminService, private librarianService: LibrarianService, private route: Router) {
-    this.librarians = [];
-    this.librarianService.getLibrarians.subscribe(librarians => this.librarians = librarians);
-    this.errors = [];
+  constructor(private authenticationService: AuthenticationService,
+              private formBuilder: NonNullableFormBuilder,
+              private adminService: AdminService,
+              private librarianService: LibrarianService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
@@ -33,15 +34,19 @@ export class RegisterLibrarianComponent implements OnInit {
 
   onSubmit(librarianvalues: any): void {
     // Process checkout data here
-    this.errors = [];
-    this.hasError(this._librarianForm.getRawValue());
+
+    this.errors = this.getError(this._librarianForm.getRawValue());
     if (this.errors.length == 0) {
-      this.librarianService.addLibrarian(librarianvalues).subscribe()
-      this.route.navigate(["/librarians"]).then(() => window.location.reload())
+      this.librarianService.addLibrarian(librarianvalues)
+        .pipe(
+          mergeMap(() => this.route.navigate(["/librarians"]))
+        )
+        .subscribe()
     }
   }
 
-  hasError(librarian: Librarian) {
+  getError(librarian: Librarian) {
+    let errors: string[] = [];
     if (librarian.email == "") {
       this.errors.push("E-mail is not filled in");
     }
@@ -54,17 +59,10 @@ export class RegisterLibrarianComponent implements OnInit {
     if (librarian.lastname == "") {
       this.errors.push("Lastname is not filled in");
     }
+    return errors;
   }
 
   get librarianForm() {
     return this._librarianForm;
   }
-
-  compare(email: string): boolean {
-    if (this.authenticationService.isLoggedIn()) {
-      return email === this.authenticationService.username;
-    }
-    return false;
-  }
-
 }

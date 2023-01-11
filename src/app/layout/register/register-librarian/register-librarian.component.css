@@ -1,34 +1,24 @@
-button {
+.form-control {
+  border-color: #4F592F;
+  background-color: #C1D973;
+}
+
+.input-group-text {
+  border-color: #4F592F;
+  background-color: #AA975A;
+}
+
+.btn-outline-secondary {
   color: #020202;
-  background-color: white;
-  border: 2px solid #97AA5A;
-  border-radius: 25px;
-  width: 10em;
+  background-color: #C1D973;
+  border: 1px solid #4F592F;
 }
 
-button:hover {
+.btn-outline-secondary:hover {
   color: white;
-  background-color: #97AA5A;
+  background-color: #30361C;
 }
 
-a {
-  color: #020202;
-  background-color: white;
-  border: 2px solid #97AA5A;
-  border-radius: 25px;
-  width: 10em;
-}
-
-a:hover {
-  color: white;
-  background-color: #97AA5A;
-}
-
-input {
-  width: 75%;
-  margin-bottom: 10px;
-}
-
-label {
-  margin-bottom: 5px;
+.card {
+  background-color: #AABF65;
 }

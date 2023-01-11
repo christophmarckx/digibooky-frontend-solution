@@ -1,39 +1,25 @@
-<div class="container">
+<div class="container mb-3">
   <h1>Register Librarian</h1>
   <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
     <div *ngFor="let error of errors">
       <p style="margin: 0">{{error}}</p>
     </div>
   </div>
-  <div class="row row-cols-lg-2">
-  <form [formGroup]="librarianForm" (ngSubmit)="onSubmit(librarianForm.value)">
-    <div>
-      <label for="email">
-        E-mail
-      </label>
-      <input id="email" type="text" formControlName="email" class="form-control col-auto">
+  <form class="card col-6" [formGroup]="librarianForm" (ngSubmit)="onSubmit(librarianForm.value)">
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <span class="input-group-text">E-mail</span>
+        <input id="email" type="text" formControlName="email" class="form-control col-auto">
+        <span class="input-group-text">Password</span>
+        <input id="password" type="password" formControlName="password" class="form-control col-auto">
+      </div>
+      <div class="input-group mb-3">
+        <label class="input-group-text">First name</label>
+        <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
+        <label class="input-group-text">Last name</label>
+        <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
+      </div>
+      <button class="btn btn-outline-secondary" type="submit">Register</button>
     </div>
-    <div>
-      <label for="password">
-        Password
-      </label>
-      <input id="password" type="password" formControlName="password" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="firstname">
-        First name
-      </label>
-      <input id="firstname" type="text" formControlName="firstname" class="form-control col-auto">
-    </div>
-    <div>
-      <label for="lastname">
-        Last name
-      </label>
-      <input id="lastname" type="text" formControlName="lastname" class="form-control col-auto">
-    </div>
-
-    <button style="margin-top: 10px" class="btn btn-outline-secondary button" type="submit">Register</button>
-
   </form>
-</div>
 </div>
