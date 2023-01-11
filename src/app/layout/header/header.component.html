@@ -12,8 +12,8 @@
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li><a class="fs-4 btn nav-btn m-1" routerLink="/books"><i class="bi bi-book m-1"></i>Books</a></li>
           <li><a class="fs-4 btn nav-btn m-1" routerLink="/stories"><i class="bi bi-card-image m-1"></i>Stories</a></li>
-          <li *ngIf="user.isLibrarian()"><a class="fs-4 nav-link" routerLink="/books/overdue">Overdues</a></li>
-          <li *ngIf="user.isLibrarian()"><a class="fs-4 nav-link" routerLink="/memberOverview">Members</a></li>
+          <li *ngIf="user.isLibrarian()"><a class="fs-4 btn nav-btn m-1" routerLink="/books/overdue"><i class="bi bi-coin m-1"></i>Overdues</a></li>
+          <li *ngIf="user.isLibrarian()"><a class="fs-4 btn nav-btn m-1" routerLink="/memberOverview"><i class="bi bi-people-fill m-1"></i>Members</a></li>
           <li *ngIf="user.isAdmin()"><a class="fs-4 btn nav-btn m-1" routerLink="/members"><i class="bi bi-people-fill m-1"></i>Members</a></li>
           <li *ngIf="user.isAdmin()"><a class="fs-4 btn nav-btn m-1" routerLink="/librarians"><i class="bi bi-person-circle m-1"></i>Librarians</a>
           </li>

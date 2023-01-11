@@ -1,65 +1,54 @@
-<div class="container">
-  <h1>Update {{book.title}}</h1>
-  <h2>by {{book.authorFirstname}} {{book.authorLastname}}</h2>
+<div class="container mb-3">
+  <h1>Update {{bookForm.value.title}}</h1>
+  <h2>by {{bookForm.value.authorFirstname}} {{bookForm.value.authorLastname}}</h2>
   <div class="alert-danger" style="padding:1em; margin-bottom: 0" *ngIf="errors.length != 0">
     <div *ngFor="let error of errors">
       <p style="margin: 0">{{error}}</p>
     </div>
   </div>
-  <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
-    <div>
-      <label class="col-form-label" for="isbn">
-        ISBN:
-      </label>
-      <input readonly class="form-control col-auto" placeholder="ISBN" id="isbn" type="text" value="{{book.isbn}}"
-             formControlName="isbn">
-    </div>
-    <div>
-      <label class="col-form-label" for="title">
-        Title:
-      </label>
-      <input class="form-control col-auto" placeholder="Title" id="title" type="text" value="{{book.title}}"
-             formControlName="title">
-    </div>
-    <div>
-      <label class="col-form-label" for="authorFirstname">
-        Author First name:
-      </label>
-      <input class="form-control col-auto" placeholder="Author First Name" id="authorFirstname" type="text"
-             value="{{book.authorFirstname}}"
-             formControlName="authorFirstname">
-    </div>
-    <div>
-      <label class="col-form-label" for="authorLastname">
-        Author Last name:
-      </label>
-      <input class="form-control col-auto" placeholder="Author Last Name" id="authorLastname" type="text"
-             value="{{book.authorLastname}}" formControlName="authorLastname">
-    </div>
-    <div>
-      <label class="col-form-label" for="price">
-        Price:
-      </label>
-      <input class="form-control col-auto" placeholder="Price" id="price" type="text" value="{{book.price}}"
-             formControlName="price">
-    </div>
-    <div>
-      <label class="col-form-label" for="copies">
-        Copies:
-      </label>
-      <input class="form-control col-auto" placeholder="Copies" id="copies" type="text" value="{{book.copies}}"
-             formControlName="copies">
-    </div>
-    <div>
-      <label class="col-form-label" for="url">
-        Image URL:
-      </label>
-      <input class="form-control col-auto" placeholder="URL" id="url" type="text" value="{{book.image}}"
-             formControlName="url">
-    </div>
-    <div style="padding-bottom: 5px">
-      <button style="margin-top: 10px; margin-right: 1em" class="btn btn-secondary" type="submit">Save book</button>
-      <a style="float: right; margin-top: 10px" class="btn btn-secondary" routerLink="/books/{{book.isbn}}">Back</a>
-    </div>
-  </form>
+  <div class="col-4">
+    <form class="card row" [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+      <div class="card-body">
+        <div>
+          <label class="form-label">Title</label>
+          <input class="form-control" formControlName="title"/>
+        </div>
+
+        <div>
+          <label class="form-label">Author firstname</label>
+          <input class="form-control" formControlName="authorFirstname"/>
+        </div>
+
+        <div>
+          <label class="form-label">Author lastname</label>
+          <input class="form-control" formControlName="authorLastname"/>
+        </div>
+
+        <div>
+          <label for="copies" class="form-label">Copies left</label>
+          <input id="copies" class="form-control" value="{{bookForm.value.copies}}" type="number" disabled/>
+        </div>
+        <div>
+          <label for="arrival" class="form-label">Added on</label>
+          <input id="arrival" class="form-control" formControlName="arrival" type="date"/>
+        </div>
+        <div>
+          <label for="warranty" class="form-label">Price</label>
+          <input id="warranty" class="form-control" formControlName="price" type="text"/>
+        </div>
+        <div>
+          <label for="isbn" class="form-label">ISBN</label>
+          <input id="isbn" class="form-control" value="{{bookForm.value.isbn}}" type="text" disabled/>
+        </div>
+        <div>
+          <label for="imageUrl" class="form-label">Image Url</label>
+          <input id="imageUrl" class="form-control" formControlName="image" type="text"/>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-outline-secondary" type="submit">Save book</button>
+        <a class="float-end btn btn-outline-secondary" routerLink="/books/{{bookForm.value.isbn}}">Back</a>
+      </div>
+    </form>
+  </div>
 </div>
