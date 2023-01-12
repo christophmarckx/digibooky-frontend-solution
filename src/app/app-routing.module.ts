@@ -1,51 +1,51 @@
 import {inject, NgModule} from '@angular/core';
-import {Story1Component} from "./layout/stories/story1/story1.component";
-import {Story2Component} from "./layout/stories/story2/story2.component";
-import {Story3Component} from "./layout/stories/story3/story3.component";
-import {Story4Component} from "./layout/stories/story4/story4.component";
-import {Story5Component} from "./layout/stories/story5/story5.component";
-import {Story6aComponent} from "./layout/stories/story6a/story6a.component";
-import {Story7Component} from "./layout/stories/story7/story7.component";
-import {Story8Component} from "./layout/stories/story8/story8.component";
-import {Story9Component} from "./layout/stories/story9/story9.component";
-import {Story10aComponent} from "./layout/stories/story10a/story10a.component";
-import {Story10bComponent} from "./layout/stories/story10b/story10b.component";
-import {Story10cComponent} from "./layout/stories/story10c/story10c.component";
-import {Story11Component} from "./layout/stories/story11/story11.component";
-import {Story12Component} from "./layout/stories/story12/story12.component";
-import {Story13Component} from "./layout/stories/story13/story13.component";
-import {Story14Component} from "./layout/stories/story14/story14.component";
-import {Story15Component} from "./layout/stories/story15/story15.component";
 
 import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./layout/home/home.component";
-import {BookOverviewComponent} from "./layout/overviews/book-overview/book-overview.component";
-import {BookDetailsComponent} from "./layout/book-details/book-details.component";
-import {RegisterMemberComponent} from "./layout/register/register-member/register-member.component";
-import {LoginComponent} from "./layout/login/login.component";
-import {ProfileComponent} from "./layout/profile/profile.component";
-import {ReturnBookComponent} from "./layout/return-book/return-book.component";
-import {LibrarianOverviewComponent} from "./layout/overviews/librarian-overview/librarian-overview.component";
-import {AdminOverviewComponent} from "./layout/overviews/admin-overview/admin-overview.component";
-import {RegisterLibrarianComponent} from "./layout/register/register-librarian/register-librarian.component";
-import {RegisterAdminComponent} from "./layout/register/register-admin/register-admin.component";
-import {MemberOverviewComponent} from "./layout/overviews/member-overview/member-overview.component";
-import {RegisterBookComponent} from "./layout/register/register-book/register-book.component";
-import {AuthGuardServiceLibrarianService} from "./serviceAuth/auth-guard-service-librarian.service";
-import {AuthGuardServiceMemberService} from "./serviceAuth/auth-guard-service-member.service";
-import {AuthGuardServiceAdminService} from "./serviceAuth/auth-guard-service-admin.service";
-import {OverdueBooksComponent} from "./layout/overdue-books/overdue-books.component";
-import {UpdateBookComponent} from "./layout/update-book/update-book.component";
-import {DeleteBookComponent} from "./layout/delete-book/delete-book.component";
-import {HistoryComponent} from "./layout/history/history.component";
-import {Story17Component} from "./layout/stories/story17/story17.component";
-import {Story18Component} from "./layout/stories/story18/story18.component";
-import {Story19Component} from "./layout/stories/story19/story19.component";
-import {Story21Component} from "./layout/stories/story21/story21.component";
-import {Story20Component} from "./layout/stories/story20/story20.component";
-import {Story16Component} from "./layout/stories/story16/story16.component";
-import {StoriesOverviewComponent} from "./layout/stories-overview/stories-overview.component";
-import {AuthenticationService} from "./serviceLogin/authentication.service";
+import {Story1Component} from "./components/stories/story1/story1.component";
+import {Story2Component} from "./components/stories/story2/story2.component";
+import {Story3Component} from "./components/stories/story3/story3.component";
+import {StoriesOverviewComponent} from "./components/stories/stories-overview/stories-overview.component";
+import {BookOverviewComponent} from "./components/book/book-overview/book-overview.component";
+import {RegisterBookComponent} from "./components/book/register-book/register-book.component";
+import {AuthGuardServiceLibrarianService} from "./services/serviceAuth/auth-guard-service-librarian.service";
+import {OverdueBooksComponent} from "./components/book/overdue-books/overdue-books.component";
+import {BookDetailsComponent} from "./components/book/book-details/book-details.component";
+import {UpdateBookComponent} from "./components/book/update-book/update-book.component";
+import {DeleteBookComponent} from "./components/book/delete-book/delete-book.component";
+import {ReturnBookComponent} from "./components/book/return-book/return-book.component";
+import {AuthGuardServiceMemberService} from "./services/serviceAuth/auth-guard-service-member.service";
+import {HistoryComponent} from "./components/book/history/history.component";
+import {MemberOverviewComponent} from "./components/user/member-overview/member-overview.component";
+import {HomeComponent} from "./components/layout/home/home.component";
+import {AuthenticationService} from "./services/serviceLogin/authentication.service";
+import {RegisterMemberComponent} from "./components/user/register-member/register-member.component";
+import {ProfileComponent} from "./components/user/profile/profile.component";
+import {LibrarianOverviewComponent} from "./components/user/librarian-overview/librarian-overview.component";
+import {AuthGuardServiceAdminService} from "./services/serviceAuth/auth-guard-service-admin.service";
+import {RegisterLibrarianComponent} from "./components/user/register-librarian/register-librarian.component";
+import {AdminOverviewComponent} from "./components/user/admin-overview/admin-overview.component";
+import {RegisterAdminComponent} from "./components/user/register-admin/register-admin.component";
+import {LoginComponent} from "./components/user/login/login.component";
+import {Story4Component} from "./components/stories/story4/story4.component";
+import {Story5Component} from "./components/stories/story5/story5.component";
+import {Story6aComponent} from "./components/stories/story6a/story6a.component";
+import {Story7Component} from "./components/stories/story7/story7.component";
+import {Story8Component} from "./components/stories/story8/story8.component";
+import {Story10bComponent} from "./components/stories/story10b/story10b.component";
+import {Story9Component} from "./components/stories/story9/story9.component";
+import {Story10aComponent} from "./components/stories/story10a/story10a.component";
+import {Story10cComponent} from "./components/stories/story10c/story10c.component";
+import {Story11Component} from "./components/stories/story11/story11.component";
+import {Story12Component} from "./components/stories/story12/story12.component";
+import {Story13Component} from "./components/stories/story13/story13.component";
+import {Story14Component} from "./components/stories/story14/story14.component";
+import {Story15Component} from "./components/stories/story15/story15.component";
+import {Story16Component} from "./components/stories/story16/story16.component";
+import {Story17Component} from "./components/stories/story17/story17.component";
+import {Story18Component} from "./components/stories/story18/story18.component";
+import {Story19Component} from "./components/stories/story19/story19.component";
+import {Story20Component} from "./components/stories/story20/story20.component";
+import {Story21Component} from "./components/stories/story21/story21.component";
 
 var routes: Routes = [
   // The Story instructions:
@@ -81,12 +81,11 @@ var routes: Routes = [
   {path: 'books/:isbn', component: BookDetailsComponent},
   {path: 'books/:isbn/update', component: UpdateBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:isbn/delete', component: DeleteBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
-  {path: 'books/:id/:lendingId/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
+  {path: 'lendings/:lendingId/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:isbn/history', component: HistoryComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'members', component: MemberOverviewComponent, canActivate: [() => inject(AuthenticationService).isLibrarian() || inject(AuthenticationService).isAdmin()]},
   {path: 'members/add', component: RegisterMemberComponent},
-  {path: 'members/:id', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
-  {path: 'memberOverview/:id', component: ProfileComponent, canActivate: [AuthGuardServiceLibrarianService]},
+  {path: 'members/:id', component: ProfileComponent, canActivate: [() => inject(AuthenticationService).isLibrarian() || inject(AuthenticationService).isMember()]},
   {path: 'librarians', component: LibrarianOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'librarians/add', component: RegisterLibrarianComponent, canActivate: [AuthGuardServiceAdminService]},
   {path: 'admins', component: AdminOverviewComponent, canActivate: [AuthGuardServiceAdminService]},

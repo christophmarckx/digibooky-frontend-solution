@@ -3,11 +3,11 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {LayoutModule} from "./layout/layout.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AuthenticationInterceptor} from "./authentication.interceptor";
+import {LayoutModule} from "./components/layout.module";
 
 @NgModule({
   declarations: [
