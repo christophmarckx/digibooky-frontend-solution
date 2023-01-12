@@ -1,29 +1,32 @@
 <div class="container">
   <h1>Overdue books</h1>
-  <div *ngIf="books.length >= 1">
-    <div class="row">
-      <div class="col-md-6 col-lg-4" *ngFor="let member of books">
-        <div *ngFor="let book of member.lendings">
-          <div class="card">
-            <div class="card-header">
-              <p class="nopadding fw-bold">Title: {{book.title}}</p>
-            </div>
-            <div class="card-body">
-              <p>ISBN: {{book.isbn}}</p>
-              <p>Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
-              <p class="nopadding">Duedate: {{book.dueDate}}</p>
-            </div>
-            <div class="card-footer">
-              <p class="nopadding">By: {{member.firstname}} {{member.lastname}}</p>
-            </div>
+  <div *ngIf="overdueBooks$ | async as overdueBooks; else loading">
+    <div class="row" *ngIf="overdueBooks.length  !== 0">
+      <div class="col-md-6 col-lg-4" *ngFor="let overdueBook of overdueBooks">
+        <div class="card">
+          <div class="card-header">
+            <p class="nopadding fw-bold">Title: {{overdueBook.book.title}}</p>
+          </div>
+          <div class="card-body">
+            <p>ISBN: {{overdueBook.book.isbn}}</p>
+            <p>Author: {{overdueBook.book.authorFirstname}} {{overdueBook.book.authorLastname}}</p>
+            <p class="nopadding">Duedate: {{overdueBook.dueDate}}</p>
+          </div>
+          <div class="card-footer">
+            <p class="nopadding">By: {{overdueBook.lender.lenderFirstname}} {{overdueBook.lender.lenderLastname}}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-    <div *ngIf="books.length == 0">
+    <div *ngIf="overdueBooks.length == 0">
       <p class="text-center alert-warning ">
         There are no overdue books found (yet).
       </p>
     </div>
+  </div>
+  <ng-template #loading>
+    <p class="text-center alert-warning ">
+      Loading
+    </p>
+  </ng-template>
 </div>

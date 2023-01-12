@@ -29,12 +29,4 @@ export class MemberService {
   lendbook(id: string, isbn: string): Observable<any> {
     return this.http.post(`${environment.backendUrl}/books/${isbn}/lendings`, {memberId: id});
   }
-
-  returnBook(id: string, lendingId: string): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return`, null)
-  }
-
-  returnBookDamaged(id: string, lendingId: string): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/books/${id}/${lendingId}/return/damaged`, null)
-  }
 }

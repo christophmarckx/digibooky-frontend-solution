@@ -4,6 +4,9 @@ import {BookService} from "../../serviceBook/book.service";
 import {Router} from "@angular/router";
 import {LibrarianService} from "../../serviceLibrarian/librarian.service";
 import {Member} from "../../model/Member";
+import {LendingService} from "../../serviceLending/lending.service";
+import {Observable} from "rxjs";
+import {Lending} from "../../model/Lending";
 
 @Component({
   selector: 'app-overdue-books',
@@ -11,9 +14,9 @@ import {Member} from "../../model/Member";
   styleUrls: ['./overdue-books.component.css']
 })
 export class OverdueBooksComponent implements OnInit {
-  private _member: Array<Member> = [];
+  public overdueBooks$!: Observable<Lending[]>;
 
-  constructor(private bookService: BookService) {
+  constructor(private lendingService: LendingService) {
   }
 
   ngOnInit(): void {
@@ -21,10 +24,6 @@ export class OverdueBooksComponent implements OnInit {
   }
 
   public getOverdueBooks(): void {
-    this.bookService.overdueBooks().subscribe(member => this._member = member);
-  }
-
-  get books(): Array<Member> {
-    return this._member;
+    this.overdueBooks$ = this.lendingService.getOverdueBooks();
   }
 }

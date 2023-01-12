@@ -1,31 +1,28 @@
 <div class="container">
-  <div>
-    <h1>Return Book</h1>
-    <a style="width: auto" class="btn btn-secondary" routerLink="/members/{{id}}">Back</a>
+  <h1>Return Book</h1>
+  <div *ngIf="lending$ | async as lending">
+    <a style="width: auto" class="btn btn-secondary" routerLink="/members/{{lending.lender.lenderId}}">Back</a>
 
     <div class="row row-cols-sm-1 row-cols-lg-3">
       <div style="padding-bottom: 15px" class="col-4 image">
-        <img src="{{book.image}}" alt="hier komt een afbeelding">
+        <img src="{{lending.book.image}}" alt="hier komt een afbeelding">
       </div>
       <div style="padding-bottom: 15px" class="col-lg-4">
         <div class="card">
-          <p class="card-header">Title: {{book.title}}</p>
+          <p class="card-header">Title: {{lending.book.title}}</p>
           <div class="card-body">
-            <p *ngIf="book.author != null">Author: {{book.author}}</p>
-            <p *ngIf="book.author == null">Author: {{book.authorFirstname}} {{book.authorLastname}}</p>
-            <p>DueDate: {{book.dueDate}}</p>
+            <p *ngIf="lending.book.author != null">Author: {{lending.book.author}}</p>
+            <p *ngIf="lending.book.author == null">
+              Author: {{lending.book.authorFirstname}} {{lending.book.authorLastname}}</p>
+            <p>DueDate: {{lending.dueDate}}</p>
             <form [formGroup]="returnForm">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="damaged" name="damaged" (change)="setDamaged()">
                 <label class="form-check-label" for="damaged">Damaged</label>
               </div>
             </form>
-            <a *ngIf="!damaged" class="btn btn-outline-secondary"
-               href="/members/{{id}}"
-               (click)="returnBook()">Return {{book.title}}</a>
-            <a *ngIf="damaged" class="btn btn-outline-secondary"
-               href="/members/{{id}}"
-               (click)="returnBookBroken()">Return {{book.title}}, broken</a>
+            <a *ngIf="!damaged" class="btn btn-outline-secondary" (click)="returnBook(lending)">Return {{lending.book.title}}</a>
+            <a *ngIf="damaged" class="btn btn-outline-secondary" (click)="returnBookBroken(lending)">Return {{lending.book.title}}, broken</a>
           </div>
         </div>
       </div>

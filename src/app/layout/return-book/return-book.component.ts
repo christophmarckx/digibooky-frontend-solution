@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from "../../model/Book";
-import {PRIMARY_OUTLET, Router} from "@angular/router";
+import {ActivatedRoute, PRIMARY_OUTLET, Router} from "@angular/router";
 import {BookService} from "../../serviceBook/book.service";
 import {MemberService} from "../../serviceMember/member.service";
 import {NonNullableFormBuilder} from "@angular/forms";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
+import {mergeMap, Observable} from "rxjs";
+import {LendingService} from "../../serviceLending/lending.service";
+import {Lending} from "../../model/Lending";
 
 @Component({
   selector: 'app-return-book',
@@ -14,41 +17,43 @@ import {AuthenticationService} from "../../serviceLogin/authentication.service";
 export class ReturnBookComponent implements OnInit {
   public returnForm = this.formBuilder.group({
     damaged: false,
-    brokenPart: ""
   });
-  public book!: Book;
-  public lendingId: string;
+  public lending$!: Observable<Lending>;
   public damaged: boolean;
-  public id: string;
 
   constructor(public formBuilder: NonNullableFormBuilder,
-              private bookService: BookService,
-              private memberService: MemberService,
+              private lendingService: LendingService,
               private authenticationService: AuthenticationService,
-              private route: Router) {
-    this.lendingId = route.parseUrl(this.route.url).root.children[PRIMARY_OUTLET].segments[2].path
+              private router: Router,
+              private route: ActivatedRoute
+  ) {
     this.damaged = false;
-    this.id = this.authenticationService.id!;
   }
 
   ngOnInit(): void {
+    this.lending$ = this.route.paramMap.pipe(
+      mergeMap(params => this.lendingService.getLending(params.get("lendingId")!))
+    )
   }
 
   setDamaged() {
     this.damaged = !this.damaged;
   }
 
-  public returnBook() {
-    this.memberService.returnBook(this.authenticationService.id!, this.lendingId).subscribe(() => {
-      this.route.navigate(["/members/" + this.authenticationService.id!]).then(() => window.location.reload())
-    })
+  public returnBook(lending: Lending) {
+    this.lendingService.returnBook(lending)
+      .pipe(
+        mergeMap(() => this.router.navigate(["/members/" + this.authenticationService.id!]))
+      )
+      .subscribe();
   }
 
-  public returnBookBroken() {
-    this.memberService.returnBookDamaged(this.authenticationService.id!, this.lendingId).subscribe(() => {
-        this.route.navigate(["/members/" + this.authenticationService.id!]).then(() => window.location.reload())
-      }
-    )
+  public returnBookBroken(lending: Lending) {
+    this.lendingService.returnBook(lending)
+      .pipe(
+        mergeMap(() => this.router.navigate(["/members/" + this.authenticationService.id!]))
+      )
+      .subscribe();
   }
 
 }

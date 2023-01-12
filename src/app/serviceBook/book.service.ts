@@ -10,10 +10,8 @@ import {Librarian} from "../model/Librarian";
 })
 export class BookService {
   private bookUrl: string;
-  private http: HttpClient;
 
-  constructor(http: HttpClient) {
-    this.http = http;
+  constructor(private http: HttpClient) {
     this.bookUrl = `${environment.backendUrl}/books`;
   }
 
