@@ -17,10 +17,10 @@
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
       <div *ngFor="let lending of history.lendinghistory">
         <div class="card">
-          <p class="card-header">By: {{lending.firstname}} {{lending.lastname}}</p>
+          <p class="card-header">By: {{lending.lender.lenderFirstname}} {{lending.lender.lenderLastname}}</p>
           <div class="card-body">
             <p>From: {{lending.start}}</p>
-            <p>Untill: {{lending.end}}</p>
+            <p>Untill: {{lending.dueDate}}</p>
           </div>
         </div>
       </div>

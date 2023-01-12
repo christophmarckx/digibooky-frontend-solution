@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {inject, NgModule} from '@angular/core';
 import {Story1Component} from "./layout/stories/story1/story1.component";
 import {Story2Component} from "./layout/stories/story2/story2.component";
 import {Story3Component} from "./layout/stories/story3/story3.component";
@@ -45,6 +45,7 @@ import {Story21Component} from "./layout/stories/story21/story21.component";
 import {Story20Component} from "./layout/stories/story20/story20.component";
 import {Story16Component} from "./layout/stories/story16/story16.component";
 import {StoriesOverviewComponent} from "./layout/stories-overview/stories-overview.component";
+import {AuthenticationService} from "./serviceLogin/authentication.service";
 
 var routes: Routes = [
   // The Story instructions:
@@ -80,11 +81,9 @@ var routes: Routes = [
   {path: 'books/:isbn', component: BookDetailsComponent},
   {path: 'books/:isbn/update', component: UpdateBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
   {path: 'books/:isbn/delete', component: DeleteBookComponent, canActivate: [AuthGuardServiceLibrarianService]},
-  {path: 'books/:id/:isbn/lent', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:id/:lendingId/return', component: ReturnBookComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'books/:isbn/history', component: HistoryComponent, canActivate: [AuthGuardServiceLibrarianService]},
-  {path: 'members', component: MemberOverviewComponent, canActivate: [AuthGuardServiceAdminService]},
-  {path: 'memberOverview', component: MemberOverviewComponent, canActivate: [AuthGuardServiceLibrarianService]},
+  {path: 'members', component: MemberOverviewComponent, canActivate: [() => inject(AuthenticationService).isLibrarian() || inject(AuthenticationService).isAdmin()]},
   {path: 'members/add', component: RegisterMemberComponent},
   {path: 'members/:id', component: ProfileComponent, canActivate: [AuthGuardServiceMemberService]},
   {path: 'memberOverview/:id', component: ProfileComponent, canActivate: [AuthGuardServiceLibrarianService]},

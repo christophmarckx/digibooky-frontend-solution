@@ -7,6 +7,7 @@ import {AuthenticationService} from "../../../serviceLogin/authentication.servic
 import {catchError, throwError} from "rxjs";
 import {Book} from "../../../model/Book";
 import {Fine} from "../../../model/Fine";
+import {Lending} from "../../../model/Lending";
 
 @Component({
   selector: 'app-register-member',
@@ -25,7 +26,7 @@ export class RegisterMemberComponent implements OnInit {
       streetnumber: '',
       postcode: '',
       city: '',
-      lendings: this.formBuilder.array<Book>([]),
+      lendings: this.formBuilder.array<Lending>([]),
       fines: this.formBuilder.array<Fine>([]),
       totalPrice: 0,
     }

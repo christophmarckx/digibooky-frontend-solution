@@ -2,26 +2,3 @@ img {
   max-width: 90%;
   padding-bottom: 2em;
 }
-
-.card {
-  background-color: #AABF65;
-}
-
-.form-control {
-  border-color: #4F592F;
-}
-
-.form-control:disabled {
-  background-color: #C1D973;
-}
-
-.btn-outline-secondary {
-  color: #020202;
-  background-color: #C1D973;
-  border: 1px solid #4F592F;
-}
-
-.btn-outline-secondary:hover {
-  color: white;
-  background-color: #30361C;
-}

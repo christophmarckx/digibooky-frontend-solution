@@ -18,7 +18,7 @@
                class="inputTextfield form-control col-auto">
       </div>
 
-      <button style="margin-top: 10px" class="button" type="submit">Login</button>
+      <button class="btn btn-outline-secondary mt-1" type="submit">Login</button>
     </form>
 
     <form class="col-6" [formGroup]="roleForm" (ngSubmit)="onSubmit2(roleForm.value)">
@@ -36,7 +36,7 @@
         <input id="admin" class="form-check-input" type="radio" name="role" formControlName="role" value="admin">
         <label for="admin" class="form-check-label">Admin</label> <br>
       </div>
-      <button class="button" type="submit">Use credentials</button>
+      <button class="btn btn-outline-secondary mt-1" type="submit">Use credentials</button>
     </form>
   </div>
   <div *ngIf="error" class="row">

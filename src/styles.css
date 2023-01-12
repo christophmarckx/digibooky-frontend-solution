@@ -1,2 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+.card {
+  background-color: #AABF65;
+  border-color: #4F592F;
+}
 
+.form-control {
+  border-color: #4F592F;
+  background-color: #C1D973;
+}
+
+.form-control:disabled {
+  color: white;
+  background-color: #4F592F;
+}
+
+.input-group-text {
+  border-color: #4F592F;
+  background-color: #AA975A;
+}
+
+.btn-outline-secondary {
+  color: #020202;
+  background-color: #AA975A;
+  border: 1px solid #4F592F;
+}
+
+.btn-outline-secondary:hover {
+  color: white;
+  background-color: #30361C;
+}
+
+.alert-message {
+  color: #020202;
+  background-color: #C3DB74;
+  border-color: #30361C;
+}

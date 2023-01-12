@@ -4,7 +4,7 @@ import {BookService} from "../../serviceBook/book.service";
 import {Book} from "../../model/Book"
 import {MemberService} from "../../serviceMember/member.service";
 import {AuthenticationService} from "../../serviceLogin/authentication.service";
-import {map, mergeMap, Observable} from "rxjs";
+import {catchError, map, mergeMap, Observable, throwError} from "rxjs";
 
 @Component({
   selector: 'app-book-details',
@@ -13,7 +13,7 @@ import {map, mergeMap, Observable} from "rxjs";
 })
 export class BookDetailsComponent implements OnInit {
   private _book$!: Observable<Book>;
-  public lendernames: number = 0;
+  public message: string | null = null;
 
   constructor(private bookService: BookService,
               private memberService: MemberService,
@@ -23,8 +23,7 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._book$ = this.route.paramMap.
-    pipe(
+    this._book$ = this.route.paramMap.pipe(
       map(params => params.get('isbn')),
       mergeMap(isbn => this.getBook(isbn!))
     )
@@ -39,9 +38,15 @@ export class BookDetailsComponent implements OnInit {
   }
 
   lendBook(book: Book) {
-    this.memberService.lentbook(this.authenticationService.id!, book.isbn).subscribe(() => {
-        this.router.navigateByUrl(`/books/${this.authenticationService.id!}/${book.isbn}/lent`);
-      }
-    );
+    this.memberService.lendbook(this.authenticationService.id!, book.isbn)
+      .pipe(
+        catchError(err => {
+          this.message = err.error.message;
+          console.log(err);
+          return throwError(err);
+        }),
+        mergeMap(() => this.router.navigateByUrl(`/members/${this.authenticationService.id!}`))
+      )
+      .subscribe();
   }
 }

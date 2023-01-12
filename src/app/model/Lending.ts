@@ -1,8 +1,10 @@
+import {Book} from "./Book";
+import {Lender} from "./Lender";
+
 export interface Lending {
-  isbn: string,
-  memberid: string,
-  firstname: string,
-  lastname: string,
+  id: string
+  lender: Lender,
+  book: Book
   start: string,
-  end: string
+  dueDate: string
 }

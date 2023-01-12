@@ -1,5 +1,5 @@
-import {Book} from "./Book";
 import {Fine} from "./Fine";
+import {Lending} from "./Lending";
 
 export interface Member {
   id: number;
@@ -12,7 +12,7 @@ export interface Member {
   streetnumber: string;
   postcode: string;
   city: string;
-  lendings: Book[];
+  lendings: Lending[];
   fines: Fine[];
   totalPrice: number;
 }

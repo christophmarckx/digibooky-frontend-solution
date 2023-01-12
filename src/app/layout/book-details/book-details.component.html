@@ -30,25 +30,32 @@
           </div>
         </div>
         <div class="card-footer" *ngIf="authenticationService.isMember()">
-          <a class="btn btn-outline-primary" *ngIf="book.copies != 0"
-             (click)="lendBook(book)">Lend Book</a>
-          <p *ngIf="book.copies == 0">No copies left/Book is out of stock, wait until there is a copie available.</p>
+          <a class="btn btn-outline-secondary" *ngIf="book.copies != 0; else noBooksAvailable" (click)="lendBook(book)">Lend
+            Book</a>
+          <p *ngIf="message">{{message}}</p>
+          <ng-template #noBooksAvailable>
+            No copies left/Book is out of stock, wait until there is a copie available.
+          </ng-template>
+        </div>
+        <div class="card-footer" *ngIf="authenticationService.isLibrarian()">
+          <div class="row mt-3 mb-1">
+            <a class="col-6 btn btn-outline-secondary" routerLink="update">Update</a>
+            <a class="col-6 btn btn-outline-secondary" routerLink="delete">Delete</a>
+          </div>
+          <div class="row">
+            <a class="col-12 btn btn-outline-secondary" routerLink="history">History</a>
+          </div>
         </div>
       </div>
-      <div class="row mt-3 mb-1" *ngIf="authenticationService.isLibrarian()">
-          <a class="col-6 btn btn-outline-secondary" routerLink="update">Update</a>
-          <a class="col-6 btn btn-outline-secondary" routerLink="delete">Delete</a>
-      </div>
-      <div class="row" *ngIf="authenticationService.isLibrarian()">
-        <a class="col-12 btn btn-outline-secondary" routerLink="history">History</a>
-      </div>
     </div>
-    <div class="col-4" *ngIf="lendernames != 0 && (authenticationService.isLoggedIn())">
+    <div class="col-4" *ngIf="book.lenderNames.length !== 0 && (authenticationService.isLoggedIn())">
       <div style="padding-right: 2em; padding-bottom: 2em;">
         <div class="card">
-          <h3 class="card-header card-title">Book is borrowed by:</h3>
-          <div class="card-body" *ngFor="let name of book.lenderNames">
-            <p>{{name}}</p>
+          <h3 class="card-header card-title">Book is borrowed by</h3>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let name of book.lenderNames">{{name}}</li>
+            </ul>
           </div>
         </div>
       </div>

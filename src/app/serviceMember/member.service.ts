@@ -26,8 +26,8 @@ export class MemberService {
     return this.http.post<Member>(this.memberUrl, member)
   }
 
-  lentbook(id: string, isbn: string): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/books/${id}/${isbn}/lent`, null);
+  lendbook(id: string, isbn: string): Observable<any> {
+    return this.http.post(`${environment.backendUrl}/books/${isbn}/lendings`, {memberId: id});
   }
 
   returnBook(id: string, lendingId: string): Observable<any> {

@@ -24,8 +24,8 @@
               <input class="form-control" value="€ {{member.totalPrice}}"  disabled/>
           </div>
         </div>
-        <div style="margin-bottom: 10px">
-          <a class="btn btn-secondary" *ngIf="viewedByLibrarian()" routerLink="/memberOverview/{{member.id}}">
+        <div class="card-footer">
+          <a class="btn btn-outline-secondary" *ngIf="viewedByLibrarian()" routerLink="/memberOverview/{{member.id}}">
             View Profile
           </a>
         </div>
