@@ -18,17 +18,24 @@
           </div>
           <div>
             <label for="address" class="form-label">Address</label>
-            <input id="address" class="form-control disabled" value="{{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}" disabled/>
+            <input id="address" class="form-control disabled"
+                   value="{{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}" disabled/>
           </div>
-          <div class="mt-2" *ngIf="member.fines">
-            <h6>Fines</h6>
-            <div class="offset-1">
-              <label for="totalprice" class="form-label">TotalPrice</label>
-              <input id="totalprice" class="form-control disabled" type="number" value="{{member.totalPrice}}" disabled/>
-            </div>
-            <div class="offset-1">
-              <label for="fines" class="form-label">Fines</label>
-              <input id="fines" class="form-control disabled" type="number" value="{{member.totalPrice}}" disabled/>
+          <div class="mt-2" *ngIf="member.fines.length > 0">
+            <div class="col-7 ms-auto">
+              <h5 class="form-label">Fines</h5>
+              <div *ngFor="let fine of member.fines">
+                <div class="input-group">
+                  <span class="input-group-text">Amount</span>
+                  <input class="form-control disabled" type="text" value="{{fine.amount}}" disabled/>
+                  <span class="input-group-text">Type</span>
+                  <input class="form-control disabled" type="text" value="{{fine.fineType}}" disabled/>
+                </div>
+              </div>
+              <div class="input-group mt-1">
+                <label for="totalprice" class="input-group-text">TotalPrice</label>
+                <input id="totalprice" class="form-control col-2 disabled" type="number" value="{{member.totalPrice}}" disabled/>
+              </div>
             </div>
           </div>
         </div>
@@ -37,20 +44,22 @@
     <div *ngIf="member.lendings.length > 0">
       <h2>Current Lent Books</h2>
       <div *ngFor="let lending of member.lendings" class="card mb-1">
-          <h5 class="card-header">{{lending.book.title}}</h5>
-          <div class="card-body">
-            <div>
-              <label class="form-label">Author</label>
-              <input class="form-control" value="{{lending.book.authorFirstname}} {{lending.book.authorLastname}}" disabled/>
-            </div>
-            <div>
-              <label class="form-label">ISBN</label>
-              <input class="form-control" value="{{lending.book.isbn}}" disabled/>
-            </div>
+        <h5 class="card-header">{{lending.book.title}}</h5>
+        <div class="card-body">
+          <div>
+            <label class="form-label">Author</label>
+            <input class="form-control" value="{{lending.book.authorFirstname}} {{lending.book.authorLastname}}"
+                   disabled/>
           </div>
-          <p *ngIf="authenticationService.isMember()" class="card-footer">
-            <a class="btn btn-outline-secondary" *ngIf="authenticationService.isMember()" routerLink="/lendings/{{lending.id}}/return">Return</a>
-          </p>
+          <div>
+            <label class="form-label">ISBN</label>
+            <input class="form-control" value="{{lending.book.isbn}}" disabled/>
+          </div>
+        </div>
+        <p *ngIf="authenticationService.isMember()" class="card-footer">
+          <a class="btn btn-outline-secondary" *ngIf="authenticationService.isMember()"
+             routerLink="/lendings/{{lending.id}}/return">Return</a>
+        </p>
       </div>
     </div>
     <div class="alert-warning" *ngIf="authenticationService.isLibrarian() && member.lendings.length === 0">

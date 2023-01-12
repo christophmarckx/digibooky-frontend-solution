@@ -4,6 +4,7 @@ import {Book} from "../../../model/Book";
 import {BookService} from "../../../services/serviceBook/book.service";
 import {LibrarianService} from "../../../services/serviceLibrarian/librarian.service";
 import {MemberService} from "../../../services/serviceMember/member.service";
+import {mergeMap} from "rxjs";
 
 @Component({
   selector: 'app-delete-book',
@@ -32,11 +33,11 @@ export class DeleteBookComponent implements OnInit {
   }
 
   deleteBook() {
-    this.route.navigate(["/books"]).then(() => window.location.reload())
-    this.bookService.deleteBook(this.isbn).subscribe();
+    this.bookService.deleteBook(this.isbn)
+      .pipe(
+        mergeMap(() => this.route.navigate(["/books"]))
+      )
+      .subscribe();
   }
 
-  return() {
-    this.route.navigate(["/books/" + this.isbn]).then(() => window.location.reload());
-  }
 }

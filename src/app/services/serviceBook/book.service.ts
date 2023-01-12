@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, Subject, switchMap} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Book} from "../../model/Book";
+import {History} from "../../model/History";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,6 @@ export class BookService {
   }
 
   public getHistory(isbn: string): Observable<any> {
-    return this.http.get<Book[]>(this.bookUrl + "/" + isbn + "/history")
+    return this.http.get<History[]>(this.bookUrl + "/" + isbn + "/history")
   }
 }

@@ -14,18 +14,18 @@ export class LendingService {
   }
 
   getOverdueBooks(): Observable<Lending[]> {
-    return this.http.get<Lending[]>(`${this.lendingUrl}?overdue=true`)
+    return this.http.get<Lending[]>(`${this.lendingUrl}?overdue=true`);
   }
 
   getLending(lendingId: string) {
     return this.http.get<Lending>(`${this.lendingUrl}/${lendingId}`);
   }
 
-  returnBook(lending: Lending): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/books/${lending.lender.lenderId}/${lending.id}/return`, null)
+  returnOverdueBook(lending: Lending): Observable<any> {
+    return this.http.post(`${this.lendingUrl}/${lending.id}/return`, {returnState: 'OVERDUE'});
   }
 
   returnBookDamaged(lending: Lending): Observable<any> {
-    return this.http.post(`${environment.backendUrl}/books/${lending.lender.lenderId}/${lending.id}/return/damaged`, null)
+    return this.http.post(`${this.lendingUrl}/${lending.id}/return`, {returnState: 'DAMAGED'});
   }
 }

@@ -38,7 +38,7 @@ export class ReturnBookComponent implements OnInit {
   }
 
   public returnBook(lending: Lending) {
-    this.lendingService.returnBook(lending)
+    this.lendingService.returnOverdueBook(lending)
       .pipe(
         mergeMap(() => this.router.navigate(["/members/" + this.authenticationService.id!]))
       )
@@ -46,7 +46,7 @@ export class ReturnBookComponent implements OnInit {
   }
 
   public returnBookBroken(lending: Lending) {
-    this.lendingService.returnBook(lending)
+    this.lendingService.returnBookDamaged(lending)
       .pipe(
         mergeMap(() => this.router.navigate(["/members/" + this.authenticationService.id!]))
       )
