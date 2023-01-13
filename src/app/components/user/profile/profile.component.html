@@ -22,20 +22,29 @@
                    value="{{member.street}} {{member.streetnumber}}, {{member.postcode}} {{member.city}}" disabled/>
           </div>
           <div class="mt-2" *ngIf="member.fines.length > 0">
-            <div class="col-7 ms-auto">
+            <div>
               <h5 class="form-label">Fines</h5>
-              <div *ngFor="let fine of member.fines">
-                <div class="input-group">
-                  <span class="input-group-text">Amount</span>
-                  <input class="form-control disabled" type="text" value="{{fine.amount}}" disabled/>
-                  <span class="input-group-text">Type</span>
-                  <input class="form-control disabled" type="text" value="{{fine.fineType}}" disabled/>
-                </div>
-              </div>
-              <div class="input-group mt-1">
-                <label for="totalprice" class="input-group-text">TotalPrice</label>
-                <input id="totalprice" class="form-control col-2 disabled" type="number" value="{{member.totalPrice}}" disabled/>
-              </div>
+              <table>
+                <thead>
+                <th>Book title</th>
+                <th>Amount</th>
+                <th>Type</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let fine of member.fines">
+                  <td><input class="form-control disabled" type="text" value="{{fine.bookTitle}}" disabled/></td>
+                  <td><input class="form-control disabled" type="text" value="{{fine.amount}} eur" disabled/></td>
+                  <td><input class="form-control disabled" type="text" value="{{fine.fineType.toLowerCase()}}" disabled/></td>
+                </tr>
+                <tr>
+                  <div class="input-group mt-1">
+                    <label for="totalprice" class="input-group-text">Total price</label>
+                    <input id="totalprice" class="form-control col-2 disabled" type="text"
+                           value="{{member.totalPrice}} eur" disabled/>
+                  </div>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

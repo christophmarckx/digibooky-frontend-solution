@@ -14,5 +14,5 @@ export interface Member {
   city: string;
   lendings: Lending[];
   fines: Fine[];
-  totalPrice: number;
+  totalPrice: string;
 }

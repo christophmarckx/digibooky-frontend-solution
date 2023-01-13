@@ -4,7 +4,7 @@ export interface Book {
   authorFirstname: string,
   authorLastname: string,
   copies: number,
-  price: number,
+  price: string,
   arrival: string,
   image: string,
   lenderNames: string[],

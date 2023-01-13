@@ -57,7 +57,7 @@ export class RegisterBookComponent implements OnInit {
       .subscribe();
   }
 
-  getErrors(book: Book) {
+  getErrors(book: any) {
     let errors: string[] = []
     if (book.isbn == "") {
       errors.push("ISBN is not filled in");

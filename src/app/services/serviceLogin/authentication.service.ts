@@ -35,7 +35,7 @@ export class AuthenticationService {
     return new User(this.id!, this.fullname!, Role[this.role as keyof typeof Role]);
   }
 
-  addMember(member: Member) {
+  addMember(member: any) {
     return this.memberService.addMember(member);
   }
 

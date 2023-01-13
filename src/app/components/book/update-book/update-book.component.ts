@@ -57,7 +57,7 @@ export class UpdateBookComponent implements OnInit {
       ).subscribe();
   }
 
-  getError(book: Book) {
+  getError(book: any) {
     let errors = [];
     if (book.title == "") {
       errors.push("Title is not filled in");

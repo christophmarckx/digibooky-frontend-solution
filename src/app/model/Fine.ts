@@ -1,6 +1,8 @@
 export interface Fine {
-  amount: number,
-  fineType: FineType;
+  amount: string,
+  fineType: FineType,
+  bookTitle: string
+
 }
 
 export enum FineType {

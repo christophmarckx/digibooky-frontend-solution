@@ -58,7 +58,7 @@ export class RegisterMemberComponent implements OnInit {
     }
   }
 
-  hasError(member: Member) {
+  hasError(member: any) {
     if (member.inss == "") {
       this.errors.push("INSS is not filled in");
     }
