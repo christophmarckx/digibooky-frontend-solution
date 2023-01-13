@@ -17,6 +17,7 @@ export class ReturnBookComponent implements OnInit {
   });
   public lending$!: Observable<Lending>;
   public damaged: boolean;
+  public showPanel = false;
 
   constructor(public formBuilder: NonNullableFormBuilder,
               private lendingService: LendingService,
@@ -38,6 +39,14 @@ export class ReturnBookComponent implements OnInit {
   }
 
   public returnBook(lending: Lending) {
+    if (this.returnForm.getRawValue().damaged) {
+      this.returnBookBroken(lending);
+    } else {
+      this.returnBookOverdue(lending);
+    }
+  }
+
+  public returnBookOverdue(lending: Lending) {
     this.lendingService.returnOverdueBook(lending)
       .pipe(
         mergeMap(() => this.router.navigate(["/members/" + this.authenticationService.id!]))
@@ -53,4 +62,7 @@ export class ReturnBookComponent implements OnInit {
       .subscribe();
   }
 
+  toggle() {
+    this.showPanel = !this.showPanel;
+  }
 }

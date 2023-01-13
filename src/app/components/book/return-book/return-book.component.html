@@ -1,53 +1,61 @@
-<div class="container">
+<div class="container mb-3">
   <h1>Return Book</h1>
   <div *ngIf="lending$ | async as lending">
-    <a style="width: auto" class="btn btn-secondary" routerLink="/members/{{lending.lender.lenderId}}">Back</a>
+    <a class="btn btn-outline-secondary mb-1" routerLink="/members/{{lending.lender.lenderId}}">Back</a>
 
-    <div class="row row-cols-sm-1 row-cols-lg-3">
-      <div style="padding-bottom: 15px" class="col-4 image">
+    <div class="row">
+      <div class="col-4 image">
         <img src="{{lending.book.image}}" alt="hier komt een afbeelding">
       </div>
-      <div style="padding-bottom: 15px" class="col-lg-4">
+      <div class="col-lg-4">
         <div class="card">
-          <p class="card-header">Title: {{lending.book.title}}</p>
+          <h5 class="card-header">{{lending.book.title}}</h5>
           <div class="card-body">
-            <p *ngIf="lending.book.author != null">Author: {{lending.book.author}}</p>
-            <p *ngIf="lending.book.author == null">
-              Author: {{lending.book.authorFirstname}} {{lending.book.authorLastname}}</p>
-            <p>DueDate: {{lending.dueDate}}</p>
-            <form [formGroup]="returnForm">
+            <div>
+              <label class="form-label">Author</label>
+              <input class="form-control" value="{{lending.book.authorFirstname}} {{lending.book.authorLastname}}"
+                     disabled/>
+            </div>
+            <div>
+              <label class="form-label">Due date</label>
+              <input class="form-control" value="{{lending.dueDate}}" disabled/>
+            </div>
+            <form class="mt-1" [formGroup]="returnForm">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="damaged" name="damaged" (change)="setDamaged()">
                 <label class="form-check-label" for="damaged">Damaged</label>
               </div>
             </form>
-            <a *ngIf="!damaged" class="btn btn-outline-secondary" (click)="returnBook(lending)">Return {{lending.book.title}}</a>
-            <a *ngIf="damaged" class="btn btn-outline-secondary" (click)="returnBookBroken(lending)">Return {{lending.book.title}}, broken</a>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-outline-secondary" (click)="returnBook(lending)">Return {{lending.book.title}}</a>
           </div>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="card">
-          <p class="card-header card-title">Here will be explained how the Fines work.</p>
-          <div class="card-body">
+          <h5 class="card-header card-title" (click)="toggle()">How do fines work?</h5>
+          <div *ngIf="showPanel" class="card-body">
             <p class="fw-bold">Overdue Fine</p>
-            <p>
+            <div>
               This is a Fine you will get when your book is overdue.<br>
               The amount you'll have to pay depends on the duration the book is returned after the due date of 3
               weeks. <br>
               It can be calculated as following: <br>
-              5 + 2 * [Total weeks overdue] <br>
+              <input class="form-control" value="5 + 2 * [Total weeks overdue]" disabled/>
               examples: <br>
-              -> 3 weeks: No Fine <br>
-              -> 3 weeks and 3 days: €5 <br>
-              -> 4 weeks: €7 <br>
-            </p>
+              <ul>
+                <li>3 weeks: No Fine</li>
+                <li>3 weeks and 3 days: €5</li>
+                <li>4 weeks: €7</li>
+              </ul>
+            </div>
             <p class="fw-bold">Damage Fine</p>
             <p>
               This is a Fine you will get when your book is returned damaged. <br>
               The amount you'll have to pay depends on the warranty price and on the books "age". <br>
               It can be calculated as following: <br>
-              [Warranty price] * (1 - ([Book years] * 0.2)
+              <input class="form-control" value="[Warranty price] * (1 - ([Book years] * 0.2)" disabled/>
             </p>
           </div>
         </div>

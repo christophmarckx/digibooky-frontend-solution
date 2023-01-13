@@ -64,11 +64,14 @@
             <label class="form-label">ISBN</label>
             <input class="form-control" value="{{lending.book.isbn}}" disabled/>
           </div>
+          <div>
+            <label class="form-label">Due date</label>
+            <input class="form-control" value="{{lending.dueDate}}" disabled/>
+          </div>
         </div>
-        <p *ngIf="authenticationService.isMember()" class="card-footer">
-          <a class="btn btn-outline-secondary" *ngIf="authenticationService.isMember()"
-             routerLink="/lendings/{{lending.id}}/return">Return</a>
-        </p>
+        <div *ngIf="authenticationService.isMember()" class="card-footer">
+          <a class="btn btn-outline-secondary" *ngIf="authenticationService.isMember()" routerLink="/lendings/{{lending.id}}/return">Return</a>
+        </div>
       </div>
     </div>
     <div class="alert-warning" *ngIf="authenticationService.isLibrarian() && member.lendings.length === 0">
