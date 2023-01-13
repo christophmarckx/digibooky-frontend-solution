@@ -10,7 +10,6 @@ import {DateService} from "../../../services/serviceDate/date.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public date!: string;
   public user$!: Observable<User>;
   private userSubject$ = new BehaviorSubject(null);
 
@@ -20,12 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dateService.getDate().subscribe(date => this.date = date);
     this.user$ = this.authenticationService.getUser(this.userSubject$);
-  }
-
-  get getDate(): string {
-    return this.date;
   }
 
   logout() {
