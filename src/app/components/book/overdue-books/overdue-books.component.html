@@ -1,19 +1,30 @@
-<div class="container">
+<div class="container mb-3">
   <h1>Overdue books</h1>
   <div *ngIf="overdueBooks$ | async as overdueBooks; else loading">
     <div class="row" *ngIf="overdueBooks.length  !== 0">
       <div class="col-md-6 col-lg-4" *ngFor="let overdueBook of overdueBooks">
         <div class="card">
           <div class="card-header">
-            <p class="nopadding fw-bold">Title: {{overdueBook.book.title}}</p>
+            <h5>{{overdueBook.book.title}}</h5>
           </div>
           <div class="card-body">
-            <p>ISBN: {{overdueBook.book.isbn}}</p>
-            <p>Author: {{overdueBook.book.authorFirstname}} {{overdueBook.book.authorLastname}}</p>
-            <p class="nopadding">Duedate: {{overdueBook.dueDate}}</p>
+            <div>
+              <label class="form-label">ISBN</label>
+              <input class="form-control" value="{{overdueBook.book.isbn}}" disabled/>
+            </div>
+            <div>
+              <label class="form-label">Author</label>
+              <input class="form-control" value="{{overdueBook.book.authorFirstname}} {{overdueBook.book.authorLastname}}" disabled/>
+            </div>
+            <div>
+              <label class="form-label">Duedate</label>
+              <input class="form-control" value="{{overdueBook.dueDate}}" disabled/>
+            </div>
           </div>
           <div class="card-footer">
-            <p class="nopadding">By: {{overdueBook.lender.lenderFirstname}} {{overdueBook.lender.lenderLastname}}</p>
+            <div>
+              <input class="text-center form-control" value="{{overdueBook.lender.lenderFirstname}} {{overdueBook.lender.lenderLastname}}" disabled/>
+            </div>
           </div>
         </div>
       </div>
