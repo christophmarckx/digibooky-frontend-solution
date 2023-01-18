@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   });
   public message!: string;
   public error!: string;
+  public showTestProfiles = false;
 
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -77,5 +78,9 @@ export class LoginComponent implements OnInit {
 
   get roleForm() {
     return this._roleForm;
+  }
+
+  toggle() {
+    this.showTestProfiles = !this.showTestProfiles;
   }
 }
