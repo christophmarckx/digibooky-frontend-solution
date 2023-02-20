@@ -97,7 +97,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/_redirects"
+              "src/_redirects",
+              "src/.htaccess"
             ],
             "styles": [
               "src/styles.css"
