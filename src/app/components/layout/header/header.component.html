@@ -22,7 +22,7 @@
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!user.isLoggedIn()">
           <li><a id="login-nav-button" class="fs-4 btn nav-btn m-1" routerLink="/login"><i class="bi bi-person m-1"></i>Login</a></li>
-          <li><a class="fs-4 btn nav-btn m-1" routerLink="/members/add">Register</a></li>
+          <li><a id="register-nav-button" class="fs-4 btn nav-btn m-1" routerLink="/members/add">Register</a></li>
           <li class="mt-2"><app-change-date></app-change-date></li>
         </ul>
 
