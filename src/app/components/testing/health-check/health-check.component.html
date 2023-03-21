@@ -1,0 +1,4 @@
+<button *ngIf="backendUp | async; else backend_down" title="backend up" class="btn btn-health-check"><i class="bi bi-check-circle-fill text-green bi-large"></i></button>
+<ng-template #backend_down>
+  <button title="backend down" class="btn btn-health-check"><i class="bi bi-x-circle-fill text-red bi-large"></i></button>
+</ng-template>

@@ -48,6 +48,7 @@ import {DeleteBookComponent} from "./book/delete-book/delete-book.component";
 import {HistoryComponent} from "./book/history/history.component";
 import {StoriesOverviewComponent} from "./stories/stories-overview/stories-overview.component";
 import {ChangeDateComponent} from "./testing/change-date/change-date.component";
+import { HealthCheckComponent } from './testing/health-check/health-check.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import {ChangeDateComponent} from "./testing/change-date/change-date.component";
     Story21Component,
     Story16Component,
     StoriesOverviewComponent,
-    ChangeDateComponent
+    ChangeDateComponent,
+    HealthCheckComponent
   ],
   exports: [
     HomeComponent,
