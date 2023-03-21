@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {HealthCheckService} from "../../../services/health-check.service";
 import {Health} from "../../../model/Health";
+import {HealthCheckService} from "../../../services/serviceHealth/health-check.service";
 
 @Component({
   selector: 'app-health-check',
