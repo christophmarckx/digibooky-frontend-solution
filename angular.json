@@ -39,7 +39,6 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/track/test/digibooky/",
               "budgets": [
                 {
                   "type": "initial",
@@ -110,5 +109,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
